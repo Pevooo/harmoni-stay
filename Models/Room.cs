@@ -12,5 +12,6 @@
 
         public virtual ICollection<Transaction> RoomTransactionts { get; set; }
         
+        public virtual ICollection<Guest> RoomGuests { get; set; }
     }
 }

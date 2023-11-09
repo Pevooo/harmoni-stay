@@ -14,5 +14,6 @@ namespace MainProject
         public DateTime TransactionTime { get; set; }
 
         public virtual Room TransactionRoom { get; set; }
+
     }
 }
