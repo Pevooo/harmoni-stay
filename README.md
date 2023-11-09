@@ -20,4 +20,7 @@ Visual Programming and Software Engineering project
 
 ### **Step 5**: Login Page including using Session and storing the database
 
-### **Step 6**: To be specified...
+### **Step 6**: *Determining other important pages and requirements*
+## Testing:
+
+### **Step 7**: Random Testing
