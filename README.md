@@ -12,9 +12,9 @@ Visual Programming and Software Engineering project
 
 ### **Step 2**: Database Connectioon: **Completed**
 
-### **Step 3**: Database Implementation: *Pending*
+### **Step 3**: Database Implementation: **Completed**
 
-### **Step 4**: Database Population: Awaiting
+### **Step 4**: Database Population: *Pending*
 
 ## Front/Back Related:
 
