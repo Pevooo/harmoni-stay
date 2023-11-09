@@ -5,11 +5,11 @@ namespace MainProject
     public class Facility
     {
         public int FacilityID { get; set; }
-        public string Name { get; set; }
+        public string FacilityName { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime Start { get; set; }
+        public DateTime FacilityWorkStart { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime End { get; set; }
-        public virtual Event Events { get; set; }
+        public DateTime FacilityWorkEnd { get; set; }
+        public virtual ICollection<Event> FacilityEvent { get; set; }
     }
 }

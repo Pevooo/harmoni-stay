@@ -4,6 +4,7 @@ using MainProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231109164008_meow")]
+    partial class meow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,25 +67,20 @@ namespace MainProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventID"));
 
-                    b.Property<DateTime>("EventEnd")
+                    b.Property<DateTime>("End")
                         .HasColumnType("datetime");
-
-                    b.Property<int>("EventFacilityFacilityID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("EventFee")
-                        .HasColumnType("float");
 
                     b.Property<string>("EventName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EventStart")
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Start")
                         .HasColumnType("datetime");
 
                     b.HasKey("EventID");
-
-                    b.HasIndex("EventFacilityFacilityID");
 
                     b.ToTable("Events");
                 });
@@ -95,17 +93,22 @@ namespace MainProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FacilityID"));
 
-                    b.Property<DateTime>("FacilityWorkEnd")
+                    b.Property<DateTime>("End")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("FacilityWorkStart")
-                        .HasColumnType("datetime");
+                    b.Property<int>("EventsEventID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime");
+
                     b.HasKey("FacilityID");
+
+                    b.HasIndex("EventsEventID");
 
                     b.ToTable("Facilities");
                 });
@@ -142,11 +145,16 @@ namespace MainProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoomTransactionTransactionID")
+                        .HasColumnType("int");
+
                     b.Property<string>("RoomType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoomID");
+
+                    b.HasIndex("RoomTransactionTransactionID");
 
                     b.ToTable("Rooms");
                 });
@@ -166,49 +174,39 @@ namespace MainProject.Migrations
                     b.Property<double>("TransactionFee")
                         .HasColumnType("float");
 
-                    b.Property<int>("TransactionRoomRoomID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("TransactionTime")
                         .HasColumnType("datetime");
 
                     b.HasKey("TransactionID");
 
-                    b.HasIndex("TransactionRoomRoomID");
-
                     b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("MainProject.Event", b =>
-                {
-                    b.HasOne("MainProject.Facility", "EventFacility")
-                        .WithMany("FacilityEvent")
-                        .HasForeignKey("EventFacilityFacilityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventFacility");
-                });
-
-            modelBuilder.Entity("MainProject.Transaction", b =>
-                {
-                    b.HasOne("MainProject.Room", "TransactionRoom")
-                        .WithMany("RoomTransactionts")
-                        .HasForeignKey("TransactionRoomRoomID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TransactionRoom");
                 });
 
             modelBuilder.Entity("MainProject.Facility", b =>
                 {
-                    b.Navigation("FacilityEvent");
+                    b.HasOne("MainProject.Event", "Events")
+                        .WithMany("Facilities")
+                        .HasForeignKey("EventsEventID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("MainProject.Room", b =>
                 {
-                    b.Navigation("RoomTransactionts");
+                    b.HasOne("MainProject.Transaction", "RoomTransaction")
+                        .WithMany()
+                        .HasForeignKey("RoomTransactionTransactionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoomTransaction");
+                });
+
+            modelBuilder.Entity("MainProject.Event", b =>
+                {
+                    b.Navigation("Facilities");
                 });
 #pragma warning restore 612, 618
         }
