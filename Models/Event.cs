@@ -4,6 +4,8 @@ namespace MainProject
 {
     public class Event
     {
+
+        
         public int EventID { get; set; }
         public string EventName { get; set; }
         public double EventFee { get; set; }

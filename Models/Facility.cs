@@ -11,5 +11,6 @@ namespace MainProject
         [Column(TypeName = "datetime")]
         public DateTime FacilityWorkEnd { get; set; }
         public virtual ICollection<Event> FacilityEvent { get; set; }
+        public virtual ICollection<Employee> FacilityEmployee { get; set; }
     }
 }
