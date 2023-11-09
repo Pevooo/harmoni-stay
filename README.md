@@ -18,7 +18,7 @@ Visual Programming and Software Engineering project
 
 ## Front/Back Related:
 
-### **Step 5**: Login Page including using Session and storing the database
+### **Step 5**: Login Page including using Session and storing in the database
 
 ### **Step 6**: *Determining other important pages and requirements*
 ## Testing:
