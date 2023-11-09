@@ -4,7 +4,7 @@ Visual Programming and Software Engineering project
 # Milestones
 
 
-### **Step 0**: Pre-Project: **Completed**
+### **Step 0**: Pre-Project Research: **Completed**
 
 ## Database Related:
 
