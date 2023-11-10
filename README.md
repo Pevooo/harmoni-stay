@@ -14,7 +14,7 @@ Visual Programming and Software Engineering project
 
 ### **Step 3**: Database Implementation: **Completed**
 
-### **Step 4**: Database Population: *Pending*
+### **Step 4**: Database Population: **Completed**
 
 ## Front/Back Related:
 
