@@ -20,7 +20,16 @@ Visual Programming and Software Engineering project
 
 ### **Step 5**: Login Page including using Session and storing in the database
 
-### **Step 6**: *Determining other important pages and requirements*
+### **Step 6**: Room Management Feature
+
+### **Step 7**: Staff Management Feature
+
+### **Step 8**: Facility Management Feature
+
+### **Step 9**: Events Management Feature
+
+### **Step 10**: Financial Analytics Feature
+
 ## Testing:
 
-### **Step 7**: Random Testing
+### **Step 11**: Random Testing
