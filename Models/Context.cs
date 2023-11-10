@@ -7,7 +7,7 @@ namespace MainProject.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=localhost;user id=PEVO\pevod;Database=Harmonistay;Trusted_Connection=True;trustservercertificate=True");
+            optionsBuilder.UseSqlServer(@"server=localhost;Database=Harmonistay;Trusted_Connection=True;TrustServerCertificate=True");
         }
         DbSet<Room> Rooms { get; set; }
         DbSet<Facility> Facilities { get; set; }
