@@ -8,7 +8,7 @@ namespace MainProject
         public string GuestName { get; set; }
         public string GustRoomType { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime ChechIn { get; set; }
+        public DateTime CheckIn { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CheckOut{ get; set; }
         public virtual Room GuestRoom { get; set; }
