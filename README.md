@@ -10,7 +10,7 @@ Visual Programming and Software Engineering project
 
 ### **Step 1**: Databse Design: **Completed**
 
-### **Step 2**: Database Connectioon: **Completed**
+### **Step 2**: Database Connection: **Completed**
 
 ### **Step 3**: Database Implementation: **Completed**
 
