@@ -6,6 +6,6 @@
         public string Password { get; set; }
         public string Type { get; set; }
 
-        public virtual Employee AccountEmloyee { get; set; }
+        public virtual Employee AccountEmployee { get; set; }
     }
 }
