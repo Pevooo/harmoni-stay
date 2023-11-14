@@ -24,7 +24,7 @@ Visual Programming and Software Engineering project
 
 ##### Step 5.2: /register Route
 
-##### Step 5.3 /logout Route
+##### Step 5.3: /logout Route
 
 ### **Step 6**: Room Management Feature
 
