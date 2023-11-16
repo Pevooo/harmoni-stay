@@ -1,4 +1,4 @@
-﻿namespace MainProject
+﻿namespace MainProject.Models
 {
     public class Room
     {
@@ -12,6 +12,6 @@
 
         public virtual ICollection<Transaction> RoomTransactionts { get; set; }
         
-        public virtual ICollection<Guest> RoomGuests { get; set; }
+        public virtual ICollection<Booking> RoomBookings { get; set; }
     }
 }

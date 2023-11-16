@@ -16,7 +16,7 @@ namespace MainProject.Models
         DbSet<Account> Accounts { get; set; }
         DbSet<Event> Events { get; set; }
         DbSet<Transaction> Transactions { get; set; }
-
-
+        DbSet<Booking> Bookings { get; set; }
+        
     }
 }

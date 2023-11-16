@@ -1,4 +1,4 @@
-﻿namespace MainProject
+﻿namespace MainProject.Models
 {
     public class Account
     {

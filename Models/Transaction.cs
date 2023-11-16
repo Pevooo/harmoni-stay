@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MainProject
+namespace MainProject.Models
 {
     public class Transaction
     {

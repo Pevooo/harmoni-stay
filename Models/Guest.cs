@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using MainProject.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MainProject
+namespace MainProject.Models
 {
     public class Guest
     {
@@ -8,10 +9,6 @@ namespace MainProject
         public string GuestName { get; set; }
         public string GuestPhoneNumber { get; set; }
         public string GuestNationality { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime CheckIn { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime CheckOut{ get; set; }
-        public virtual Room GuestRoom { get; set; }
+        public virtual ICollection<Booking> GuestBookings { get; set; }
     }
 }

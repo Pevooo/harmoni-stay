@@ -4,6 +4,7 @@ using MainProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231115195842_test214")]
+    partial class test214
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace MainProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MainProject.Models.Account", b =>
+            modelBuilder.Entity("MainProject.Account", b =>
                 {
                     b.Property<int>("AccountID")
                         .ValueGeneratedOnAdd()
@@ -48,36 +51,7 @@ namespace MainProject.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Booking", b =>
-                {
-                    b.Property<int>("BookingID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"));
-
-                    b.Property<int>("BookingGuestGuestID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookingRoomRoomID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CheckIn")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("CheckOut")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("BookingID");
-
-                    b.HasIndex("BookingGuestGuestID");
-
-                    b.HasIndex("BookingRoomRoomID");
-
-                    b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("MainProject.Models.Employee", b =>
+            modelBuilder.Entity("MainProject.Employee", b =>
                 {
                     b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
@@ -105,7 +79,7 @@ namespace MainProject.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Event", b =>
+            modelBuilder.Entity("MainProject.Event", b =>
                 {
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd()
@@ -136,7 +110,7 @@ namespace MainProject.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Facility", b =>
+            modelBuilder.Entity("MainProject.Facility", b =>
                 {
                     b.Property<int>("FacilityID")
                         .ValueGeneratedOnAdd()
@@ -159,13 +133,19 @@ namespace MainProject.Migrations
                     b.ToTable("Facilities");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Guest", b =>
+            modelBuilder.Entity("MainProject.Guest", b =>
                 {
                     b.Property<int>("GuestID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuestID"));
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("GuestName")
                         .IsRequired()
@@ -179,12 +159,17 @@ namespace MainProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GuestRoomRoomID")
+                        .HasColumnType("int");
+
                     b.HasKey("GuestID");
+
+                    b.HasIndex("GuestRoomRoomID");
 
                     b.ToTable("Guests");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Room", b =>
+            modelBuilder.Entity("MainProject.Room", b =>
                 {
                     b.Property<int>("RoomID")
                         .ValueGeneratedOnAdd()
@@ -208,7 +193,7 @@ namespace MainProject.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Transaction", b =>
+            modelBuilder.Entity("MainProject.Transaction", b =>
                 {
                     b.Property<int>("TransactionID")
                         .ValueGeneratedOnAdd()
@@ -236,9 +221,9 @@ namespace MainProject.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Account", b =>
+            modelBuilder.Entity("MainProject.Account", b =>
                 {
-                    b.HasOne("MainProject.Models.Employee", "AccountEmployee")
+                    b.HasOne("MainProject.Employee", "AccountEmployee")
                         .WithMany()
                         .HasForeignKey("AccountEmployeeEmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,28 +232,9 @@ namespace MainProject.Migrations
                     b.Navigation("AccountEmployee");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Booking", b =>
+            modelBuilder.Entity("MainProject.Employee", b =>
                 {
-                    b.HasOne("MainProject.Models.Guest", "BookingGuest")
-                        .WithMany("GuestBookings")
-                        .HasForeignKey("BookingGuestGuestID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MainProject.Models.Room", "BookingRoom")
-                        .WithMany("RoomBookings")
-                        .HasForeignKey("BookingRoomRoomID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookingGuest");
-
-                    b.Navigation("BookingRoom");
-                });
-
-            modelBuilder.Entity("MainProject.Models.Employee", b =>
-                {
-                    b.HasOne("MainProject.Models.Facility", "FacilityEmployee")
+                    b.HasOne("MainProject.Facility", "FacilityEmployee")
                         .WithMany("FacilityEmployee")
                         .HasForeignKey("FacilityEmployeeFacilityID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -277,9 +243,9 @@ namespace MainProject.Migrations
                     b.Navigation("FacilityEmployee");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Event", b =>
+            modelBuilder.Entity("MainProject.Event", b =>
                 {
-                    b.HasOne("MainProject.Models.Facility", "EventFacility")
+                    b.HasOne("MainProject.Facility", "EventFacility")
                         .WithMany("FacilityEvent")
                         .HasForeignKey("EventFacilityFacilityID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -288,9 +254,20 @@ namespace MainProject.Migrations
                     b.Navigation("EventFacility");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Transaction", b =>
+            modelBuilder.Entity("MainProject.Guest", b =>
                 {
-                    b.HasOne("MainProject.Models.Room", "TransactionRoom")
+                    b.HasOne("MainProject.Room", "GuestRoom")
+                        .WithMany("RoomGuests")
+                        .HasForeignKey("GuestRoomRoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GuestRoom");
+                });
+
+            modelBuilder.Entity("MainProject.Transaction", b =>
+                {
+                    b.HasOne("MainProject.Room", "TransactionRoom")
                         .WithMany("RoomTransactionts")
                         .HasForeignKey("TransactionRoomRoomID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -299,21 +276,16 @@ namespace MainProject.Migrations
                     b.Navigation("TransactionRoom");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Facility", b =>
+            modelBuilder.Entity("MainProject.Facility", b =>
                 {
                     b.Navigation("FacilityEmployee");
 
                     b.Navigation("FacilityEvent");
                 });
 
-            modelBuilder.Entity("MainProject.Models.Guest", b =>
+            modelBuilder.Entity("MainProject.Room", b =>
                 {
-                    b.Navigation("GuestBookings");
-                });
-
-            modelBuilder.Entity("MainProject.Models.Room", b =>
-                {
-                    b.Navigation("RoomBookings");
+                    b.Navigation("RoomGuests");
 
                     b.Navigation("RoomTransactionts");
                 });
