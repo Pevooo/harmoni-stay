@@ -23,5 +23,11 @@ namespace MainProject.Pages
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
+
+
+        public void OnPost()
+        {
+
+        }
     }
 }

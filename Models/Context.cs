@@ -13,7 +13,7 @@ namespace MainProject.Models
         DbSet<Facility> Facilities { get; set; }
         DbSet<Employee> Employees { get; set; }
         DbSet<Guest> Guests { get; set; }
-        DbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         DbSet<Event> Events { get; set; }
         DbSet<Transaction> Transactions { get; set; }
         DbSet<Booking> Bookings { get; set; }
