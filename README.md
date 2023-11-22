@@ -36,9 +36,23 @@ Visual Programming and Software Engineering project
 
 ### **Step 7**: Staff Management Feature
 
+##### Step 7.1: /staffdetails Route:
+
+##### Step 7.2: /staffupdate:
+
+##### Step 7.3: /AddStaff:
+
 ### **Step 8**: Facility Management Feature
 
+##### Step 8.1: /facilitiesDetails Route:
+
+##### Step 8.2: /addFacility:
+
 ### **Step 9**: Events Management Feature
+
+##### Step 8.1: /facilitiesDetails Route:
+
+##### Step 8.2: /addEvent:
 
 ### **Step 10**: Financial Analytics Feature
 
