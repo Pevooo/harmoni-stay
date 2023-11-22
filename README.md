@@ -28,6 +28,12 @@ Visual Programming and Software Engineering project
 
 ### **Step 6**: Room Management Feature
 
+##### Step 6.1: /checkIn Route:
+
+##### Step 6.2: /timeLapse Route:
+
+##### Step 6.3: /roomDetails Route:
+
 ### **Step 7**: Staff Management Feature
 
 ### **Step 8**: Facility Management Feature
