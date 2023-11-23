@@ -18,11 +18,11 @@ Visual Programming and Software Engineering project
 
 ## Front/Back Related:
 
-### **Step 5**: Login Page including using Session and storing in the database: *Pending*
+### **Step 5**: Login Page including using Session and storing in the database: **Completed**
 
 ##### Step 5.1: /login Route: **Completed**
 
-##### Step 5.2: /register Route: *Pending*
+##### Step 5.2: /register Route: **Completed**
 
 ##### Step 5.3: /logout Route: **Completed**
 
@@ -50,9 +50,9 @@ Visual Programming and Software Engineering project
 
 ### **Step 9**: Events Management Feature
 
-##### Step 8.1: /facilitiesDetails Route:
+##### Step 9.1: /facilitiesDetails Route:
 
-##### Step 8.2: /addEvent:
+##### Step 9.2: /addEvent:
 
 ### **Step 10**: Financial Analytics Feature
 
