@@ -9,14 +9,14 @@ namespace MainProject.Models
         {
             optionsBuilder.UseSqlServer(@"server=localhost;Database=Harmonistay;Trusted_Connection=True;TrustServerCertificate=True");
         }
-        DbSet<Room> Rooms { get; set; }
-        DbSet<Facility> Facilities { get; set; }
-        DbSet<Employee> Employees { get; set; }
-        DbSet<Guest> Guests { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+		public DbSet<Facility> Facilities { get; set; }
+		public DbSet<Employee> Employees { get; set; }
+		public DbSet<Guest> Guests { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        DbSet<Event> Events { get; set; }
-        DbSet<Transaction> Transactions { get; set; }
-        DbSet<Booking> Bookings { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         
     }
 }

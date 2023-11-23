@@ -3,23 +3,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MainProject.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace MainProject.Pages
 {
     public class LoginModel : PageModel
     {
-      
-        private readonly ILogger<LoginModel> _logger;
 
-        public int userId;
-        public string? password;
+        private Context db;
+        public int UserId { get; set; }
+        public string Password {  get; set; }
         public bool Error { get; set; }
 
-        public string? name;
-
-        public LoginModel(ILogger<LoginModel> logger)
+        public LoginModel()
         {
-            _logger = logger;
+            db = new();
         }
         public void OnGet()
         {
@@ -32,32 +30,31 @@ namespace MainProject.Pages
 
         public void OnPost()
         {
-            password = Request.Form["password"];
+
             try
             {
-				userId = Convert.ToInt32(Request.Form["userId"]);
+				UserId = Convert.ToInt32(Request.Form["userId"]);
+				Password = (string)Request.Form["password"];
 			}
             catch
             {
                 Error = true;
                 return;
             }
-            
 
-            List<Account> accounts = new Context().Accounts.ToList();
 
-            // Checking the existance of the account with the correct password
-            var query = (from account in accounts where account.AccountID == userId && Utility.CheckHash(password, account.Password) select account).ToList();
+			// Checking the existance of the account with the correct password
+			var query = db.Accounts.SingleOrDefault(account => account.AccountEmployee.EmployeeID == UserId);
 
-            if (query.Count == 0) // If no account is found with the given credentials
+            if (query is null || !BCrypt.Net.BCrypt.Verify(Password, query.Password)) // If no account is found with the given credentials or password is wrong
             {
                 Error = true;
             }
             else
             {
                 // Saving User info in Session and Globals
-                HttpContext.Session.SetInt32("UserId", userId);
-                Globals.UserId = userId;
+                HttpContext.Session.SetInt32("UserId", (int)UserId);
+                Globals.UserId = UserId;
                 Response.Redirect("/", false, true);      
             }
         }
