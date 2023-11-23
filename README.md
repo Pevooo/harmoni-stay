@@ -22,7 +22,7 @@ Visual Programming and Software Engineering project
 
 ##### Step 5.1: /login Route: **Completed**
 
-##### Step 5.2: /register Route: *Pending*
+##### Step 5.2: /register Route: **Completed**
 
 ##### Step 5.3: /logout Route: **Completed**
 
