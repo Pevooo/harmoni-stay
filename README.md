@@ -18,7 +18,7 @@ Visual Programming and Software Engineering project
 
 ## Front/Back Related:
 
-### **Step 5**: Login Page including using Session and storing in the database: *Pending*
+### **Step 5**: Login Page including using Session and storing in the database: **Completed**
 
 ##### Step 5.1: /login Route: **Completed**
 
