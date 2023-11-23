@@ -50,9 +50,9 @@ Visual Programming and Software Engineering project
 
 ### **Step 9**: Events Management Feature
 
-##### Step 8.1: /facilitiesDetails Route:
+##### Step 9.1: /facilitiesDetails Route:
 
-##### Step 8.2: /addEvent:
+##### Step 9.2: /addEvent:
 
 ### **Step 10**: Financial Analytics Feature
 
