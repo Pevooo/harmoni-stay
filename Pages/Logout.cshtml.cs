@@ -12,5 +12,12 @@ namespace MainProject.Pages
             Globals.UserId = null;
             Response.Redirect("/", false, true);
         }
+
+        public void OnPost()
+        {
+            HttpContext.Session.Clear();
+            Globals.UserId = null;
+            Response.Redirect("/", false, true);
+        }
     }
 }

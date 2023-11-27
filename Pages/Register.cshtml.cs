@@ -15,6 +15,8 @@ namespace MainProject.Pages
 
 		public int UserId { get; set; }
 
+		public string Type { get; set; }
+
 		private readonly Context db;
 
         public RegisterModel()
@@ -36,6 +38,7 @@ namespace MainProject.Pages
 			{
 				UserId = Convert.ToInt32(Request.Form["userId"]);
 				Password = Request.Form["password"];
+				Type = Request.Form["type"];
 			}
 			catch
 			{
@@ -61,7 +64,7 @@ namespace MainProject.Pages
 					return;
 				}
 				
-				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = "Manager" });
+				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type });
 				db.SaveChanges();
 
 				// Saving User info in Session and Globals

@@ -19,6 +19,8 @@ namespace MainProject.Pages
         {
             db = new();
         }
+
+
         public void OnGet()
         {
             if (HttpContext.Session.GetInt32("UserId") is not null)
@@ -34,7 +36,7 @@ namespace MainProject.Pages
             try
             {
 				UserId = Convert.ToInt32(Request.Form["userId"]);
-				Password = (string)Request.Form["password"];
+				Password = Request.Form["password"];
 			}
             catch
             {
