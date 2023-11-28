@@ -19,7 +19,7 @@ namespace MainProject.Pages
         public int RoomId { get; set; }
         public bool Error { get; set; }
         public string? Message { get; set; }
-
+        public Dictionary<int, List<bool>> Days { get; set; }
         public void OnGet()
         {
   
@@ -46,18 +46,27 @@ namespace MainProject.Pages
                 return;
             }
 
-            var bookings = (from booking in db.Bookings where (booking.BookingRoom.RoomID == RoomId && StartDate <= booking.CheckOut && EndDate >= booking.CheckIn) select booking).ToList();
+            var roomIds = (from room in db.Rooms select room.RoomID).ToList();
 
-            if (bookings.Count == 0)
+            int roomRangeStart = Math.Max(0, roomIds.IndexOf(RoomId) - 5);
+            int roomRangeEnd = Math.Min(roomIds.Count(), roomIds.IndexOf(RoomId) + 5);
+      
+            Message = "Room is Free";
+
+            Days = new();
+
+            for (int i = roomRangeStart; i <= roomRangeEnd; i++)
             {
-                // Free
-                Message = "Room is Free";
+                int roomId = roomIds[i];
+                Days.Add(roomId, new());
+                for (DateTime dt = StartDate; dt <= EndDate; dt = dt.AddDays(1))
+                {              
+                    var occupied = (from booking in db.Bookings where (booking.BookingRoom.RoomID == roomId && dt < booking.CheckOut && dt >= booking.CheckIn) select booking).Count() != 0;
+                    Days[roomId].Add(occupied);
+                }
             }
-            else
-            {
-                // Occupied
-                Message = "Room is Occupied";
-            }
+
+
         }
 
     }

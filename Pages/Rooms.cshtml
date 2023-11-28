@@ -56,7 +56,37 @@
 
 @if (Model.Message is not null)
 {
-    <p>@Model.Message</p>
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>#</th>
+                @for (DateTime dt = Model.StartDate; dt <= Model.EndDate; dt = dt.AddDays(1))
+                {
+                    <th>@dt.ToString("dd/MM/yyyy")</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model.Days)
+            {
+                <tr>
+                    <th>@room.Key</th>
+                    @foreach (bool occupied in room.Value)
+                    {
+                        if (occupied)
+                        {
+                            <td style="background-color: orange"></td>
+                        }
+                        else
+                        {
+                            <td style="background-color: #30b8c7"></td>
+                        }
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
 }
 <!-- Booking End -->
 
