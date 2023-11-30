@@ -8,9 +8,9 @@ namespace MainProject.Pages
     public class RoomsModel : PageModel
     {
 
-        public RoomsModel(Context db)
+        public RoomsModel()
         {
-            this.db = db;
+            db = new();
         }
 
         private readonly Context db;
@@ -18,11 +18,11 @@ namespace MainProject.Pages
         public DateTime EndDate { get; set; }
         public int RoomId { get; set; }
         public bool Error { get; set; }
-        public bool Query { get; set; }
+        public string? Message { get; set; }
         public Dictionary<int, List<bool>> Days { get; set; }
         public void OnGet()
         {
-
+  
         }
 
         public void OnPost()
@@ -39,18 +39,15 @@ namespace MainProject.Pages
                 return;
             }
 
-            if (EndDate <= StartDate)
-            {
-                Error = true;
-                return;
-            }
-
-            Query = true;
-
             bool roomExists = db.Rooms.SingleOrDefault(room => room.RoomID == RoomId) is not null;
             if (!roomExists)
             {
                 Error = true;
+                return;
+            }
+            if(EndDate<=StartDate)
+            {
+                Error=true;
                 return;
             }
 
@@ -59,7 +56,7 @@ namespace MainProject.Pages
             int roomRangeStart = Math.Max(0, roomIds.IndexOf(RoomId) - 5);
             int roomRangeEnd = Math.Min(roomIds.Count(), roomIds.IndexOf(RoomId) + 5);
       
-
+            Message = "Room is Free";
 
             Days = new();
 

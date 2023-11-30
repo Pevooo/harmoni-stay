@@ -7,6 +7,7 @@ namespace MainProject.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+          
             optionsBuilder.UseSqlServer(@"server=localhost;Database=Harmonistay;Trusted_Connection=True;TrustServerCertificate=True");
         }
         public DbSet<Room> Rooms { get; set; }
