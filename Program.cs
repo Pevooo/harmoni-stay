@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace MainProject
 {
     public class Program
@@ -11,6 +13,7 @@ namespace MainProject
             builder.Services.AddRazorPages();
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession();
+            builder.Services.AddDbContext<Models.Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local Db")));
 
             var app = builder.Build();
 

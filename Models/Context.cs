@@ -5,11 +5,7 @@ namespace MainProject.Models
 {
     public class Context : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-          
-            optionsBuilder.UseSqlServer(@"server=localhost;Database=Harmonistay;Trusted_Connection=True;TrustServerCertificate=True");
-        }
+        public Context(DbContextOptions<Context> options) : base(options) { }
         public DbSet<Room> Rooms { get; set; }
 		public DbSet<Facility> Facilities { get; set; }
 		public DbSet<Employee> Employees { get; set; }
