@@ -19,9 +19,9 @@ namespace MainProject.Pages
 
 		private readonly Context db;
 
-        public RegisterModel()
+        public RegisterModel(Context db)
         {
-			db = new Context();
+			this.db = db;
         }
         public void OnGet()
         {

@@ -9,9 +9,12 @@ namespace MainProject.Pages
 {
     public class FacilitiesModel : PageModel
     {
-        public FacilitiesModel()
+        private readonly Context db;
+        public List<string> timeoffacilities { get; set; }
+        public List<string> Facilitiesnames { get; set; }
+        public FacilitiesModel(Context db)
         {
-            db = new();
+            this.db = db;
             timeoffacilities=new(); Facilitiesnames=new();
         }
         //public void OnPost()
@@ -44,9 +47,7 @@ namespace MainProject.Pages
 
             }
         }
-        private readonly Context db;
-        public List<string> timeoffacilities {  get; set; }
-        public List<string> Facilitiesnames { get; set; }   
+  
         
 
        

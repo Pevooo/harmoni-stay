@@ -16,9 +16,9 @@ namespace MainProject.Pages
         public string GuestPhoneNumber { get; set; }
         private readonly Context db;
 
-        public IndexModel()
+        public IndexModel(Context db)
         {
-            db = new();
+            this.db = db;
         }
 
         public void OnGet(int id)

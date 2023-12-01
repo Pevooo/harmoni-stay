@@ -15,7 +15,7 @@ namespace MainProject.Pages
         public int GuestId { get; set; }
         private readonly Context db;
 
-        public BookingModel()
+        public BookingModel(Context db)
         {
             this.db = db;
         }

@@ -15,9 +15,9 @@ namespace MainProject.Pages
         public string Password {  get; set; }
         public bool Error { get; set; }
 
-        public LoginModel()
+        public LoginModel(Context db)
         {
-            db = new();
+            this.db = db;
         }
 
 

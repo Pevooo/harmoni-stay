@@ -8,9 +8,9 @@ namespace MainProject.Pages
     public class RoomsModel : PageModel
     {
 
-        public RoomsModel()
+        public RoomsModel(Context db)
         {
-            db = new();
+            this.db = db;
         }
 
         private readonly Context db;
