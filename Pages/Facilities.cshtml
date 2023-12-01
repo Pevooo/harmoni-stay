@@ -20,8 +20,8 @@
                     <div class="row g-2">
                         <div class="col-md-3">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="roomId"
-                                       placeholder="Room Number" data-target="#date1" data-toggle="datetimepicker" required />
+                                <input type="text" class="form-control datetimepicker-input" name="FacilityName"
+                                       placeholder="Facility Name" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -34,6 +34,12 @@
                             <div class="date" id="date2" data-target-input="nearest">
                                 <input type="date" class="form-control datetimepicker-input" name="endDate"
                                        placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="date" id="date1" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" name="PictureURL"
+                                       placeholder="PictureURL" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
                     </div>
@@ -57,7 +63,7 @@
                 
                 <div class="content">
                     <h3>@Model.Facilitiesnames[i]</h3>
-                    <img src="https://th.bing.com/th/id/OIP.xdcpcCAZNs3dWyAn9xZnTwHaEK?rs=1&pid=ImgDetMain">
+                    <img src=@Model.Facilitiesphotos[i]>
                 </div>
                 <div class="info">
                     <p>@Model.timeoffacilities[i]</p>

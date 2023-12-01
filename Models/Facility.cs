@@ -10,7 +10,9 @@ namespace MainProject.Models
         public DateTime FacilityWorkStart { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime FacilityWorkEnd { get; set; }
+        public string URl {  get; set; }
         public virtual ICollection<Event> FacilityEvent { get; set; }
         public virtual ICollection<Employee> FacilityEmployee { get; set; }
+        
     }
 }
