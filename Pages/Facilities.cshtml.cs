@@ -23,13 +23,13 @@ namespace MainProject.Pages
         {
             foreach (var facility in db.Facilities)
             {
-                string st = facility.FacilityWorkStart.TimeOfDay.ToString();
-                string ed = facility.FacilityWorkEnd.TimeOfDay.ToString();
+                string st = facility.FacilityWorkStart.ToString("H:mm");
+                string ed = facility.FacilityWorkEnd.ToString("H:mm");
                 string name = facility.FacilityName;
                 timeoffacilities.Add(st);
                 timeoffacilities.Add(ed);
                 Facilitiesnames.Add(name);
-                Facilitiesphotos.Add(facility.URl);
+                Facilitiesphotos.Add(facility.URL);
                 
 
 
