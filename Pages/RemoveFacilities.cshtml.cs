@@ -41,18 +41,6 @@ namespace MainProject.Pages
 
             return RedirectToPage("/Rooms");
         }
-        //public async Task<IActionResult> OnDeleteAsync(int id) 
-        //{ 
-        //    // Implement code to delete the data with the specified ID
-        //    // Example:
-        //    var item = db.Facilities.FirstOrDefault(i => i.FacilityID == id);
-        //    if (item != null)
-        //    {
-        //        db.Facilities.Remove(item);
-        //        db.SaveChanges();
-        //    }
-
-        //    return RedirectToPage("/Booking"); // Redirect to the desired page after deletion
-        //}
+        
     }
 }
