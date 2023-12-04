@@ -15,6 +15,7 @@ namespace MainProject.Pages
         private DateTime st { get; set; }
         private DateTime end { get; set; }
         private readonly Context db;
+        public List<int> IDSfacilities { get; set; }
         public List<string> timeoffacilities { get; set; }
         public List<string> Facilitiesnames { get; set; }
         public List<string>Facilitiesphotos { get; set; }
@@ -23,6 +24,7 @@ namespace MainProject.Pages
             this.db = db;
             timeoffacilities=new(); Facilitiesnames=new();
             Facilitiesphotos=new();
+            IDSfacilities=new();
         }
        
         public IActionResult OnPost()
@@ -59,6 +61,7 @@ namespace MainProject.Pages
                 string st = facility.FacilityWorkStart.ToString("H:mm");
                 string ed = facility.FacilityWorkEnd.ToString("H:mm");
                 string name = facility.FacilityName;
+                IDSfacilities.Add(facility.FacilityID);
                 timeoffacilities.Add(st);
                 timeoffacilities.Add(ed);
                 Facilitiesnames.Add(name);

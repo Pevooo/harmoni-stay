@@ -64,16 +64,18 @@
         @for(int i = 0; i < Model.Facilitiesnames.Count(); i++)
         {
             <div class="box">
-                
+                <a asp-page-handler="Remove" asp-route-id="@Model.IDSfacilities[i]">Delete</a>
+                <a href="Remove/@Model.IDSfacilities[i]" class="btn "> <i class="bi bi-x-circle-fill"></i></a>
                 <div class="content">
                     <h3>@Model.Facilitiesnames[i]</h3>
                     <img src=@Model.Facilitiesphotos[i]>
                 </div>
                 <div class="info">
+                    
                     <p>@Model.timeoffacilities[i]</p>
                     <p>@Model.timeoffacilities[i+1]</p>
-                    <a href="">Read More</a>
-                    <i class="fas fa-long-arrow-alt-right"></i>
+                    <button type="button" class="btn btn-info">Info</button>
+                  
                 </div>
             </div>
         }
