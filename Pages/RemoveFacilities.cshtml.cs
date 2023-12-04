@@ -26,7 +26,7 @@ namespace MainProject.Pages
                 await db.SaveChangesAsync();
             }
 
-            return RedirectToPage("/Booking"); // Redirect to the desired page after deletion
+            return RedirectToPage("/Facilities"); // Redirect to the desired page after deletion
         }
         public async Task<IActionResult> OnPostDelete(int id)
         {
