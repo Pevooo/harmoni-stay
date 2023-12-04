@@ -75,7 +75,7 @@ namespace MainProject.Pages
             
         }
 
-        / is null) //new guest
+        // is null) //new guest
         //    {
                 
         //    }

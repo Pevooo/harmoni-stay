@@ -161,14 +161,14 @@
   </div>
 </nav>
 <!--HeaderEnd-->
-        <form>
+        <form method="post">
             <h3>Login Here</h3>
 
             <label for="username">UserID</label>
             <input type="text" placeholder="UserID" id="userId" name="userId"  required/>
 
             <label for="password">Password</label>
-            <input type="password" placeholder="Password" id="password" required />
+            <input type="password" placeholder="Password" id="password" name="password" required />
             <!-- <br> -->
             <input type="submit" class="btn btn-primary x" asp-page="/Login" />
             <a style="margin-top: 50px; width: 100%;" asp-area="" asp-page="/Register">REGISTER</a>

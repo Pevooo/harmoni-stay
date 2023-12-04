@@ -1,0 +1,17 @@
+﻿@page
+@model MainProject.Pages.FinanceModel
+@{
+	ViewData["Title"] = "Finance";
+}
+
+
+<div class="container">
+	@foreach (var query in Model.Queries)
+	{
+		<p>@query.Key : @query.Value</p>
+	}
+	<p>Month Room Income Change: @Model.MonthRoomIncomeChange</p>
+	<p>Year Room Income Change: @Model.YearRoomIncomeChange</p>
+	<p>Month Event Income Change: @Model.MonthEventIncomeChange</p>
+	<p>Year Event Income Change: @Model.YearEventIncomeChange</p>
+</div>
