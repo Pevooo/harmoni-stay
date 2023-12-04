@@ -12,6 +12,10 @@
 </div>
 <!-- Page Header End -->
 <!-- Facilities Start -->
+@if (Model.error)
+{
+    <p>Please check your input.</p>
+}
 <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="bg-white shadow" style="padding: 35px;">
@@ -26,13 +30,13 @@
                         </div>
                         <div class="col-md-3">
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="date" class="form-control datetimepicker-input" name="startDate"
+                                <input type="time" class="form-control datetimepicker-input" name="startDate"
                                        placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="date" class="form-control datetimepicker-input" name="endDate"
+                                <input type="time" class="form-control datetimepicker-input" name="endDate"
                                        placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
