@@ -3,22 +3,35 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    //Layout = null;
 }
+<head>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
 
-
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
 <body>
-    <!-- Page Preloder -->
+  
 
-    <!-- Offcanvas Menu Section End -->
-    
-    <!-- Header End -->
-    <!-- Hero Section Begin -->
+
+<!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-text">
+<<<<<<< HEAD
                         <h1>HarmoniStay A Luxury Hotel</h1>
                         <p>
                             Here is the best hotel management site, including management for staff, event, facilities and room reservations.
@@ -26,6 +39,44 @@
                         @if (Globals.UserId is null){
                             <a class="primary-btn" asp-area="" asp-page="/Login">Discover Now</a>
                         }
+=======
+                        <h1>Sona A Luxury Hotel</h1>
+                        <p>Here are the best hotel booking sites, including recommendations for international
+                            travel and for finding low-priced hotel rooms.</p>
+                        <a href="#" class="primary-btn">Discover Now</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                    <div class="booking-form">
+                        <h3>Booking Your Hotel</h3>
+                        <form action="#">
+                            <div class="check-date">
+                                <label for="date-in">Check In:</label>
+                                <input type="text" class="date-input" id="date-in">
+                                <i class="icon_calendar"></i>
+                            </div>
+                            <div class="check-date">
+                                <label for="date-out">Check Out:</label>
+                                <input type="text" class="date-input" id="date-out">
+                                <i class="icon_calendar"></i>
+                            </div>
+                            <div class="select-option">
+                                <label for="guest">Guests:</label>
+                                <select id="guest">
+                                    <option value="">2 Adults</option>
+                                    <option value="">3 Adults</option>
+                                </select>
+                            </div>
+                            <div class="select-option">
+                                <label for="room">Room:</label>
+                                <select id="room">
+                                    <option value="">1 Room</option>
+                                    <option value="">2 Room</option>
+                                </select>
+                            </div>
+                            <button type="submit">Check Availability</button>
+                        </form>
+>>>>>>> parent of 750479b (new template)
                     </div>
                 </div>
             </div>
@@ -37,6 +88,7 @@
         </div>
     </section>
     <!-- Hero Section End -->
+
     <!-- About Us Section Begin -->
     <section class="aboutus-section spad">
         <div class="container">
@@ -47,6 +99,7 @@
                             <span>About Us</span>
                             <h2>HarmoniStay <br />Management Hotel</h2>
                         </div>
+<<<<<<< HEAD
                         <p class="f-para">
                             HarmoniStay.com is a leading online management site. We’re passionate about
                             management.
@@ -55,6 +108,13 @@
                             So when it comes to management, it is the perfect web app, vacation rental, resort,
                             apartment, guest house, or tree house, we’ve got you covered.
                         </p>
+=======
+                        <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about
+                            travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
+                            languages.</p>
+                        <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
+                            apartment, guest house, or tree house, we’ve got you covered.</p>
+>>>>>>> parent of 750479b (new template)
                         <a href="#" class="primary-btn about-btn">Read More</a>
                     </div>
                 </div>
@@ -74,6 +134,7 @@
         </div>
     </section>
     <!-- About Us Section End -->
+
     <!-- Services Section End -->
     <section class="services-section spad">
         <div class="container">
@@ -90,66 +151,55 @@
                     <div class="service-item">
                         <i class="flaticon-036-parking"></i>
                         <h4>Travel Plan</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-033-dinner"></i>
                         <h4>Catering Service</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-026-bed"></i>
                         <h4>Babysitting</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-024-towel"></i>
                         <h4>Laundry</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-044-clock-1"></i>
                         <h4>Hire Driver</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-012-cocktail"></i>
                         <h4>Bar & Drink</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Services Section End -->
+
     <!-- Home Room Section Begin -->
     <section class="hp-room-section">
         <div class="container-fluid">
@@ -276,6 +326,7 @@
         </div>
     </section>
     <!-- Home Room Section End -->
+
     <!-- Testimonial Section Begin -->
     <section class="testimonial-section spad">
         <div class="container">
@@ -291,12 +342,10 @@
                 <div class="col-lg-8 offset-lg-2">
                     <div class="testimonial-slider owl-carousel">
                         <div class="ts-item">
-                            <p>
-                                After a construction project took longer than expected, my husband, my daughter and I
+                            <p>After a construction project took longer than expected, my husband, my daughter and I
                                 needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                 city, neighborhood and the types of housing options available and absolutely love our
-                                vacation at Sona Hotel.
-                            </p>
+                                vacation at Sona Hotel.</p>
                             <div class="ti-author">
                                 <div class="rating">
                                     <i class="icon_star"></i>
@@ -310,12 +359,10 @@
                             <img src="img/testimonial-logo.png" alt="">
                         </div>
                         <div class="ts-item">
-                            <p>
-                                After a construction project took longer than expected, my husband, my daughter and I
+                            <p>After a construction project took longer than expected, my husband, my daughter and I
                                 needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                 city, neighborhood and the types of housing options available and absolutely love our
-                                vacation at Sona Hotel.
-                            </p>
+                                vacation at Sona Hotel.</p>
                             <div class="ti-author">
                                 <div class="rating">
                                     <i class="icon_star"></i>
@@ -334,6 +381,7 @@
         </div>
     </section>
     <!-- Testimonial Section End -->
+
     <!-- Blog Section Begin -->
     <section class="blog-section spad">
         <div class="container">
@@ -395,7 +443,7 @@
         </div>
     </section>
     <!-- Blog Section End -->
-    <!-- Footer Section Begin -->
+<!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="footer-text">
@@ -452,19 +500,16 @@
                         </ul>
                     </div>
                     <div class="col-lg-5">
-                        <div class="co-text">
-                            <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </p>
-                        </div>
+                        <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <!-- Footer Section End -->
+
     <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -475,6 +520,7 @@
         </div>
     </div>
     <!-- Search model end -->
+
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
