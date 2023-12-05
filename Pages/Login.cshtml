@@ -2,7 +2,7 @@
 @model MainProject.Pages.LoginModel
 @{
     ViewData["Title"] = "Login";
-    Layout = null;
+    //Layout = null;
 }
 	@if (Model.Error)
 	{
@@ -12,193 +12,357 @@
 			</p>
 		</div>
 	}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MainProject.styles.css" asp-append-version="true" />
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+<style>
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    body {
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        background: #ffffff;
+    }
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    input,
+    button {
+        border: none;
+        outline: none;
+        background: none;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    }
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    .tip {
+        font-size: 20px;
+        margin: 40px auto 50px;
+        text-align: center;
+    }
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    .cont {
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        width: 900px;
+        height: 550px;
+        margin: 0 auto 100px;
+        background: #fff;
+        box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);
+    }
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    .form {
+        position: relative;
+        width: 640px;
+        height: 100%;
+        -webkit-transition: -webkit-transform 1.2s ease-in-out;
+        transition: -webkit-transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        padding: 50px 30px 0;
+    }
 
+    .sub-cont {
+        overflow: hidden;
+        position: absolute;
+        left: 640px;
+        top: 0;
+        width: 900px;
+        height: 100%;
+        padding-left: 260px;
+        background: #fff;
+        -webkit-transition: -webkit-transform 1.2s ease-in-out;
+        transition: -webkit-transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+    }
 
-    <!-- partial:index.partial.html -->
+    .cont.s--signup .sub-cont {
+        -webkit-transform: translate3d(-640px, 0, 0);
+        transform: translate3d(-640px, 0, 0);
+    }
 
-        <!-- Design by foolishdeveloper.com -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-        <!--Stylesheet-->
-        <style media="screen">
-            *,
-            *:before,
-            *:after {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
+    button {
+        display: block;
+        margin: 0 auto;
+        width: 260px;
+        height: 36px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .img {
+        background-image: url('../img/login.jpg');
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 260px;
+        height: 100%;
+        padding-top: 360px;
+    }
+
+        .img:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            background-image: url("ext.jpg");
+            opacity: .8;
+            background-size: cover;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .img:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+    .cont.s--signup .img:before {
+        -webkit-transform: translate3d(640px, 0, 0);
+        transform: translate3d(640px, 0, 0);
+    }
+
+    .img__text {
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        padding: 0 20px;
+        text-align: center;
+        color: #fff;
+        -webkit-transition: -webkit-transform 1.2s ease-in-out;
+        transition: -webkit-transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out;
+        transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+    }
+
+        .img__text h2 {
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .img__text p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+    .cont.s--signup .img__text.m--up {
+        -webkit-transform: translateX(520px);
+        transform: translateX(520px);
+    }
+
+    .img__text.m--in {
+        -webkit-transform: translateX(-520px);
+        transform: translateX(-520px);
+    }
+
+    .cont.s--signup .img__text.m--in {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    .img__btn {
+        overflow: hidden;
+        z-index: 2;
+        position: relative;
+        width: 100px;
+        height: 36px;
+        margin: 0 auto;
+        background: transparent;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+        .img__btn:after {
+            content: '';
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius: 30px;
+        }
+
+        .img__btn span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: -webkit-transform 1.2s;
+            transition: -webkit-transform 1.2s;
+            transition: transform 1.2s;
+            transition: transform 1.2s, -webkit-transform 1.2s;
+        }
+
+            .img__btn span.m--in {
+                -webkit-transform: translateY(-72px);
+                transform: translateY(-72px);
             }
 
-            body {
-                background-color: #080710;
-                background-image: url(img/carousel-1.jpg);
-            }
+    .cont.s--signup .img__btn span.m--in {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
 
-            form {
-                height: 520px;
-                width: 400px;
-                background-color: rgba(255,255,255,0.13);
-                position: absolute;
-                transform: translate(-50%,-50%);
-                top: 50%;
-                left: 50%;
-                border-radius: 10px;
-                backdrop-filter: blur(10px);
-                border: 2px solid rgba(255,255,255,0.1);
-                box-shadow: 0 0 40px rgba(8,7,16,0.6);
-                padding: 50px 35px;
-            }
+    .cont.s--signup .img__btn span.m--up {
+        -webkit-transform: translateY(72px);
+        transform: translateY(72px);
+    }
 
-                form * {
-                    font-family: 'Poppins',sans-serif;
-                    color: #ffffff;
-                    letter-spacing: 0.5px;
-                    outline: none;
-                    border: none;
-                }
+    h2 {
+        width: 100%;
+        font-size: 26px;
+        text-align: center;
+    }
 
-                form h3 {
-                    font-size: 32px;
-                    font-weight: 500;
-                    line-height: 42px;
-                    text-align: center;
-                }
+    label {
+        display: block;
+        width: 260px;
+        margin: 25px auto 0;
+        text-align: center;
+    }
 
-            label {
-                display: block;
-                margin-top: 30px;
-                font-size: 16px;
-                font-weight: 500;
-            }
+        label span {
+            text-align: left;
+            font-size: 12px;
+            color: black;
+            text-transform: uppercase;
+        }
 
-            input {
-                display: block;
-                height: 50px;
-                width: 100%;
-                background-color: rgba(255,255,255,0.07);
-                border-radius: 3px;
-                padding: 0 10px;
-                margin-top: 8px;
-                font-size: 14px;
-                font-weight: 300;
-            }
+    input {
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+        padding-bottom: 5px;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        text-align: center;
+    }
+    .x{
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+        padding-bottom: 5px;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        text-align: center;
+    }
+    .forgot-pass {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #cfcfcf;
+    }
 
-            ::placeholder {
-                color: #e5e5e5;
-            }
+    .submit {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        background: #d4af7a;
+        text-transform: uppercase;
+    }
 
-            .x {
-                margin-top: 50px;
-                width: 100%;
-                /*background-color: #ffffff;*/
-                /*color: #080710;*/
-                padding: 15px 0;
-                font-size: 18px;
-                font-weight: 600;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        </style>
-</head>
-<body>
-       <!--HeaderStart-->
-       <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">HarmoniStay</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" asp-area="" asp-page="/Login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-page="/Register">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-<!--HeaderEnd-->
-        <form method="post">
-            <h3>Login Here</h3>
+    .fb-btn {
+        border: 2px solid #d3dae9;
+        color: #8fa1c7;
+    }
 
-            <label for="username">UserID</label>
-            <input type="text" placeholder="UserID" id="userId" name="userId"  required/>
+        .fb-btn span {
+            font-weight: bold;
+            color: #455a81;
+        }
 
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" id="password" name="password" required />
-            <!-- <br> -->
-            <input type="submit" class="btn btn-primary x" asp-page="/Login" />
-            <a style="margin-top: 50px; width: 100%;" asp-area="" asp-page="/Register">REGISTER</a>
-        </form>
+    .sign-in {
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+
+    .cont.s--signup .sign-in {
+        -webkit-transition-timing-function: ease-in-out;
+        transition-timing-function: ease-in-out;
+        -webkit-transition-duration: 1.2s;
+        transition-duration: 1.2s;
+        -webkit-transform: translate3d(640px, 0, 0);
+        transform: translate3d(640px, 0, 0);
+    }
+
+    .sign-up {
+        -webkit-transform: translate3d(-900px, 0, 0);
+        transform: translate3d(-900px, 0, 0);
+    }
+
+    .cont.s--signup .sign-up {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
  
-<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - MainProject - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    
+</style>
+<br>
+<br>
+<form method ="post" class="cont">
+    <div class="form sign-in">
+        <h2>Welcome</h2>
+        <label>
+            <span >User ID</span>
+            <input type="text"  id="userId" name="userId" required />
+        </label>
+        <label>
+            <span >Password</span>
+            <input type="password"  id="password" name="password" required />
+        </label>
+        <br >
+        <input type="submit" class="submit" value="login" style="display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;" asp-page="/Login" />
+        <br>
+        <h6 class="mb-5 pb-lg-2" style="color: #455a81"
+            text-align="center;">
+            Don't have an account?
+
+
+            <a style="color: #455a81" asp-area="" asp-page="/Register">REGISTER</a>
+        </h6>
+      
+    </div>
+    <div class="sub-cont">
+
+        <div class="img">
+            
+           
+            
         </div>
-    </footer>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-</body>
-</html>
+        
+    </div>
+</form>
 
 
 
