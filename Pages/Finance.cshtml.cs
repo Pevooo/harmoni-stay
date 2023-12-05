@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MainProject.Models;
+using System.Data;
 
 namespace MainProject.Pages
 {
@@ -32,7 +33,9 @@ namespace MainProject.Pages
 				{ "Total Employee Salaris", db.Employees.Select(employee => employee.EmployeeSalary).Sum() },
 				{ "Average Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Average() },
 				{ "Minimum Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Min() },
-
+				{ "Number Of Employees", db.Employees.Count() },
+				{ "Number Of Rooms", db.Rooms.Count() },
+				{ "Number Of Occupied Rooms", (from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()}
 			};
 			if (DateTime.Now.Month == 1) // If it's January in Year (Y), so the last month will be December Year (Y - 1)
             {

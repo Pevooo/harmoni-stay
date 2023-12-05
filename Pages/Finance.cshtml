@@ -337,11 +337,11 @@
                                     <div class="weather-info">
                                         <div class="d-flex">
                                             <div>
-                                                <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                                                <h2 class="mb-0 font-weight-normal">Occupied Rooms</h2>
                                             </div>
                                             <div class="ml-2">
-                                                <h4 class="location font-weight-normal">Bangalore</h4>
-                                                <h6 class="font-weight-normal">India</h6>
+                                                <h4 class="location font-weight-normal">@Model.Queries["Number Of Occupied Rooms"]</h4>
+                                                <h6 class="font-weight-normal">/@Model.Queries["Number Of Rooms"] Rooms</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -364,7 +364,7 @@
                                         <div class="card-body">
                                             <p class="mb-4">Total Income</p>
                                             <p class="fs-30 mb-2">@(Model.Queries["Total Room Income"] + Model.Queries["Total Event Income"]) EGP</p>
-                                            <p>@(String.Format("{0:N2}% to last year", Model.Queries["Year Room Income Change"]))</p>
+                                            <p>So Far</p>
                                         </div>
                                     </div>
                                 </div>
@@ -385,6 +385,27 @@
                                             <p class="mb-4">Average Employee Salary</p>
                                             <p class="fs-30 mb-2">@(String.Format("{0:N0} EGP", Model.Queries["Average Employee Salary"]))</p>
                                             <p>Per Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                    <div class="card card-light-blue">
+                                        <div class="card-body">
+                                            <p class="mb-4">Number Of Rooms</p>
+                                            <p class="fs-30 mb-2">@Model.Queries["Number Of Rooms"]</p>
+                                            <p>Rooms</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 stretch-card transparent">
+                                    <div class="card card-light-danger">
+                                        <div class="card-body">
+                                            <p class="mb-4">Number Of Employees</p>
+                                            <p class="fs-30 mb-2">@Model.Queries["Number Of Employees"]</p>
+                                            <p>Employee</p>
                                         </div>
                                     </div>
                                 </div>
