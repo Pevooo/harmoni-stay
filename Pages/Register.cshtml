@@ -326,7 +326,7 @@
 </style>
 <br>
 <br>
-<form method ="post" class="cont">
+<form method ="post" class="cont" enctype="multipart/form-data">
     <div class="form sign-in">
         <h2>Welcome</h2>
         <label>
@@ -340,6 +340,10 @@
         <label>
             <span >Password</span>
             <input type="text"  id="password" name="password" required />
+        </label>
+        <label>
+            <span>Image</span>
+            <input type="file" id="file" name="image" required />
         </label>
         <br >
         <input type="submit" class="submit" value="register" style="display: block;
@@ -370,6 +374,14 @@
         
     </div>
 </form>
+
+
+
+@if (Model.ImageURL is not null)
+{
+    <img src="@Model.ImageURL">
+    
+}
 
 
 

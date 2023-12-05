@@ -17,6 +17,10 @@ namespace MainProject.Pages
 
 		public string Type { get; set; }
 
+		public byte[] Image { get; set; }
+
+		public string? ImageURL {  get; set; }
+
 		private readonly Context db;
 
         public RegisterModel(Context db)
@@ -33,21 +37,23 @@ namespace MainProject.Pages
 
         public void OnPost()
         {
-
-			try
+            MemoryStream memoryStream = new MemoryStream();
+            try
 			{
 				UserId = Convert.ToInt32(Request.Form["userId"]);
 				Password = Request.Form["password"];
 				Type = Request.Form["type"];
-			}
+				Request.Form.Files.First().CopyTo(memoryStream);
+				
+            }
 			catch
 			{
 				Error = true;
 				return;
 			}
+            ImageURL = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(memoryStream.ToArray()));
 
-
-			Account? query = db.Accounts.SingleOrDefault(account => account.AccountEmployee.EmployeeID == UserId);
+            Account? query = db.Accounts.SingleOrDefault(account => account.AccountEmployee.EmployeeID == UserId);
 
 			if (query is not null)
 			{
@@ -64,13 +70,13 @@ namespace MainProject.Pages
 					return;
 				}
 				
-				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type });
+				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type, Image = memoryStream.ToArray()});
 				db.SaveChanges();
 
 				// Saving User info in Session and Globals
 				HttpContext.Session.SetInt32("UserId", (int)UserId);
 				Globals.UserId = UserId;
-				Response.Redirect("/", false, true);
+				//Response.Redirect("/", false, true);
 			}
 		}    
     }
