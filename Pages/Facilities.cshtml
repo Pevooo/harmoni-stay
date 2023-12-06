@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="date" id="date1" data-target-input="nearest">
-                        <!--<input type="submit" class="btn btn-primary w-100" />-->
+                      @*   <<input type="submit" class="btn btn-primary w-100" />  *@
                         <input type="submit" style="background-color:#d4af7a;" value="Add Facility" class="btn btn-primary w-100" />
                     </div>
                 </div>
@@ -65,8 +65,8 @@
         @for(int i = 0; i < Model.Facilitiesnames.Count(); i++)
         {
             <div class="box">
-                <a href="RemoveFacilities/@Model.IDSfacilities[i]" class="btn "> <i class="bi bi-x-circle-fill"></i></a>
-                <a href="EditFacilities/@Model.IDSfacilities[i]" class="btn "> <i class="bi bi-pencil-square"></i></a>
+                <a href="RemoveFacilities/@Model.IDSfacilities[i]" class="btn "> <i class="bi  bg-black bi-x-circle-fill"></i></a>
+                <a href="EditFacilities/@Model.IDSfacilities[i]" class="btn "><i class="bi bg-black bi-pencil-square"></i></a>
                 <div class="content">
                     <h3>@Model.Facilitiesnames[i]</h3>
                     <img src=@Model.Facilitiesphotos[i]>

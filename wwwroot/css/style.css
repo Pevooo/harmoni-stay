@@ -78,7 +78,9 @@ p {
     line-height: 26px;
     margin: 0 0 15px 0;
 }
-
+i q{
+    color:black;
+}
 img {
     max-width: 100%;
 }

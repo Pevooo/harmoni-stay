@@ -42,15 +42,15 @@ namespace MainProject.Pages
                 fac.URL = URL;
                 db.Facilities.Add(fac);
                 db.SaveChanges();
-                return Page();
+               
             }
             catch
             {
                 Error = true;
-                return Page();
+                return RedirectToAction("Index");
                 
             }
-
+            return RedirectToAction("Index");
         }
       
 
