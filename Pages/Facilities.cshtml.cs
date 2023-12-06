@@ -9,7 +9,7 @@ namespace MainProject.Pages
 {
     public class FacilitiesModel : PageModel
     {
-         public bool error=false;
+        public bool Error = false;
         string Name;
         private string URL { get; set; }
         private DateTime st { get; set; }
@@ -31,22 +31,22 @@ namespace MainProject.Pages
         {
             try
             {
-              Name= Request.Form["FacilityName"];
+                Name= Request.Form["FacilityName"];
                 st = DateTime.Parse(Request.Form["startDate"]);
                 end = DateTime.Parse(Request.Form["endDate"]);
                 URL = Request.Form["PictureURL"];
-                Facility fac =new Facility();
+                Facility fac = new Facility();
                 fac.FacilityName = Name;
                 fac.FacilityWorkStart = st;
                 fac.FacilityWorkEnd = end;
                 fac.URL = URL;
                 db.Facilities.Add(fac);
                 db.SaveChanges();
-                return RedirectToAction("Facilities");
+                return Page();
             }
             catch
             {
-                error = true;
+                Error = true;
                 return Page();
                 
             }

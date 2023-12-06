@@ -9,7 +9,7 @@
     <p>Please check your input.</p>
 }
 <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-1.jpg);">
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/hero/hero-1.jpg);">
         <div class="container-fluid page-header-inner py-5">
             <div class="container text-center pb-5">
                 <h1 class="display-3 text-white mb-3 animated slideInDown">Rooms</h1>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="date" id="date1" data-target-input="nearest">
-                            <input type="submit" class="btn btn-primary w-100" />
+                        <input type="submit" style="background-color:#d4af7a;" value="Submit" class="btn btn-primary w-100" />
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
 
 @if (Model.Message is not null)
 {
-    <table class="table table-borderless" style="border-radius:10px">
+    <table class="table table-borderless">
         <thead>
             <tr>
                 <th>#</th>
@@ -75,7 +75,7 @@
                     {
                         if (occupied)
                         {
-                            <td style="background-color: #d4af7a"></td>
+                            <td style="background-color: orange"></td>
                         }
                         else
                         {
