@@ -56,6 +56,9 @@ Visual Programming and Software Engineering project
 
 ### **Step 10**: Financial Analytics Feature
 
+# Licenses
+https://themewagon.com/license/
+
 ## Testing:
 
 ### **Step 11**: Random Testing
