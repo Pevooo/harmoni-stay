@@ -1,0 +1,3 @@
+To login you just need to press login and enter your credentials or click <a href="/Login">here</a>. 
+If you don't have an account you can contact the administrator to register. 
+For registration process the administrator has to be contacted. 
