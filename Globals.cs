@@ -6,6 +6,6 @@ namespace MainProject
     {
         public static int? UserId { get; set; }
 
-        // public static ChatBot.ChatBot ChatBot = new();
+        public static ChatBot.ChatBot ChatBot = new();
     }
 }
