@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using MainProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging.Abstractions;
+using Azure.Identity;
+using System.Runtime.Intrinsics.Arm;
 
 namespace MainProject.Pages
 {
@@ -56,9 +58,12 @@ namespace MainProject.Pages
             {
                 // Saving User info in Session and Globals
                 HttpContext.Session.SetInt32("UserId", (int)UserId);
+                var emp=db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
                 Globals.UserId = UserId;
+                Globals.UserName = emp.EmployeeName;
                 Response.Redirect("/", false, true);      
             }
+
         }
     }
 }

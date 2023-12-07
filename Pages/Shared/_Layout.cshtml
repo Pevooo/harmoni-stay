@@ -1,5 +1,5 @@
 ﻿@using MainProject
-
+@using Microsoft.AspNetCore.Http;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +65,8 @@
                     @if (Globals.UserId is not null)
                     {
                         <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
+                        <li><p>@Globals.UserId</p></li>
+
                     }
                     else
                     {
@@ -128,6 +130,8 @@
                                         @if (Globals.UserId is not null)
                                         {
                                             <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
+                                            <li><a class="nav-link" asp-area="" asp-page="/Logout">Welcome @Globals.UserName</a></li>
+                                           
                                         }
                                         else
                                         {
@@ -152,12 +156,16 @@
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                                         </li>
                                     </ul>
                                 </nav>
                                 <div class="nav-right search-switch">
                                     <i class="icon_search"></i>
+                                    
                                 </div>
                             </div>
                         </div>

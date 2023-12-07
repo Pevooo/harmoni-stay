@@ -5,7 +5,7 @@
         public int EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public double EmployeeSalary { get; set; }
-
+        public byte[] Image { get; set; }
         public double WorkingHours { get; set; }
         
 
