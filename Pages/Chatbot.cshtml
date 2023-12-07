@@ -1,0 +1,15 @@
+﻿@page
+@model MainProject.Pages.ChatbotModel
+@{
+}
+
+<form method="post">
+    <input type="text" name="prompt" /><br /><br />
+    <input type="submit" />
+</form>
+
+
+@if (Model.Prompt is not null)
+{
+    <h5>@Html.Raw(Model.Output)</h5>
+}
