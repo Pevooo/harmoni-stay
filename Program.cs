@@ -32,6 +32,8 @@ namespace MainProject
 
             app.UseSession();
 
+            app.UseStatusCodePagesWithReExecute("/Error");
+
             app.UseAuthorization();
 
             app.MapRazorPages();
