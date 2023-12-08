@@ -1,5 +1,10 @@
 ﻿@page "{id}"
 @model MainProject.Pages.EditFacilitiesModel
+
+@{
+    ViewData["Title"] = "EditFacilities";
+}
+
 @if (Model.Error)
 {
     <p>Please check your input.</p>

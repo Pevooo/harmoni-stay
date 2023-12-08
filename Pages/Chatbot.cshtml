@@ -1,6 +1,7 @@
 ﻿@page
 @model MainProject.Pages.ChatbotModel
 @{
+    ViewData["Title"] = "Chatbot";
 }
 
 
@@ -23,5 +24,5 @@
 
 @if (Model.Prompt is not null)
 {
-    <h5>@Html.Raw(Model.Output)</h5>
+    <p style="font-size: large">@Html.Raw(Model.Output)</p>
 }
