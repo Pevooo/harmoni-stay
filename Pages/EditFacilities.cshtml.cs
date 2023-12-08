@@ -14,12 +14,12 @@ namespace MainProject.Pages
             this.db = db;
           
         }
-       public string FacilityName;
-        public int Id;
-        public TimeSpan st, end;
-        public string URL;
-        
-        public bool Error = false;
+        public string FacilityName { get; set; }
+        public int Id { get; set; }
+        public TimeSpan st { get; set; }
+        public TimeSpan end { get; set; }
+        public string URL { get; set; }        
+        public bool Error {  get; set; }
         public void OnGet(int id)
         {
            var fac1=db.Facilities.FirstOrDefault(x=>x.FacilityID==id);
@@ -33,7 +33,7 @@ namespace MainProject.Pages
 
 
         }
-        public IActionResult OnPost(int id)
+        public void OnPost(int id)
         {
             try
             {
@@ -52,12 +52,12 @@ namespace MainProject.Pages
                 fac1.URL = URL;
              
                 db.SaveChanges();
-                return RedirectToPage("/Facilities");
+                Response.Redirect("/Facilities", false, true);
             }
             catch
             {
                 Error = true;
-                return Page();
+                return;
 
             }
 

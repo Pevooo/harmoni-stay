@@ -1,3 +1,4 @@
-To login you just need to press login and enter your credentials or click <a href="/Login">here</a>. 
+To login you just need to press login and enter your credentials or click <a href="/Login" style="color: #d4af7a">here</a>. 
 If you don't have an account you can contact the administrator to register. 
 For registration process the administrator has to be contacted. 
+If you are already logged in, you can logout by pressing Logout or just press <a href="/Logout" style="color: #d4af7a">here</a>, if not, click <a href="/Login" style="color: #d4af7a">here</a> to login to your account. 

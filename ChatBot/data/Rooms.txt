@@ -1,0 +1,3 @@
+If you want to access room details, you can press rooms in the navbar or just simply click <a href="/Rooms" style="color: #d4af7a">here</a>. 
+Room management feature is simply done from <a href="/Rooms" style="color: #d4af7a">here</a>. 
+You can see free and occupied rooms <a href="/Rooms" style="color: #d4af7a">here</a>. 

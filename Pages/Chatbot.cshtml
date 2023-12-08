@@ -3,11 +3,23 @@
 @{
 }
 
-<form method="post">
-    <input type="text" name="prompt" /><br /><br />
-    <input type="submit" />
-</form>
 
+<form method="post">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <div class="date" id="date2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" name="prompt"
+                           placeholder="Prompt" data-target="#date2" data-toggle="datetimepicker" required />
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <input type="submit" style="background-color:#d4af7a; color:white" value="Send" class="btn btn-primary w-100" />
+        </div>
+    </div>
+</form>
+<br />
 
 @if (Model.Prompt is not null)
 {
