@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using MainProject.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MainProject.Pages
 {
     public class BookingModel : PageModel
     {
-        //[BindProperty]
-        //public Booking booking { get; set; }
         public bool Error { get; set; }
         public DateTime CheckIn { get; set;}
         public DateTime CheckOut { get; set; }
@@ -16,6 +16,9 @@ namespace MainProject.Pages
         public string? GuestName { get; set; }
         public string? GuestNationality { get; set; }
         public string? GuestPhoneNumber { get; set; }
+        public string? Message { get; set; }
+        public int SelectedRoomId { get; set; }
+        public IList<Room> AvailableRooms { get; set; }
         private readonly Context db;
 
         public BookingModel(Context db)
@@ -24,11 +27,7 @@ namespace MainProject.Pages
         }
 
         public void OnGet()
-        {
-           
-            //booking = new Booking();
-            //date = DateOnly.FromDateTime(DateTime.Now);
-        }
+        {}
         
         public void OnPost()
         {
@@ -50,40 +49,67 @@ namespace MainProject.Pages
                 Error = true;
                 return;
             }
-            //var RoomTypes
-            var queryGuest = db.Guests.Where(x => x.GuestID == this.GuestId).Select(x => new { x.GuestName, x.GuestNationality, x.GuestPhoneNumber });
-            if (queryGuest is not null)
+
+
+            // Get all rooms
+            var rooms = db.Rooms.ToList();
+
+            // Get booked room IDs within the specified period
+            var bookedRoomIds = db.Bookings
+                .Where(x => this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn)
+                .Select(x => x.BookingRoom.RoomID)
+                .ToList();
+
+            // Get available rooms
+            AvailableRooms = rooms.Where(x => !bookedRoomIds.Contains(x.RoomID)).ToList();
+
+
+            if (SelectedRoomId == 0)
             {
-                foreach (var x in queryGuest)
+                Error = true;
+                Message = "Please select a room.";
+            }
+            else
+            {
+                // Check if the selected room is still available (optional, depending on your business logic)
+                var isRoomAvailable = db.Bookings
+                    .All(booking =>
+                        SelectedRoomId != booking.BookingRoom.RoomID ||
+                        CheckIn >= booking.CheckOut ||
+                        CheckOut <= booking.CheckIn);
+
+                if (isRoomAvailable)
                 {
-                    this.GuestName = x.GuestName;
-                    this.GuestNationality = x.GuestNationality;
-                    this.GuestPhoneNumber = x.GuestPhoneNumber;
+                    Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
+
+                    if (guests is null)
+                    {
+                        db.Guests.Add(new Guest() { GuestID = this.GuestId, GuestName = this.GuestName, GuestNationality = this.GuestNationality, GuestPhoneNumber = GuestPhoneNumber });
+                    }
+
+                    db.Bookings.Add(new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = guests });
+                    db.SaveChanges();
+
+                    Message = $"Booking successful for Room ID: {SelectedRoomId}";
+                }
+                else
+                {
+                    Error = true;
+                    Message = "The selected room is not available for the specified period.";
                 }
             }
 
 
-            // Updating the database
-            Guest? guest = db.Guests.SingleOrDefault(g => g.GuestID == this.GuestId);
-
-            if (guest is null)
-            {
-                db.Guests.Add(new Guest() { GuestID = this.GuestId, GuestName = this.GuestName, GuestNationality = this.GuestNationality, GuestPhoneNumber = GuestPhoneNumber });
-                db.SaveChanges();
-            }
-
-            
+            //var queryGuest = db.Guests.Where(x => x.GuestID == this.GuestId).Select(x => new { x.GuestName, x.GuestNationality, x.GuestPhoneNumber });
+            //if (queryGuest is not null)
+            //{
+            //    foreach (var x in queryGuest)
+            //    {
+            //        this.GuestName = x.GuestName;
+            //        this.GuestNationality = x.GuestNationality;
+            //        this.GuestPhoneNumber = x.GuestPhoneNumber;
+            //    }
+            //}
         }
-
-        // is null) //new guest
-        //    {
-                
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //    return null;
-        //}
     }
 }
