@@ -22077,39 +22077,39 @@ code {
 }
 
 .card.card-tale {
-  background: #7DA0FA;
+  background: #dea874;
   color: #ffffff;
 }
 
 .card.card-tale:hover {
-  background: #96b2fb;
+  background: #d4af7a;
 }
 
 .card.card-dark-blue {
-  background: #4747A1;
+  background: #9bacb3;
   color: #ffffff;
 }
 
 .card.card-dark-blue:hover {
-  background: #5050b2;
+  background: #6c7573;
 }
 
 .card.card-light-blue {
-  background: #7978E9;
+  background: #9bacb3;
   color: #ffffff;
 }
 
 .card.card-light-blue:hover {
-  background: #8f8eed;
+  background: #6c7573;
 }
 
 .card.card-light-danger {
-  background: #F3797E;
+  background: #dea874;
   color: #ffffff;
 }
 
 .card.card-light-danger:hover {
-  background: #f59095;
+  background: #d4af7a;
 }
 
 .card-inverse-primary {
