@@ -1,5 +1,7 @@
 This web application is a Hotel Management System designed with many features like: Room Management , Event Management , Staff Management , and it also provides you with financial analytics to help manage the hotel. 
-This web app is a Hotel Management System designed with many features like: Room Management , Event Management , Staff Management , and it also provides you with financial analytics to help manage the hotel. 
+This web app is a Hotel Management System designed with many features for rooms, events, employees, and it also provides you with financial analytics to help manage the hotel. 
 The aim of this system is to provide an all in one system to help hotel managers manage their hotel or resort in an effecient way. 
 HarmoniStay is a hotel management system designed to take hotel management to another level, designed by Pavly, Aya, John, Jessica. 
 All of the services and features that this application provides are 100% operational with no Internet connection. 
+To go to the Homepage, click <a href="/" style="color: #d4af7a">here</a>. 
+To go to the Home page, click <a href="/" style="color: #d4af7a">here</a>. 

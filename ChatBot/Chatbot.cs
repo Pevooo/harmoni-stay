@@ -3,6 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualBasic;
 using StopWord;
 
@@ -82,12 +83,25 @@ public sealed class ChatBot
             }
         }
 
+        Dictionary<string, double> MatchingWords = new();
+        foreach (var sentence in sentences)
+        {
+            MatchingWords.Add(sentence.Key, 0);
+            foreach (var word in tokenizedQuery)
+            {
+                if (sentence.Value.Contains(word))
+                {
+                    MatchingWords[sentence.Key]++;
+                }
+            }
+            MatchingWords[sentence.Key] /= sentence.Value.Count;
+        }
 
 
-        KeyValuePair<string, double> topSentence = scores.OrderByDescending(sentence => sentence.Value).First();
+        KeyValuePair<string, double> topSentence = scores.OrderByDescending(sentence => sentence.Value).ThenByDescending(sentence => MatchingWords[sentence.Key]).First();
 
 
-        if (topSentence.Value == 0)
+        if (topSentence.Value == 0 && MatchingWords[topSentence.Key] == 0)
         {
             return "Sorry, I couldn't understand what you said.";
         }
