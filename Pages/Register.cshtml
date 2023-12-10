@@ -341,10 +341,6 @@
             <span >Password</span>
             <input type="password"  id="password" name="password" required />
         </label>
-        <label>
-            <span>Image</span>
-            <input type="file" id="file" name="image" required />
-        </label>
         <br >
         <input type="submit" class="submit" value="register" style="display: block;
     margin: 0 auto;
@@ -360,7 +356,7 @@
             already have an account?
 
 
-            <a style="color: #455a81" asp-area="" asp-page="/Login">LOGIN</a>
+            <a style="color: #455a81" asp-area="" asp-page="/Login">Login</a>
         </h6>
       
     </div>
@@ -377,11 +373,6 @@
 
 
 
-@if (Model.ImageURL is not null)
-{
-    <img src="@Model.ImageURL">
-    
-}
 
 
 

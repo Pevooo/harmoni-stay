@@ -15,6 +15,10 @@
         </div>
     </div>
     <!-- Page Header End -->
+
+<div class="col-md-2" style="display:grid">
+   <a asp-page="AddEmployee">AddEmployee</a>
+</div>
     <!-- Staff Start -->
     <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
@@ -69,6 +73,9 @@
             Facility
         </th>
         <th>
+            <span style="width :20px"></span>
+            <span></span>
+            <span></span>
             more
         </th>
         </thead>
@@ -77,15 +84,18 @@
             @foreach(var item in Model.Emps)
             {
                 <tr>
-                    <td>@item.Image</td>
+                    <td><img src="@Model.Tags[item.EmployeeID]" width="149" height="149"/></td>
                     <td>@item.EmployeeID</td>
                     <td>@item.EmployeeName</td>
                     <td>@item.WorkingHours</td>
                     <td>@item.EmployeeSalary</td>
                     <td>@Model.category</td>
                     <td>
-                        <a href="RemoveStaff/@item.EmployeeID" class="btn "> <i class="bi  bg-black bi-x-circle-fill"></i></a>
-                        <a href="EditStaff/@item.EmployeeID" class="btn "> <i class="bi  bg-black bi-x-circle-fill"></i></a>
+                        <div>
+                            <a href="RemoveStaff/@item.EmployeeID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                            <a href="EditStaff/@item.EmployeeID" class="btn " style="display:grid"> Edit<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                        </div>
+                        
                         
                     </td>
                     

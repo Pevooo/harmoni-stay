@@ -1,67 +1,61 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MainProject.Pages
 {
-    public class EditStaffModel : PageModel
+    public class AddEmployeeModel : PageModel
     {
+        public bool Error = false;
         public readonly Context db;
-        public string category;
-        public bool Error;
-        public List<string> CategoryFacilities { set; get; }
-        public Employee employee;
-        public EditStaffModel(Context db)
-        {
-            this.db = db;
-            CategoryFacilities = new();
-            employee = new Employee();
-        }
-        public void OnGet(string id)
-        {
-            foreach (var item in db.Facilities)
-            {
-                CategoryFacilities.Add(item.FacilityName);
-            }
-            var query =db.Employees.Where(x=>x.EmployeeID == id).Select(x=>x);
-            employee=query.First();
-            
-        }
-    
         string EmployeeName;
         double EmployeeSalary;
         double WorkingHours;
         byte[] Image;
-        string FacilityName; 
+        string FacilityName;     
         MemoryStream memoryStream = new MemoryStream();
-        public IActionResult OnPost(string id)
+        public List<string> CategoryFacilities { set; get; }
+        public AddEmployeeModel(Context db)
+        {
+            this.db = db;
+            CategoryFacilities = new();
+        }
+        public void OnGet()
+        {
+            foreach(var category in db.Facilities)
+            {
+                CategoryFacilities.Add(category.FacilityName);
+            }
+        }
+        public IActionResult OnPost()
         {
             try
             {
-                var emp = db.Employees.FirstOrDefault(x => x.EmployeeID == id);
+                Employee emp = new Employee();
+                emp.EmployeeID = Request.Form["EmployeeID"];
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
                 Request.Form.Files.First().CopyTo(memoryStream);
                 FacilityName = Request.Form["Facility"];
-                var facilityId=db.Facilities.Where(x=>x.FacilityName== FacilityName);
+                var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                 Image = memoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;
                 emp.WorkingHours = WorkingHours;
                 emp.EmployeeName = EmployeeName;
                 emp.Image = Image;
-                emp.FacilityEmployee=facilityId.First();           
+                emp.FacilityEmployee = facilityId.First();
+                db.Add(emp);
                 db.SaveChanges();
                 return RedirectToPage("/Staff");
+
             }
             catch
             {
                 Error = true;
-                return Page();
 
             }
-
+            return Page();
         }
     }
 }
