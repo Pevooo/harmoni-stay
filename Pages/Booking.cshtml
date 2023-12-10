@@ -155,7 +155,7 @@
                                 <!--Room Info-->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <select id="SelectedRoomId" name="SelectedRoomId" asp-for="SelectedRoomId">
+                                                <select id="SelectedRoomId" name="SelectedRoomId" asp-for="SelectedRoomId"  size="5" style="height: 100px;">
                                             @foreach (var room in Model.AvailableRooms)
                                             {
                                                 <option value="@room.RoomID"> @room.RoomID - @room.RoomType - @room.RoomCategory </option>

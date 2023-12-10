@@ -66,12 +66,12 @@ namespace MainProject.Pages
 
             if (SelectedRoomId == 0)
             {
-                Error = true;
+                //Error = true;
                 Message = "Please select a room.";
             }
             else
             {
-                // Check if the selected room is still available (optional, depending on your business logic)
+                
                 var isRoomAvailable = db.Bookings
                     .All(booking =>
                         SelectedRoomId != booking.BookingRoom.RoomID ||
@@ -94,7 +94,7 @@ namespace MainProject.Pages
                 }
                 else
                 {
-                    Error = true;
+                    //Error = true;
                     Message = "The selected room is not available for the specified period.";
                 }
             }
