@@ -1,5 +1,4 @@
-('D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
- 'Script\\build\\populate\\PYZ-00.pyz',
+('D:\\HS\\HarmoniStay\\Population Script\\build\\populate\\PYZ-00.pyz',
  [('_compat_pickle',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_compat_pickle.py',
    'PYMODULE'),
@@ -26,6 +25,9 @@
    'PYMODULE'),
   ('base64',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\base64.py',
+   'PYMODULE'),
+  ('bcrypt',
+   'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\bcrypt\\__init__.py',
    'PYMODULE'),
   ('bisect',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\bisect.py',

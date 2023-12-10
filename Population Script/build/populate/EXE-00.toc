@@ -1,5 +1,4 @@
-('D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
- 'Script\\dist\\populate.exe',
+('D:\\HS\\HarmoniStay\\Population Script\\dist\\populate.exe',
  True,
  False,
  False,
@@ -30,31 +29,29 @@
  None,
  None,
  None,
- 'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
- 'Script\\build\\populate\\populate.pkg',
+ 'D:\\HS\\HarmoniStay\\Population Script\\build\\populate\\populate.pkg',
  [('pyi-contents-directory _internal', '', 'OPTION'),
   ('PYZ-00.pyz',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
-   'Script\\build\\populate\\PYZ-00.pyz',
+   'D:\\HS\\HarmoniStay\\Population Script\\build\\populate\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
+   'D:\\HS\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\struct.pyc',
    'PYMODULE'),
   ('pyimod01_archive',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
+   'D:\\HS\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod01_archive.pyc',
    'PYMODULE'),
   ('pyimod02_importers',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
+   'D:\\HS\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod02_importers.pyc',
    'PYMODULE'),
   ('pyimod03_ctypes',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
+   'D:\\HS\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod03_ctypes.pyc',
    'PYMODULE'),
   ('pyimod04_pywin32',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
+   'D:\\HS\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod04_pywin32.pyc',
    'PYMODULE'),
   ('pyiboot01_bootstrap',
@@ -64,8 +61,7 @@
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('populate',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
-   'Script\\populate.py',
+   'D:\\HS\\HarmoniStay\\Population Script\\populate.py',
    'PYSOURCE'),
   ('python310.dll',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\python310.dll',
@@ -85,6 +81,9 @@
   ('_bz2.pyd',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_bz2.pyd',
    'EXTENSION'),
+  ('bcrypt\\_bcrypt.pyd',
+   'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\bcrypt\\_bcrypt.pyd',
+   'EXTENSION'),
   ('_decimal.pyd',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_decimal.pyd',
    'EXTENSION'),
@@ -97,17 +96,19 @@
   ('VCRUNTIME140.dll',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
    'BINARY'),
+  ('python3.dll',
+   'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\python3.dll',
+   'BINARY'),
   ('libcrypto-1_1.dll',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libcrypto-1_1.dll',
    'BINARY'),
   ('base_library.zip',
-   'D:\\Important Documents\\HarmonyStayMain\\HarmoniStay\\Population '
-   'Script\\build\\populate\\base_library.zip',
+   'D:\\HS\\HarmoniStay\\Population Script\\build\\populate\\base_library.zip',
    'DATA')],
  [],
  False,
  False,
- 1701242488,
+ 1702222686,
  [('run.exe',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],
