@@ -30,8 +30,8 @@ namespace MainProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountID"));
 
-                    b.Property<int?>("AccountEmployeeEmployeeID")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountEmployeeEmployeeID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
@@ -57,8 +57,8 @@ namespace MainProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"));
 
-                    b.Property<int?>("BookingGuestGuestID")
-                        .HasColumnType("int");
+                    b.Property<string>("BookingGuestGuestID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("BookingRoomRoomID")
                         .HasColumnType("int");
@@ -80,11 +80,8 @@ namespace MainProject.Migrations
 
             modelBuilder.Entity("MainProject.Models.Employee", b =>
                 {
-                    b.Property<int>("EmployeeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeID"));
+                    b.Property<string>("EmployeeID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EmployeeName")
                         .HasColumnType("nvarchar(max)");
@@ -165,11 +162,8 @@ namespace MainProject.Migrations
 
             modelBuilder.Entity("MainProject.Models.Guest", b =>
                 {
-                    b.Property<int>("GuestID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuestID"));
+                    b.Property<string>("GuestID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("GuestName")
                         .HasColumnType("nvarchar(max)");

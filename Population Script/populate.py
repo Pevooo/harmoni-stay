@@ -1,6 +1,7 @@
 import pyodbc
 import random
 import datetime
+import bcrypt
 
 """
 CONSTANTS
@@ -66,34 +67,40 @@ def main():
 
 
     # Employees
-    cursor.execute("SET IDENTITY_INSERT Employees ON")
+    EMPLOYEES = []
     for i in range(EMPLOYEE_NO):
-        cursor.execute("INSERT INTO Employees (EmployeeID, EmployeeName, EmployeeSalary, FacilityEmployeeFacilityID, WorkingHours) VALUES (?, ?, ?, ?, ?)", i + 1, get_random_name(), random.randint(3, 14) * 1000, random.randint(1, len(facilities)), random.randint(2, 8))
-        cursor.commit()   
-    cursor.execute("SET IDENTITY_INSERT Employees OFF")
+        try:
+            ssn = str(get_random_number(14))
+            EMPLOYEES.append(ssn)
+            cursor.execute("INSERT INTO Employees (EmployeeID, EmployeeName, EmployeeSalary, FacilityEmployeeFacilityID, WorkingHours) VALUES (?, ?, ?, ?, ?)", ssn, get_random_name(), random.randint(3, 14) * 1000, random.randint(1, len(facilities)), random.randint(2, 8))
+            cursor.commit()
+        except:
+            i -= 1
+            continue
+
 
 
     # Accounts
     
-    emp1 = random.randint(0, EMPLOYEE_NO - 1)
+    emp1 = random.choice(EMPLOYEES)
     emps = {emp1}
     cursor.execute("SET IDENTITY_INSERT Accounts ON")
-    cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", 1, emp1, "test", "Manager")
+    cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", 1, emp1, str(bcrypt.hashpw("test".encode(), bcrypt.gensalt()))[2:-1], "Manager")
     cursor.commit()
     for i in range(3):
         try:
-            emp = random.randint(0, EMPLOYEE_NO - 1)
+            emp = random.choice(EMPLOYEES)
             if emp not in emps:
-                cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", i + 2, random.randint(0, EMPLOYEE_NO - 1), f"test{i + 1}", "Receptionist")
+                cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", i + 2, emp, str(bcrypt.hashpw("test".encode(), bcrypt.gensalt()))[2:-1], "Receptionist")
                 cursor.commit()
                 emps.add(emp)
         except:
             continue
     for i in range(2):
         try:
-            emp = random.randint(0, EMPLOYEE_NO - 1)
+            emp = random.choice(EMPLOYEES)
             if emp not in emps:
-                cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", i + 5, random.randint(0, EMPLOYEE_NO - 1), f"test{i + 1}", "Restaurant Manager")
+                cursor.execute("INSERT INTO Accounts (AccountID, AccountEmployeeEmployeeID, Password, Type) VALUES (?, ?, ?, ?)", i + 5, emp, str(bcrypt.hashpw("test".encode(), bcrypt.gensalt()))[2:-1], "Restaurant Manager")
                 cursor.commit()
                 emps.add(emp)
         except:
@@ -115,14 +122,17 @@ def main():
 
 
     # Guests
-    occupied = {}
-    cursor.execute("SET IDENTITY_INSERT Guests ON")
-
+    GUESTS = []
     for i in range(1, GUEST_MAX_COUNT + 1):
-        cursor.execute("INSERT INTO Guests (GuestID, GuestName, GuestNationality, GuestPhoneNumber) VALUES (?, ?, ?, ?)", i, get_random_name(), random.choice(nations), get_random_number(11))
-        cursor.commit()     
+        try:
+            ssn = str(get_random_number(14))
+            GUESTS.append(ssn)
+            cursor.execute("INSERT INTO Guests (GuestID, GuestName, GuestNationality, GuestPhoneNumber) VALUES (?, ?, ?, ?)", ssn, get_random_name(), random.choice(nations), get_random_number(11))
+            cursor.commit()     
+        except:
+            i -= 1
+            continue
 
-    cursor.execute("SET IDENTITY_INSERT Guests OFF")
     
 
 
@@ -140,7 +150,7 @@ def main():
                 roomId = int(f"{i + 1}{j + 1}{(k + 1):02d}")
 
                 
-                cursor.execute("INSERT INTO Bookings (BookingID, CheckIn, CheckOut, BookingRoomRoomID, BookingGuestGuestID) VALUES (?, ?, ?, ?, ?)", c, dstart, dend, roomId, random.randint(1, 200))
+                cursor.execute("INSERT INTO Bookings (BookingID, CheckIn, CheckOut, BookingRoomRoomID, BookingGuestGuestID) VALUES (?, ?, ?, ?, ?)", c, dstart, dend, roomId, random.choice(GUESTS))
                 cursor.commit()
                 cursor.execute("INSERT INTO Transactions (TransactionDescription, TransactionFee, TransactionTime, TransactionRoomRoomID) VALUES (?, ?, ?, ?)", "Booking Fee", random.randint(5000, 25000), dstart, roomId)
                 cursor.commit()

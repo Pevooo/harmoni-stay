@@ -18,7 +18,7 @@ namespace MainProject.Pages
             CategoryFacilities = new();
             employee = new Employee();
         }
-        public void OnGet(int id)
+        public void OnGet(string id)
         {
             foreach (var item in db.Facilities)
             {
@@ -34,7 +34,7 @@ namespace MainProject.Pages
         byte[] Image;
         string FacilityName; 
         MemoryStream memoryStream = new MemoryStream();
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(string id)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace MainProject.Pages
     {
 
         private Context db;
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Password {  get; set; }
         public bool Error { get; set; }
 
@@ -37,7 +37,7 @@ namespace MainProject.Pages
 
             try
             {
-				UserId = Convert.ToInt32(Request.Form["userId"]);
+				UserId = Request.Form["userId"];
 				Password = Request.Form["password"];
 			}
             catch
@@ -57,7 +57,7 @@ namespace MainProject.Pages
             else
             {
                 // Saving User info in Session and Globals
-                HttpContext.Session.SetInt32("UserId", (int)UserId);
+                HttpContext.Session.SetString("UserId", UserId);
                 var emp=db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
                 Globals.UserId = UserId;
                 Globals.UserName = emp.EmployeeName;

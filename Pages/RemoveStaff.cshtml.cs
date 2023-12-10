@@ -11,7 +11,7 @@ namespace MainProject.Pages
         {
             this.db = db;
         }
-        public async Task<IActionResult> OnGet(int id)
+        public async Task<IActionResult> OnGet(string id)
         {
             var emp = db.Employees.Where(item=>item.EmployeeID==id).Select(x=>x);
             if (emp != null)

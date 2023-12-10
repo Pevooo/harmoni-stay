@@ -13,7 +13,7 @@ namespace MainProject.Pages
 
 		public string Password { get; set; }
 
-		public int UserId { get; set; }
+		public string UserId { get; set; }
 
 		public string Type { get; set; }
 
@@ -37,21 +37,18 @@ namespace MainProject.Pages
 
         public void OnPost()
         {
-            MemoryStream memoryStream = new MemoryStream();
+
             try
 			{
-				UserId = Convert.ToInt32(Request.Form["userId"]);
+				UserId = Request.Form["userId"];
 				Password = Request.Form["password"];
 				Type = Request.Form["type"];
-				Request.Form.Files.First().CopyTo(memoryStream);
-				
             }
 			catch
 			{
 				Error = true;
 				return;
 			}
-            ImageURL = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(memoryStream.ToArray()));
 
             Account? query = db.Accounts.SingleOrDefault(account => account.AccountEmployee.EmployeeID == UserId);
 
@@ -70,7 +67,7 @@ namespace MainProject.Pages
 					return;
 				}
 				
-				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type, Image = memoryStream.ToArray()});
+				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type});
 				db.SaveChanges();
 
 				// Saving User info in Session and Globals

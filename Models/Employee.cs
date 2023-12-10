@@ -2,13 +2,11 @@
 {
     public class Employee
     {
-        public int EmployeeID { get; set; }
+        public string EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public double EmployeeSalary { get; set; }
         public byte[] Image { get; set; }
         public double WorkingHours { get; set; }
-        
-
         public virtual Facility FacilityEmployee { get; set; }
     }
 }

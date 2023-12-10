@@ -5,7 +5,7 @@ namespace MainProject.Models
 {
     public class Guest
     {
-        public int GuestID { get; set; }
+        public string GuestID { get; set; }
         public string GuestName { get; set; }
         public string GuestPhoneNumber { get; set; }
         public string GuestNationality { get; set; }

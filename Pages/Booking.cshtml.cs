@@ -12,7 +12,7 @@ namespace MainProject.Pages
         public bool Error { get; set; }
         public DateTime CheckIn { get; set;}
         public DateTime CheckOut { get; set; }
-        public int GuestId { get; set; }
+        public string GuestId { get; set; }
         public string? GuestName { get; set; }
         public string? GuestNationality { get; set; }
         public string? GuestPhoneNumber { get; set; }
@@ -35,7 +35,7 @@ namespace MainProject.Pages
             {
                 this.CheckIn = Convert.ToDateTime(Request.Form["checkin"]);
                 this.CheckOut = Convert.ToDateTime(Request.Form["checkout"]);
-                this.GuestId = Convert.ToInt32(Request.Form["guestId"]);
+                this.GuestId = Request.Form["guestId"];
 
             } 
             catch 

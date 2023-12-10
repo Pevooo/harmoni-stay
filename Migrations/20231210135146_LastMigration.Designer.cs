@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231109192756_jessy")]
-    partial class jessy
+    [Migration("20231210135146_LastMigration")]
+    partial class LastMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace MainProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MainProject.Account", b =>
+            modelBuilder.Entity("MainProject.Models.Account", b =>
                 {
                     b.Property<int>("AccountID")
                         .ValueGeneratedOnAdd()
@@ -33,49 +33,70 @@ namespace MainProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountID"));
 
-                    b.Property<int>("AccountEmloyeeEmployeeID")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountEmployeeEmployeeID")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AccountID");
 
-                    b.HasIndex("AccountEmloyeeEmployeeID");
+                    b.HasIndex("AccountEmployeeEmployeeID");
 
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("MainProject.Employee", b =>
+            modelBuilder.Entity("MainProject.Models.Booking", b =>
                 {
-                    b.Property<int>("EmployeeID")
+                    b.Property<int>("BookingID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"));
+
+                    b.Property<string>("BookingGuestGuestID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("BookingRoomRoomID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("BookingID");
+
+                    b.HasIndex("BookingGuestGuestID");
+
+                    b.HasIndex("BookingRoomRoomID");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("MainProject.Models.Employee", b =>
+                {
+                    b.Property<string>("EmployeeID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EmployeeName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("EmployeeSalary")
                         .HasColumnType("float");
 
-                    b.Property<string>("Facility")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FacilityEmployeeFacilityID")
+                    b.Property<int?>("FacilityEmployeeFacilityID")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<double>("WorkingHours")
                         .HasColumnType("float");
@@ -87,7 +108,7 @@ namespace MainProject.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("MainProject.Event", b =>
+            modelBuilder.Entity("MainProject.Models.Event", b =>
                 {
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd()
@@ -98,14 +119,13 @@ namespace MainProject.Migrations
                     b.Property<DateTime>("EventEnd")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("EventFacilityFacilityID")
+                    b.Property<int?>("EventFacilityFacilityID")
                         .HasColumnType("int");
 
                     b.Property<double>("EventFee")
                         .HasColumnType("float");
 
                     b.Property<string>("EventName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EventStart")
@@ -118,7 +138,7 @@ namespace MainProject.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("MainProject.Facility", b =>
+            modelBuilder.Entity("MainProject.Models.Facility", b =>
                 {
                     b.Property<int>("FacilityID")
                         .ValueGeneratedOnAdd()
@@ -127,7 +147,6 @@ namespace MainProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FacilityID"));
 
                     b.Property<string>("FacilityName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FacilityWorkEnd")
@@ -136,34 +155,34 @@ namespace MainProject.Migrations
                     b.Property<DateTime>("FacilityWorkStart")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("FacilityID");
 
                     b.ToTable("Facilities");
                 });
 
-            modelBuilder.Entity("MainProject.Guest", b =>
+            modelBuilder.Entity("MainProject.Models.Guest", b =>
                 {
-                    b.Property<int>("GuestID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuestID"));
+                    b.Property<string>("GuestID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("GuestName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoomID")
-                        .HasColumnType("int");
+                    b.Property<string>("GuestNationality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GuestPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GuestID");
-
-                    b.HasIndex("RoomID");
 
                     b.ToTable("Guests");
                 });
 
-            modelBuilder.Entity("MainProject.Room", b =>
+            modelBuilder.Entity("MainProject.Models.Room", b =>
                 {
                     b.Property<int>("RoomID")
                         .ValueGeneratedOnAdd()
@@ -175,11 +194,9 @@ namespace MainProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RoomCategory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoomID");
@@ -187,7 +204,7 @@ namespace MainProject.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("MainProject.Transaction", b =>
+            modelBuilder.Entity("MainProject.Models.Transaction", b =>
                 {
                     b.Property<int>("TransactionID")
                         .ValueGeneratedOnAdd()
@@ -196,13 +213,12 @@ namespace MainProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
                     b.Property<string>("TransactionDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("TransactionFee")
                         .HasColumnType("float");
 
-                    b.Property<int>("TransactionRoomRoomID")
+                    b.Property<int?>("TransactionRoomRoomID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionTime")
@@ -215,67 +231,78 @@ namespace MainProject.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("MainProject.Account", b =>
+            modelBuilder.Entity("MainProject.Models.Account", b =>
                 {
-                    b.HasOne("MainProject.Employee", "AccountEmloyee")
+                    b.HasOne("MainProject.Models.Employee", "AccountEmployee")
                         .WithMany()
-                        .HasForeignKey("AccountEmloyeeEmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountEmployeeEmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("AccountEmloyee");
+                    b.Navigation("AccountEmployee");
                 });
 
-            modelBuilder.Entity("MainProject.Employee", b =>
+            modelBuilder.Entity("MainProject.Models.Booking", b =>
                 {
-                    b.HasOne("MainProject.Facility", "FacilityEmployee")
+                    b.HasOne("MainProject.Models.Guest", "BookingGuest")
+                        .WithMany("GuestBookings")
+                        .HasForeignKey("BookingGuestGuestID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MainProject.Models.Room", "BookingRoom")
+                        .WithMany("RoomBookings")
+                        .HasForeignKey("BookingRoomRoomID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("BookingGuest");
+
+                    b.Navigation("BookingRoom");
+                });
+
+            modelBuilder.Entity("MainProject.Models.Employee", b =>
+                {
+                    b.HasOne("MainProject.Models.Facility", "FacilityEmployee")
                         .WithMany("FacilityEmployee")
                         .HasForeignKey("FacilityEmployeeFacilityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("FacilityEmployee");
                 });
 
-            modelBuilder.Entity("MainProject.Event", b =>
+            modelBuilder.Entity("MainProject.Models.Event", b =>
                 {
-                    b.HasOne("MainProject.Facility", "EventFacility")
+                    b.HasOne("MainProject.Models.Facility", "EventFacility")
                         .WithMany("FacilityEvent")
                         .HasForeignKey("EventFacilityFacilityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("EventFacility");
                 });
 
-            modelBuilder.Entity("MainProject.Guest", b =>
+            modelBuilder.Entity("MainProject.Models.Transaction", b =>
                 {
-                    b.HasOne("MainProject.Room", null)
-                        .WithMany("RoomGuests")
-                        .HasForeignKey("RoomID");
-                });
-
-            modelBuilder.Entity("MainProject.Transaction", b =>
-                {
-                    b.HasOne("MainProject.Room", "TransactionRoom")
+                    b.HasOne("MainProject.Models.Room", "TransactionRoom")
                         .WithMany("RoomTransactionts")
                         .HasForeignKey("TransactionRoomRoomID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("TransactionRoom");
                 });
 
-            modelBuilder.Entity("MainProject.Facility", b =>
+            modelBuilder.Entity("MainProject.Models.Facility", b =>
                 {
                     b.Navigation("FacilityEmployee");
 
                     b.Navigation("FacilityEvent");
                 });
 
-            modelBuilder.Entity("MainProject.Room", b =>
+            modelBuilder.Entity("MainProject.Models.Guest", b =>
                 {
-                    b.Navigation("RoomGuests");
+                    b.Navigation("GuestBookings");
+                });
+
+            modelBuilder.Entity("MainProject.Models.Room", b =>
+                {
+                    b.Navigation("RoomBookings");
 
                     b.Navigation("RoomTransactionts");
                 });

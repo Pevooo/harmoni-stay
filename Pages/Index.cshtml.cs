@@ -10,7 +10,7 @@ namespace MainProject.Pages
         public bool Error { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        public int GuestId { get; set; }
+        public string GuestId { get; set; }
         public string GuestName { get; set; }
         public string GuestNationality {  get; set; }
         public string GuestPhoneNumber { get; set; }
@@ -21,7 +21,7 @@ namespace MainProject.Pages
             this.db = db;
         }
 
-        public void OnGet(int id)
+        public void OnGet(string id)
         {
             GuestId = id;
             var queryGuest = db.Guests.Where(x => x.GuestID == GuestId).Select(x=>new{ x.GuestName,x.GuestNationality,x.GuestPhoneNumber});
