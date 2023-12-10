@@ -4,8 +4,8 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<p style="font-size: 50px" class="text-danger">Error.</p>
+<p style="font-size: medium"  class="text-danger">An error occurred while processing your request.</p>
 
 @if (Model.ShowRequestId)
 {
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="hero-text">
-					<p style="font-size: 120px">404</p>
+					<p style="font-size: 120px">@Response.StatusCode</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">

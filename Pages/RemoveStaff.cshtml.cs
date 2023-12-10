@@ -13,7 +13,7 @@ namespace MainProject.Pages
         }
         public async Task<IActionResult> OnGet(int id)
         {
-            var emp=db.Employees.Where(item=>item.EmployeeID==id).Select(x=>x);
+            var emp = db.Employees.Where(item=>item.EmployeeID==id).Select(x=>x);
             if (emp != null)
             {
                 db.Employees.Remove(emp.First());
