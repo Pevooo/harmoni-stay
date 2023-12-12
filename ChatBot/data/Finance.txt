@@ -1,1 +1,2 @@
 You can view a report of the financial situation of the hotel by clicking <a href="/Finance" style="color: #d4af7a">here</a>. 
+Everythhing about money and finance can be seen from <a href="/Finance" style="color: #d4af7a">here</a>. 

@@ -4,6 +4,10 @@
     ViewData["Title"] = "Chatbot";
 }
 
+@if (Model.Error is not null)
+{
+    <p>@Model.Error</p>
+}
 
 <form method="post">
     <div class="row g-3">

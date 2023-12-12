@@ -34,7 +34,7 @@ namespace MainProject.Pages
 					{ "Event Income Last Year", (from hotelEvent in db.Events where hotelEvent.EventStart.Year == DateTime.Now.Year - 1 select hotelEvent.EventFee).Sum() },
 					{ "Event Income This Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year && hotelEvent.EventStart.Month == DateTime.Now.Month) select hotelEvent.EventFee).Sum() },
 					{ "Total Event Income", db.Transactions.Select(hotelEvent => hotelEvent.TransactionFee).Sum() },
-					{ "Total Employee Salaris", db.Employees.Select(employee => employee.EmployeeSalary).Sum() },
+					{ "Total Employee Salaries", db.Employees.Select(employee => employee.EmployeeSalary).Sum() },
 					{ "Average Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Average() },
 					{ "Minimum Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Min() },
 					{ "Number Of Employees", db.Employees.Count() },
