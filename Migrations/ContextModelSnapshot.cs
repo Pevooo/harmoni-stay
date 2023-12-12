@@ -125,6 +125,9 @@ namespace MainProject.Migrations
                     b.Property<DateTime>("EventStart")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("EventType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("EventID");
 
                     b.HasIndex("EventFacilityFacilityID");

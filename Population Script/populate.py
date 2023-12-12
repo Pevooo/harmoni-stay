@@ -40,6 +40,7 @@ def main():
     event_names = ["Hamaqi", "Amr Diab", "Wegz"]
     nations = ["Egypt", "USA", "UAE", "UK", "Germany", "Italy", "Portugal", "South Africa", "Spain", "France", "Russia", "Ukraine", "Belarus", "Sudan", "Sweden", "Switzerland", "Palestine", "Kuwait", "China", "India"]
     transaction_descriptions = ["Restaurant Purchase", "Yacht Ticket", "Bar Purchase"]
+    event_types = ["Wedding", "Conference", "Concert", "Other"]
 
     get_random_name = lambda: f"{random.choice(all_names)} {random.choice(male_names)}"
 
@@ -115,7 +116,7 @@ def main():
         dend = dstart + datetime.timedelta(hours=random.randint(1, 3))
         dstart = dt_to_str(dstart)
         dend = dt_to_str(dend)
-        cursor.execute("INSERT INTO Events (EventID, EventName, EventFee, EventStart, EventEnd, EventFacilityFacilityID) VALUES (?, ?, ?, ?, ?, ?)", i + 1, random.choice(event_names), random.randrange(50000, 400001, 500), dstart, dend, random.randint(1, len(facilities)))
+        cursor.execute("INSERT INTO Events (EventID, EventName, EventFee, EventStart, EventEnd, EventFacilityFacilityID, EventType) VALUES (?, ?, ?, ?, ?, ?, ?)", i + 1, random.choice(event_names), random.randrange(50000, 400001, 500), dstart, dend, random.randint(1, len(facilities)), random.choice(event_types))
         cursor.commit()
     cursor.execute("SET IDENTITY_INSERT Events OFF")
     cursor.commit()

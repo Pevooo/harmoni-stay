@@ -1,5 +1,5 @@
-To login you just need to press login and enter your credentials or click <a href="/Login" style="color: #d4af7a">here</a>. 
-To sign in you just need to press login and enter your credentials or click <a href="/Login" style="color: #d4af7a">here</a>. 
+To login click <a href="/Login" style="color: #d4af7a">here</a>, to logout click <a href="/Logout" style="color: #d4af7a">here</a>, to make an account, contact the admin. 
+To sign in click <a href="/Login" style="color: #d4af7a">here</a>, to sign out click <a href="/Logout" style="color: #d4af7a">here</a>, to sign up, contact the admin. 
 If you don't have an account you can contact the administrator to register. 
 For registration process the administrator has to be contacted. 
 To signup, contact the administrator. 

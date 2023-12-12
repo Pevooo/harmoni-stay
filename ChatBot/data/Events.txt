@@ -1,0 +1,2 @@
+To view event details, click <a href="/Events" style="color: #d4af7a">here</a>. 
+To see past or upcoming events, click <a href="/Events" style="color: #d4af7a">here</a>. 

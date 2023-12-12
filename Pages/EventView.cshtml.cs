@@ -29,7 +29,7 @@ namespace MainProject.Pages
         }
 
         
-        public void OnGet( string id )
+        public void OnGet(string id)
         {
             idEvent = Convert.ToInt32(id);
             try
@@ -39,26 +39,7 @@ namespace MainProject.Pages
                 {
                     var q = db.Events
               .Where(c => c.EventType == "Conference").ToList();
-              
-                 //   eventList.Add(q);
-
-
-             //       var w = db.Events
-             //.Where(c => c.EventType == "Conference")
-             //.AsEnumerable()
-             //.Select(c => c.EventStart).ToString();
-                   
-             //       eventList.Add(w);
-
-
-             //       var v = db.Events
-             //.Where(c => c.EventType == "Conference")
-             //.AsEnumerable()
-             //.Select(c => c.EventEnd).ToString();
-                    
-             //       eventList.Add(v);
-             //
-             }
+                }
                 else if (idEvent == 2)
                 {
                     var q = db.Events
@@ -84,44 +65,6 @@ namespace MainProject.Pages
 
 
             }
-                //string connectionString ="Data Source=C:\\Users\\Jessica\\HarmoniStay\\HarmoniStay.db";
-                //using (SqlConnection connection=new SqlConnection(connectionString))
-                //{
-                //    string sql;
-                //    connection.Open();
-                //    if (idEvent == 1)
-                //    {
-                //         sql= "SELECT EventID,EventName,EventStart,EventEnd WHERE EventType=\"Conference\"";
-                //    }
-                //    else if(idEvent == 2)
-                //    {
-                //        sql = "SELECT EventID,EventName,EventStart,EventEnd WHERE EventType=\"Wedding\"";
-                //    }
-
-
-            //      else  {
-            //         sql  = "SELECT EventID,EventName,EventStart,EventEnd WHERE EventType=\"Concert\"";
-            //        }
-
-
-
-            //    using (SqlCommand command = new SqlCommand(sql, connection)) {
-
-            //        using (SqlDataReader reader = command.ExecuteReader())
-            //        {
-            //            while (reader.Read())
-            //            {
-            //                Event eventInfo = new Event();
-            //                eventInfo.EventID = reader.GetInt32(0);
-            //                eventInfo.EventName = reader.GetString(1);
-            //                eventInfo.EventStart=  reader.GetDateTime(2);
-            //                eventInfo.EventEnd = reader.GetDateTime(3);
-
-            //                listEvent.Add(eventInfo);
-            //            }
-            //        }
-            //    }
-            //}
             catch (Exception ex) { 
             
             }

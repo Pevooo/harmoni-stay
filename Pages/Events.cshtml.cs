@@ -12,29 +12,24 @@ namespace MainProject.Pages
         public string conference { get; set; }
         public string wedding { get; set; }
         public string concert { get; set; }
-        /// <summary>
-        /// ///////
-        /// </summary>
-        public bool error = false;
-        string Name;
-        
+        public bool Error { get; set; }
+        public string Name {  get; set; }
         private DateTime st { get; set; }
         private DateTime end { get; set; }
         private string type { get; set; }
-        private readonly Context _db;
-
-        public Event newEvent { get; set; }
+        private readonly Context db;
+        public Event NewEvent { get; set; }
 
         public EventsModel(Context db)
         {
-            _db = db;
+            this.db = db;
         }
         public void OnGet()
         {
            
         }
 
-        public IActionResult Onpost()
+        public void Onpost()
         {
             try
             {
@@ -47,22 +42,14 @@ namespace MainProject.Pages
                 ev.EventStart = st;
                 ev.EventEnd= end;
                 ev.EventType = type;
-                _db.Events.Add(ev);
-                _db.SaveChanges();
-                return RedirectToAction("Events");
+                db.Events.Add(ev);
+                db.SaveChanges();
             }
             catch
             {
-                error = true;
-                return Page();
-
+                Error = true;
             }
             
-        }
-        public async Task<IActionResult>  OnPostAsync()
-        {
-            return RedirectToPage("/EventView");
-
         }
     }
 }

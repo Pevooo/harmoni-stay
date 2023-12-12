@@ -5,6 +5,7 @@ public class OnlineChatbot
     public string Model { get; set; }
     public OpenAIClient Client { get; set; }
 
+    private const int maxTokens = 40;
     private Context db { get; set; }
 
     public OnlineChatbot(string model, Context db)
@@ -21,7 +22,7 @@ public class OnlineChatbot
         {
             DeploymentName = Model,
             Prompts = { GenerateQuestionText(query) },
-            MaxTokens = 30
+            MaxTokens = maxTokens
         });
 
         List<string> answer = new();
@@ -44,8 +45,8 @@ public class OnlineChatbot
             Number of Employees: {db.Employees.Count()},
             Number of Events Held: {db.Events.Count()},
             Number of Facilities: {db.Facilities.Count()},
-            Number of Free Rooms: {(from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()},
-            Number of Occupied Rooms: {db.Rooms.Count() - (from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()},
+            Number of Occupied Rooms: {(from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()},
+            Number of Free Rooms: {db.Rooms.Count() - (from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()},
             To login <a href="/Login">here</a>
             You must contact an admin to register
             To logout click <a href="/Logout">here</a>
