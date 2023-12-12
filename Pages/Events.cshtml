@@ -1,7 +1,10 @@
 ﻿@page
-@model MainProject.Pages.EvntsModel
+@model MainProject.Pages.EventsModel
 @{
-    ViewData["Title"] = "Events";
+
+
+
+
 }
 
 <!-- Page Header Start -->
@@ -17,7 +20,7 @@
 <!-- Home Room Section Begin -->
 <section class="hp-room-section">
     <div class="container-fluid">
-        <a href="#" class="primary-btn" style="color:black">View All</a>
+        <a href="/EventView/4"  class="primary-btn" style="color:black">View All</a>
         <br>  <br>
         <div class="hp-room-items">
             <div class="row">
@@ -26,9 +29,12 @@
                         <div class="hr-text">
                             <h3>Conference Meeting</h3>
                             <br>
-                            <a href="#form" class="primary-btn">Add</a>
+                            <a  href="#form" class="primary-btn">Add</a>
                             <br> <br>
-                            <a href="#" class="primary-btn">View</a>
+                            <form method ="post" class="cont" >
+                                <a id="1" class="primary-btn" href="/EventView/1">View</a>
+                          </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -39,18 +45,23 @@
 
                             <a href="#form" class="primary-btn">Add</a>
                             <br> <br>
-                            <a href="#" class="primary-btn">View</a>
+                            <form method ="post" class="cont" >
+                                <a id="2" class="primary-btn" href="/EventView/2">View</a>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
+
                     <div class="hp-room-item set-bg" data-setbg="/img/back.jpg">
                         <div class="hr-text">
                             <h3>Concert</h3>
 
                             <a href="#form" class="primary-btn">Add</a>
                             <br> <br>
-                            <a href="#" class="primary-btn">View</a>
+                            <form method ="post" class="cont" >
+                                <a id ="3" class="primary-btn"  href="/EventView/3" >View</a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -59,9 +70,9 @@
                         <div class="hr-text">
                             <h3>Other</h3>
 
-                            <a href="#form" class="primary-btn">Add</a>
+                            <a  href="#form" class="primary-btn">Add</a>
                             <br> <br>
-                            <a href="#" class="primary-btn">View</a>
+                           @* <a  class="primary-btn" asp-page="/EventView">View</a>*@ 
                         </div>
                     </div>
                 </div>
@@ -79,8 +90,14 @@
                     <div class="row g-2">
                         <div class="col-md-3">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="eventName"
+                                <input type="text" class="form-control datetimepicker-input" name="event Name"
                                        placeholder="Event Name" data-target="#date1" data-toggle="datetimepicker" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="date" id="date1" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" name="event Type"
+                                       placeholder="Event Type" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -109,3 +126,4 @@
     </div>
 </form>
 <!-- Hero Section End -->
+
