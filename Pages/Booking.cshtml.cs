@@ -36,7 +36,9 @@ namespace MainProject.Pages
                 this.CheckIn = Convert.ToDateTime(Request.Form["checkin"]);
                 this.CheckOut = Convert.ToDateTime(Request.Form["checkout"]);
                 this.GuestId = Request.Form["guestId"];
-
+                this.GuestName = Request.Form["guestName"];
+                this.GuestNationality = Request.Form["guestNationality"];
+                this.GuestPhoneNumber = Request.Form["guestPhoneNumber"];
             } 
             catch 
             {
@@ -71,23 +73,38 @@ namespace MainProject.Pages
             }
             else
             {
-                
-                var isRoomAvailable = db.Bookings
-                    .All(booking =>
-                        SelectedRoomId != booking.BookingRoom.RoomID ||
-                        CheckIn >= booking.CheckOut ||
-                        CheckOut <= booking.CheckIn);
 
-                if (isRoomAvailable)
+                if (AvailableRooms != null)
                 {
-                    Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
+                    var existingGuest = db.Guests.Find(this.GuestId);
+                    //Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
 
-                    if (guests is null)
+                    if (existingGuest == null)
                     {
-                        db.Guests.Add(new Guest() { GuestID = this.GuestId, GuestName = this.GuestName, GuestNationality = this.GuestNationality, GuestPhoneNumber = GuestPhoneNumber });
+                        existingGuest = new Guest
+                        {
+                            GuestID = this.GuestId,
+                            GuestName = this.GuestName,
+                            GuestNationality = this.GuestNationality,
+                            GuestPhoneNumber = this.GuestPhoneNumber
+                        };
+                        db.Guests.Add(existingGuest);
+                        db.SaveChanges();
                     }
 
-                    db.Bookings.Add(new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = guests });
+                    var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = existingGuest };
+                    db.Bookings.Add(newBooking);
+                    db.SaveChanges();
+
+                    var newTransaction = new Transaction
+                    {
+                        TransactionDescription = $"Room {SelectedRoomId} has Booked",
+                        TransactionFee = 10.0,
+                        TransactionTime = DateTime.Now,
+                        TransactionRoom = newBooking.BookingRoom
+                    };
+
+                    db.Transactions.Add(newTransaction);
                     db.SaveChanges();
 
                     Message = $"Booking successful for Room ID: {SelectedRoomId}";
