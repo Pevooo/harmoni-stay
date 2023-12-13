@@ -56,15 +56,6 @@ namespace MainProject.Pages
             // Get all rooms
             var rooms = db.Rooms.ToList();
 
-            // Get booked room IDs within the specified period
-            var bookedRoomIds = db.Bookings
-                .Where(x => this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn)
-                .Select(x => x.BookingRoom.RoomID)
-                .ToList();
-
-            // Get available rooms
-            AvailableRooms = rooms.Where(x => !bookedRoomIds.Contains(x.RoomID)).ToList();
-
 
             if (SelectedRoomId == 0)
             {
@@ -73,8 +64,8 @@ namespace MainProject.Pages
             }
             else
             {
-
-                if (AvailableRooms != null)
+		var AvailableRoom = ! db.Bookings.Any(x => this.SelectedRoomId == x.BookingRoom.RoomID && this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn);
+                if (AvailableRoom)
                 {
                     var existingGuest = db.Guests.Find(this.GuestId);
                     //Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
@@ -111,7 +102,7 @@ namespace MainProject.Pages
                 }
                 else
                 {
-                    //Error = true;
+                    Error = true;
                     Message = "The selected room is not available for the specified period.";
                 }
             }
