@@ -56,6 +56,10 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
             foreach (var facility in db.Facilities)
             {
                 string st = facility.FacilityWorkStart.ToString("H:mm");

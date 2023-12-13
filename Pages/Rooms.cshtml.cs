@@ -22,7 +22,10 @@ namespace MainProject.Pages
         public Dictionary<int, List<bool>> Days { get; set; }
         public void OnGet()
         {
-  
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
         }
 
         public void OnPost()

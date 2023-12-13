@@ -22,7 +22,11 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-            foreach(var category in db.Facilities)
+            if (HttpContext.Session.GetInt32("UserId") is not null)
+            {
+                Response.Redirect("/", false, true);
+            }
+            foreach (var category in db.Facilities)
             {
                 CategoryFacilities.Add(category.FacilityName);
             }

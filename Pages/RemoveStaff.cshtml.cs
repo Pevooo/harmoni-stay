@@ -13,6 +13,10 @@ namespace MainProject.Pages
         }
         public async Task<IActionResult> OnGet(string id)
         {
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
             var emp = db.Employees.Where(item=>item.EmployeeID==id).Select(x=>x);
             if (emp != null)
             {

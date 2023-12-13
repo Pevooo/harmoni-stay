@@ -26,7 +26,10 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-           
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
         }
 
         public void Onpost()

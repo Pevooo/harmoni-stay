@@ -31,6 +31,10 @@ namespace MainProject.Pages
         
         public void OnGet(string id)
         {
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
             idEvent = Convert.ToInt32(id);
             try
             { 

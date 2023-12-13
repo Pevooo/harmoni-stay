@@ -17,6 +17,10 @@ namespace MainProject.Pages
         }
         public async Task<IActionResult> OnGet(int id)
         {
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
             // Implement code to delete the data with the specified ID
             // Example:
             var item = db.Facilities.FirstOrDefault(i => i.FacilityID == id);

@@ -9,36 +9,47 @@ namespace MainProject.Pages
 {
     public class BookingModel : PageModel
     {
-        public bool Error { get; set; }
+        public bool Error = false;
         public DateTime CheckIn { get; set;}
         public DateTime CheckOut { get; set; }
         public string GuestId { get; set; }
-        public string? GuestName { get; set; }
-        public string? GuestNationality { get; set; }
-        public string? GuestPhoneNumber { get; set; }
-        public string? Message { get; set; }
+        public string GuestName { get; set; }
+        public string GuestNationality { get; set; }
+        public string GuestPhoneNumber { get; set; }
+        public string Message { get; set; }
         public int SelectedRoomId { get; set; }
-        public IList<Room> AvailableRooms { get; set; }
+        public List<Room> Rooms { get; set; }
+        public Guest g1 { get; set; }
         private readonly Context db;
 
         public BookingModel(Context db)
         {
             this.db = db;
+            Rooms= new List<Room>();
         }
 
         public void OnGet()
-        {}
+        {
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
+            Rooms = db.Rooms.ToList();
+
+        }
         
         public void OnPost()
         {
+            Rooms = db.Rooms.ToList();
             try 
             {
-                this.CheckIn = Convert.ToDateTime(Request.Form["checkin"]);
-                this.CheckOut = Convert.ToDateTime(Request.Form["checkout"]);
+                this.CheckIn = DateTime.Parse(Request.Form["checkin"].ToString());
+                this.CheckOut = DateTime.Parse(Request.Form["checkout"].ToString());
                 this.GuestId = Request.Form["guestId"];
                 this.GuestName = Request.Form["guestName"];
                 this.GuestNationality = Request.Form["guestNationality"];
                 this.GuestPhoneNumber = Request.Form["guestPhoneNumber"];
+                this.SelectedRoomId = int.Parse(Request.Form["SelectedRoomId"]);
             } 
             catch 
             {
@@ -54,36 +65,36 @@ namespace MainProject.Pages
 
 
             // Get all rooms
-            var rooms = db.Rooms.ToList();
+          
 
 
-            if (SelectedRoomId == 0)
+            if (SelectedRoomId == null)
             {
                 //Error = true;
                 Message = "Please select a room.";
             }
             else
             {
-		var AvailableRoom = ! db.Bookings.Any(x => this.SelectedRoomId == x.BookingRoom.RoomID && this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn);
+		        var AvailableRoom = ! db.Bookings.Any(x => (this.SelectedRoomId == x.BookingRoom.RoomID && this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn));
                 if (AvailableRoom)
                 {
-                    var existingGuest = db.Guests.Find(this.GuestId);
+                    var existingGuest = db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
                     //Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
 
-                    if (existingGuest == null)
+                    if (existingGuest is null)
                     {
-                        existingGuest = new Guest
+                        g1= new Guest
                         {
                             GuestID = this.GuestId,
                             GuestName = this.GuestName,
                             GuestNationality = this.GuestNationality,
                             GuestPhoneNumber = this.GuestPhoneNumber
                         };
-                        db.Guests.Add(existingGuest);
+                        db.Guests.Add(g1);
                         db.SaveChanges();
                     }
 
-                    var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = existingGuest };
+                    var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = g1 };
                     db.Bookings.Add(newBooking);
                     db.SaveChanges();
 

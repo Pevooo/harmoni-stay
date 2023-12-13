@@ -6,14 +6,14 @@
     {
         <div>
             <p>
-                Please check your credentials.
+                @Model.Message
             </p>
         </div>
     }
-    //@if (!string.IsNullOrEmpty(Model.Message))
-    //{
-    //        <p>@Model.Message</p>
-    //}
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+            <p>@Model.Message</p>
+    }
 }
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
@@ -71,19 +71,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                                <input type="text" class="form-control" id="name" placeholder="Guest Name">
+                                    <input type="text" class="form-control" id="name" name="guestName" placeholder="Guest Name">
                                                 <label for="name">Guest Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                                <input type="text" class="form-control" id="phoneNumber" placeholder="Guest PhoneNumber">
+                                    <input type="text" class="form-control" id="phoneNumber" name="guestPhoneNumber" placeholder="Guest PhoneNumber">
                                                 <label for= "phoneNumber" > Guest PhoneNumber </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                                <input type="text" class="form-control" id="name" placeholder="Guest Nationality">
+                                    <input type="text" class="form-control" id="name" guestId name="guestNationality" placeholder="Guest Nationality">
                                                 <label for="name">Guest Nationality</label>
                                      
                                     </div>
@@ -91,9 +91,9 @@
                                 <!--Room Info-->
                                 <div class="col-12">
                                         <div class="form-floating" style="height: 200px; overflow-y: scroll;">
-                                            <select class="form-control" id="SelectedRoomId" name="SelectedRoomId" asp-for="SelectedRoomId">
+                                            <select class="form-control" id="SelectedRoomId" name="SelectedRoomId" >
                                                 <option selected>Select A Room</option>
-                                                @foreach (var room in Model.rooms)
+                                                @foreach (var room in Model.Rooms)
                                             {
                                                 <option value="@room.RoomID"> @room.RoomID - @room.RoomType - @room.RoomCategory </option>
                                             }

@@ -130,24 +130,12 @@
                                         {
                                             <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
                                             <li><a class="nav-link" asp-area="" asp-page="/Logout">Welcome @Globals.UserName</a></li>
-                                           
-                                        }
-                                        else
-                                        {
                                             <li class="nav-item">
-                                                <a asp-area="" asp-page="/Login">Login</a>
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
                                             </li>
-                                        }
-
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
-                                        </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                                            </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
                                         </li>
@@ -160,9 +148,19 @@
                                         <li class="nav-item">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                                         </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                                        </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                <a asp-area="" asp-page="/Login">Login</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </nav>
                                 <div class="nav-right search-switch">

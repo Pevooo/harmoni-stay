@@ -20,8 +20,12 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-			// Financial Queries
-			try
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
+            // Financial Queries
+            try
 			{
 
 				Queries = new()

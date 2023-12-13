@@ -22,7 +22,11 @@ namespace MainProject.Pages
         public bool Error {  get; set; }
         public void OnGet(int id)
         {
-           var fac1=db.Facilities.FirstOrDefault(x=>x.FacilityID==id);
+            if (HttpContext.Session.GetInt32("UserId") is null)
+            {
+                Response.Redirect("/", false, true);
+            }
+            var fac1=db.Facilities.FirstOrDefault(x=>x.FacilityID==id);
 
             FacilityName = fac1.FacilityName;
             Id = fac1.FacilityID;
