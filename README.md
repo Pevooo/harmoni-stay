@@ -34,7 +34,7 @@ Visual Programming and Software Engineering project
 
 ## Testing:
 
-### **Step 11**: Random Testing
+### **Step 12**: Random Testing
 
 # Licenses
 https://themewagon.com/license/
