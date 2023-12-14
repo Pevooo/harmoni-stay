@@ -1,7 +1,8 @@
 To login click <a href="/Login" style="color: #d4af7a">here</a>, to logout click <a href="/Logout" style="color: #d4af7a">here</a>, to make an account, contact the admin. 
+To log in click <a href="/Login" style="color: #d4af7a">here</a>, to log out click <a href="/Logout" style="color: #d4af7a">here</a>, to make a new account, contact the admin. 
 To sign in click <a href="/Login" style="color: #d4af7a">here</a>, to sign out click <a href="/Logout" style="color: #d4af7a">here</a>, to sign up, contact the admin. 
+To signin click <a href="/Login" style="color: #d4af7a">here</a>, to signout click <a href="/Logout" style="color: #d4af7a">here</a>, to signup, contact the admin. 
 If you don't have an account you can contact the administrator to register. 
 For registration process the administrator has to be contacted. 
-To signup, contact the administrator. 
 If you are already logged in, you can logout by pressing Logout or just press <a href="/Logout" style="color: #d4af7a">here</a>, if not, click <a href="/Login" style="color: #d4af7a">here</a> to login to your account. 
 If you are already signed in, you can sign out by pressing Logout or just press <a href="/Logout" style="color: #d4af7a">here</a>, if not, click <a href="/Login" style="color: #d4af7a">here</a> to sign in to your account. 

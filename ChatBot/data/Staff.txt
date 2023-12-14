@@ -1,4 +1,4 @@
-If you want to access employee details, you can press rooms in the navbar or just simply click <a href="/Staff" style="color: #d4af7a">here</a>. 
+If you want to access employee details, you can press staff in the navbar or just simply click <a href="/Staff" style="color: #d4af7a">here</a>. 
 You can manage your staff by accessing the staff page from <a href="/Staff" style="color: #d4af7a">here</a>. 
 Staff page offers many features including removing, editing, viewing staff, click <a href="/Staff" style="color: #d4af7a">here</a> to access it. 
 To manage your employees, click <a href="/Staff" style="color: #d4af7a">here</a>. 

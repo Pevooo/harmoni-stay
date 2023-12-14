@@ -1,23 +1,9 @@
 ﻿using System.Collections.Immutable;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.VisualBasic;
+using Microsoft.IdentityModel.Tokens;
 using StopWord;
 
 namespace ChatBot;
 
-/*
-public class Program{
-    public static void Main(string[] args){
-        ChatBot Chatbot = new();
-        string? input = Console.ReadLine();
-        Console.WriteLine(Chatbot.Query(input));
-    }
-}
-*/
 
 public sealed class ChatBot
 {
@@ -76,7 +62,7 @@ public sealed class ChatBot
             scores.Add(sentence.Key, 0);
             foreach (var word in tokenizedQuery)
             {
-                if (sentence.Value.Contains(word))
+                if (sentence.Value.Contains(word) && !word.IsNullOrEmpty())
                 {
                     scores[sentence.Key] += sentenceIdfs[word];
                 }
@@ -89,7 +75,7 @@ public sealed class ChatBot
             MatchingWords.Add(sentence.Key, 0);
             foreach (var word in tokenizedQuery)
             {
-                if (sentence.Value.Contains(word))
+                if (sentence.Value.Contains(word) && !word.IsNullOrEmpty())
                 {
                     MatchingWords[sentence.Key]++;
                 }
@@ -212,7 +198,7 @@ public sealed class ChatBot
 
         List<string> tokens = words.Split(" ").ToList();
 
-        return tokens;
+        return RetrieveKeywords(fileData, tokens);
     }
 
     private Dictionary<string, string> ReadData()
@@ -233,5 +219,21 @@ public sealed class ChatBot
     private string RemovePunctuation(string s)
     {
         return new string(s.Where(character => !char.IsPunctuation(character)).ToArray());
+    }
+
+
+    private List<string> RetrieveKeywords(string fileData, List<string> tokens)
+    {
+        List<string> importantKeywords = new List<string> { "room", "rooms" };
+
+        foreach (string word in importantKeywords) 
+        {
+            if (fileData.Contains(word) && !tokens.Contains(word))
+            {
+                tokens.Add(word);
+            }
+        }
+
+        return tokens;
     }
 }

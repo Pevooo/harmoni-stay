@@ -1,0 +1,3 @@
+To see guest information go to <a href="/Booking" style="color: #d4af7a">here</a>. 
+If you want to see details about your guests, just press <a href="/Booking" style="color: #d4af7a">here</a>. 
+If you want to see bookings or make a new booking, press <a href="/Booking" style="color: #d4af7a">here</a>. 
