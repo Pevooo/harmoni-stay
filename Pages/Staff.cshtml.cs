@@ -37,7 +37,7 @@ namespace MainProject.Pages
         public void OnPost()
         {         
             category = Request.Form["Facility"];
-            var query = db.Employees.Where(item => item.FacilityEmployee.FacilityName == category).Select(x=>x);
+            var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == category).Select(x=>x);
             Emps=query.ToList();
             foreach(var item in Emps)
             {

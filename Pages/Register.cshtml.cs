@@ -71,8 +71,8 @@ namespace MainProject.Pages
 				db.SaveChanges();
 
 				// Saving User info in Session and Globals
-				//HttpContext.Session.SetInt32("UserId", (int)UserId);
-				//Globals.UserId = UserId;
+				HttpContext.Session.SetString("UserId", UserId);
+				Globals.UserId = UserId;
 				Response.Redirect("/Login", false, true);
 			}
 		}    

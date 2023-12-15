@@ -48,7 +48,7 @@ namespace MainProject.Pages
                 emp.WorkingHours = WorkingHours;
                 emp.EmployeeName = EmployeeName;
                 emp.Image = Image;
-                emp.FacilityEmployee = facilityId.First();
+                emp.EmployeeFacility = facilityId.First();
                 db.Add(emp);
                 db.SaveChanges();
                 return RedirectToPage("/Staff");

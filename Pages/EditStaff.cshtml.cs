@@ -49,13 +49,13 @@ namespace MainProject.Pages
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
                 Request.Form.Files.First().CopyTo(memoryStream);
                 FacilityName = Request.Form["Facility"];
-                var facilityId=db.Facilities.Where(x=>x.FacilityName== FacilityName);
+                var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                 Image = memoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;
                 emp.WorkingHours = WorkingHours;
                 emp.EmployeeName = EmployeeName;
                 emp.Image = Image;
-                emp.FacilityEmployee=facilityId.First();           
+                emp.EmployeeFacility = facilityId.First();
                 db.SaveChanges();
                 return RedirectToPage("/Staff");
             }

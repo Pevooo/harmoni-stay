@@ -7,28 +7,24 @@ namespace MainProject.Pages
     public class ProfileModel : PageModel
     {
         public readonly Context db;
+
+        public string Job { get; set; }
+        public Account Acc { get; set; }
+        public Employee Emp { get; set; }
+        public Facility Fac { get; set; }
         public ProfileModel(Context db)
         {
             this.db = db;
             Acc = new();
-            Fac = new Facility();
+            Fac = new();
             Emp = new();
         }
-        public string Job;
-        public Account Acc;
-        public Employee Emp;
-        public Facility Fac;
+
         public void OnGet()
         {
-            var account=db.Accounts.FirstOrDefault(x=>x.AccountEmployee.EmployeeID==Globals.UserId);
-            var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == Globals.UserId);
-            Acc = account;
-            Emp = emp;
-           // var fac=db.Facilities.SingleOrDefault(e => e.Facility==); 
-            
-         //  Fac= fac;
-
-
+            Acc =db.Accounts.SingleOrDefault(x => x.AccountEmployee.EmployeeID == Globals.UserId);
+            Emp = db.Employees.SingleOrDefault(e => e.EmployeeID == Globals.UserId);
+            Fac = db.Facilities.SingleOrDefault(item => item.FacilityEmployee.Contains(Emp));
         }
     }
 }

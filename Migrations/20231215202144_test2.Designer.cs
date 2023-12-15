@@ -4,6 +4,7 @@ using MainProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231215202144_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,14 +83,14 @@ namespace MainProject.Migrations
                     b.Property<string>("EmployeeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("EmployeeFacilityFacilityID")
-                        .HasColumnType("int");
-
                     b.Property<string>("EmployeeName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("EmployeeSalary")
                         .HasColumnType("float");
+
+                    b.Property<int?>("FacilityEmployeeFacilityID")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
@@ -97,7 +100,7 @@ namespace MainProject.Migrations
 
                     b.HasKey("EmployeeID");
 
-                    b.HasIndex("EmployeeFacilityFacilityID");
+                    b.HasIndex("FacilityEmployeeFacilityID");
 
                     b.ToTable("Employees");
                 });
@@ -257,12 +260,12 @@ namespace MainProject.Migrations
 
             modelBuilder.Entity("MainProject.Models.Employee", b =>
                 {
-                    b.HasOne("MainProject.Models.Facility", "EmployeeFacility")
+                    b.HasOne("MainProject.Models.Facility", "FacilityEmployee")
                         .WithMany("FacilityEmployee")
-                        .HasForeignKey("EmployeeFacilityFacilityID")
+                        .HasForeignKey("FacilityEmployeeFacilityID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("EmployeeFacility");
+                    b.Navigation("FacilityEmployee");
                 });
 
             modelBuilder.Entity("MainProject.Models.Event", b =>
