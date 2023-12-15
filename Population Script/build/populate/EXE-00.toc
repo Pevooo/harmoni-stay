@@ -111,7 +111,7 @@
  [],
  False,
  False,
- 1702402295,
+ 1702672819,
  [('run.exe',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],

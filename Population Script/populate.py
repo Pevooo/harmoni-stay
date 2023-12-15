@@ -73,7 +73,7 @@ def main():
         try:
             ssn = str(get_random_number(14))
             EMPLOYEES.append(ssn)
-            cursor.execute("INSERT INTO Employees (EmployeeID, EmployeeName, EmployeeSalary, FacilityEmployeeFacilityID, WorkingHours) VALUES (?, ?, ?, ?, ?)", ssn, get_random_name(), random.randint(3, 14) * 1000, random.randint(1, len(facilities)), random.randint(2, 8))
+            cursor.execute("INSERT INTO Employees (EmployeeID, EmployeeName, EmployeeSalary, EmployeeFacilityFacilityID, WorkingHours) VALUES (?, ?, ?, ?, ?)", ssn, get_random_name(), random.randint(3, 14) * 1000, random.randint(1, len(facilities)), random.randint(2, 8))
             cursor.commit()
         except:
             i -= 1
