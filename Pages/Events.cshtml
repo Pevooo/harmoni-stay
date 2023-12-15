@@ -6,6 +6,14 @@
 
 
 }
+@if (Model.Error)
+{
+   
+        <p>
+            @Model.msg
+        </p>
+   
+}
 
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/hero/hero-1.jpg);">
