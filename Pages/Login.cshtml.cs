@@ -61,6 +61,8 @@ namespace MainProject.Pages
                 var emp=db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
                 Globals.UserId = UserId;
                 Globals.UserName = emp.EmployeeName;
+               
+                
                 Response.Redirect("/", false, true);      
             }
 
