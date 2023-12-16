@@ -2,6 +2,7 @@
 @model MainProject.Pages.RegisterModel
 @{
     ViewData["Title"] = "Register";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
     //Layout = null;
 
 }

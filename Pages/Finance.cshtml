@@ -2,6 +2,7 @@
 @model MainProject.Pages.FinanceModel
 @{
 	ViewData["Title"] = "Finance";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
 

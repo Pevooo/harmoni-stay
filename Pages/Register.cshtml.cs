@@ -29,7 +29,7 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-			if (HttpContext.Session.GetInt32("UserId") is not null)
+			if (HttpContext.Session.GetString("UserId") is not null)
 			{
 				Response.Redirect("/", false, true);
 			}
@@ -72,7 +72,6 @@ namespace MainProject.Pages
 
 				// Saving User info in Session and Globals
 				HttpContext.Session.SetString("UserId", UserId);
-				Globals.UserId = UserId;
 				Response.Redirect("/Login", false, true);
 			}
 		}    

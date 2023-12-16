@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "EditFacilities";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
 @if (Model.Error)

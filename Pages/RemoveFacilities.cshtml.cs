@@ -17,7 +17,7 @@ namespace MainProject.Pages
         }
         public async Task<IActionResult> OnGet(int id)
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
                 Response.Redirect("/", false, true);
             }

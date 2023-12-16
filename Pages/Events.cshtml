@@ -2,8 +2,8 @@
 @model MainProject.Pages.EventsModel
 @{
 
-
-
+    ViewData["Title"] = "Events";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
 
 }
 @if (Model.Error)

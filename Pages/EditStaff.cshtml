@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "EditStaff";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">

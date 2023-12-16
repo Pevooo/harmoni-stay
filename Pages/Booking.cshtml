@@ -2,6 +2,7 @@
 @model MainProject.Pages.BookingModel
 @{
     ViewData["Title"] = "Booking";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
     @if (Model.Error)
     {
         <div>

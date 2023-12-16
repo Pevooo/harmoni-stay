@@ -62,10 +62,10 @@
             <nav class="mainmenu mobile-menu">
                 <ul>
                     <li class="active"><a class="nav-link" asp-area="" asp-page="/Index">Home</a></li>
-                    @if (Globals.UserId is not null)
+                    @if (ViewBag.UserId is not null)
                     {
                         <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
-                        <li><p>@Globals.UserId</p></li>
+                        <li><p>@ViewBag.UserId</p></li>
 
                     }
                     else
@@ -126,10 +126,10 @@
                                 <nav class="mainmenu">
                                     <ul>
                                         <li><a href="/Index">Home</a></li>
-                                        @if (Globals.UserId is not null)
+                                        @if (ViewBag.UserId is not null)
                                         {
                                             <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
-                                            <li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @Globals.UserName</a></li>
+                                            <li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a></li>
                                             <li class="nav-item">
                                                 <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
                                             </li>

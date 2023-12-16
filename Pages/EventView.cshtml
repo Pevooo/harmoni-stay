@@ -2,7 +2,8 @@
 
 @model MainProject.Pages.EventViewModel
 @{
-    //ViewData["Title"] = "EventView";
+    ViewData["Title"] = "EventView";
+    ViewBag.UserId = HttpContext.Session.GetString("UserId");
     //Layout = null;
 
 }
