@@ -13,7 +13,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>Finance</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="~/vendors/feather/feather.css">
     <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css">
@@ -30,6 +30,15 @@
     <link rel="shortcut icon" href="~/images/favicon.png" />
 </head>
 <body>
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center pb-5">
+                <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">Finance</h1>
+
+            </div>
+        </div>
+    </div>
     <div class="container-scroller">
 
         <!-- partial -->
@@ -105,75 +114,64 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-13 grid-margin stretch-card">
+			                    <!-- Rooms table-->
+                       <div class="col-md-13 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-title mb-0">Top Products</p>
+                                    <p class="card-title mb-0">Top Room Income</p>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-borderless">
                                             <thead>
                                                 <tr>
-                                                    <th>Product</th>
-                                                    <th>Price</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
+                                                    <th>Room</th>
+                                                    <th>Income</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Search Engine Marketing</td>
-                                                    <td class="font-weight-bold">$362</td>
-                                                    <td>21 Sep 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Search Engine Optimization</td>
-                                                    <td class="font-weight-bold">$116</td>
-                                                    <td>13 Jun 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Display Advertising</td>
-                                                    <td class="font-weight-bold">$551</td>
-                                                    <td>28 Sep 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Pay Per Click Advertising</td>
-                                                    <td class="font-weight-bold">$523</td>
-                                                    <td>30 Jun 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>E-Mail Marketing</td>
-                                                    <td class="font-weight-bold">$781</td>
-                                                    <td>01 Nov 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-danger">Cancelled</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Referral Marketing</td>
-                                                    <td class="font-weight-bold">$283</td>
-                                                    <td>20 Mar 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Social media marketing</td>
-                                                    <td class="font-weight-bold">$897</td>
-                                                    <td>26 Oct 2018</td>
-                                                    <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                                                </tr>
+						                        @foreach (var r in Model.TopRoomIncome)
+                            			        {
+                                			        <tr>
+                                    				    <td>@r.Key</td>
+                                    				    <td>@r.Value</td>
+                                			        </tr>
+                            			        }
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+			                <!-- Events table-->
+			            <div class="col-md-13 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title mb-0">Top Event Income</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>Event</th>
+                                                    <th>Income</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if(Model.TopEventIncome != null)
+                                                {
+                                                    @foreach (var r in Model.TopEventIncome)
+                            			            {
+                                			            <tr>
+                                    				        <td>@r.Key</td>
+                                    				        <td>@r.Value</td>
+                                			            </tr>
+                            			            }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <form method="post">
-                        <input type="submit" value="Download Report" />
-                    </form>
-    
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->

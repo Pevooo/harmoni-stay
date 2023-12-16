@@ -73,7 +73,8 @@ h6 {
 p {
     font-size: 16px;
     font-family: "Cabin", sans-serif;
-    color: #6b6b6b;
+    /*color: #6b6b6b;*/
+    color: white;
     font-weight: 400;
     line-height: 26px;
     margin: 0 0 15px 0;
