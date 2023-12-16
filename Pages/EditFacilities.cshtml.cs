@@ -18,7 +18,9 @@ namespace MainProject.Pages
         public int Id { get; set; }
         public TimeSpan st { get; set; }
         public TimeSpan end { get; set; }
-        public string URL { get; set; }        
+
+        MemoryStream memoryStream = new MemoryStream();
+        public byte[] photo { get; set; }
         public bool Error {  get; set; }
         public void OnGet(int id)
         {
@@ -34,7 +36,7 @@ namespace MainProject.Pages
 
             st = fac1.FacilityWorkStart.TimeOfDay;
             end = fac1.FacilityWorkEnd.TimeOfDay;
-            URL = fac1.URL;
+            photo = fac1.Image;
 
 
         }
@@ -47,14 +49,16 @@ namespace MainProject.Pages
                 FacilityName = Request.Form["FacilityName"];
                 st = TimeSpan.Parse( Request.Form["startDate"]);
                 end = TimeSpan.Parse(Request.Form["endDate"]);
-                URL = Request.Form["PictureURL"];
+                // URL = Request.Form["PictureURL"];
+                Request.Form.Files.First().CopyTo(memoryStream);
+                photo=memoryStream.ToArray();
                 Facility fac = new Facility();
                 fac1.FacilityName = FacilityName;
                 DateTime f1 = DateTime.Today.Add(st);
                 DateTime f2 = DateTime.Today.Add(end);
                 fac1.FacilityWorkStart = f1;
                 fac1.FacilityWorkEnd = f2;
-                fac1.URL = URL;
+                fac1.Image = photo;
              
                 db.SaveChanges();
                 Response.Redirect("/Facilities", false, true);

@@ -48,8 +48,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="PictureURL"
-                                       placeholder="PictureURL" data-target="#date1" data-toggle="datetimepicker" required />
+                                <input type="file" class="form-control datetimepicker-input" name="Photo"
+                                       placeholder="Choose a Photo" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,16 @@
                 <a href="EditFacilities/@Model.IDSfacilities[i]" class="btn "><i class="bi bg-black bi-pencil-square"></i></a>
                 <div class="content">
                     <h3>@Model.Facilitiesnames[i]</h3>
-                    <img src=@Model.Facilitiesphotos[i]>
+                    @if (Model.Facilitiesphotos[i] != null)
+                    {
+                        <img src=@Model.Facilitiesphotos[i]>
+                    }
+                    else
+                    {
+                        <p>N/p</p>
+                    }
+
+
                 </div>
                 <div class="info">
                     

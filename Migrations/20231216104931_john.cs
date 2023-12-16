@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MainProject.Migrations
 {
     /// <inheritdoc />
-    public partial class LastMigration : Migration
+    public partial class john : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,14 +65,14 @@ namespace MainProject.Migrations
                     EmployeeSalary = table.Column<double>(type: "float", nullable: false),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     WorkingHours = table.Column<double>(type: "float", nullable: false),
-                    FacilityEmployeeFacilityID = table.Column<int>(type: "int", nullable: true)
+                    EmployeeFacilityFacilityID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeID);
                     table.ForeignKey(
-                        name: "FK_Employees_Facilities_FacilityEmployeeFacilityID",
-                        column: x => x.FacilityEmployeeFacilityID,
+                        name: "FK_Employees_Facilities_EmployeeFacilityFacilityID",
+                        column: x => x.EmployeeFacilityFacilityID,
                         principalTable: "Facilities",
                         principalColumn: "FacilityID",
                         onDelete: ReferentialAction.Cascade);
@@ -85,6 +85,7 @@ namespace MainProject.Migrations
                     EventID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EventFee = table.Column<double>(type: "float", nullable: false),
                     EventStart = table.Column<DateTime>(type: "datetime", nullable: false),
                     EventEnd = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -159,7 +160,6 @@ namespace MainProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     AccountEmployeeEmployeeID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -189,9 +189,9 @@ namespace MainProject.Migrations
                 column: "BookingRoomRoomID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_FacilityEmployeeFacilityID",
+                name: "IX_Employees_EmployeeFacilityFacilityID",
                 table: "Employees",
-                column: "FacilityEmployeeFacilityID");
+                column: "EmployeeFacilityFacilityID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_EventFacilityFacilityID",

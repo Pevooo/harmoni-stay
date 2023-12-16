@@ -152,8 +152,8 @@ namespace MainProject.Migrations
                     b.Property<DateTime>("FacilityWorkStart")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("FacilityID");
 

@@ -18,6 +18,8 @@ namespace MainProject.Pages
         public List<string> timeoffacilities { get; set; }
         public List<string> Facilitiesnames { get; set; }
         public List<string>Facilitiesphotos { get; set; }
+        MemoryStream memoryStream = new MemoryStream();
+        public byte[] photo {  get; set; }
         public FacilitiesModel(Context db)
         {
             this.db = db;
@@ -33,12 +35,13 @@ namespace MainProject.Pages
                 Name= Request.Form["FacilityName"];
                 st = DateTime.Parse(Request.Form["startDate"]);
                 end = DateTime.Parse(Request.Form["endDate"]);
-                URL = Request.Form["PictureURL"];
+                Request.Form.Files.First().CopyTo(memoryStream);
                 Facility fac = new Facility();
                 fac.FacilityName = Name;
                 fac.FacilityWorkStart = st;
                 fac.FacilityWorkEnd = end;
-                fac.URL = URL;
+                photo = memoryStream.ToArray();
+                fac.Image = photo;
                 db.Facilities.Add(fac);
                 db.SaveChanges();
                
@@ -69,7 +72,11 @@ namespace MainProject.Pages
                 timeoffacilities.Add(st);
                 timeoffacilities.Add(ed);
                 Facilitiesnames.Add(name);
-                Facilitiesphotos.Add(facility.URL);
+                string src="";
+                if(facility.Image != null)
+                src= string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(facility.Image));
+
+                Facilitiesphotos.Add(src);
                 
 
 

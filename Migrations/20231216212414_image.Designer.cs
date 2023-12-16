@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231215195225_test")]
-    partial class test
+    [Migration("20231216212414_image")]
+    partial class image
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,14 +83,14 @@ namespace MainProject.Migrations
                     b.Property<string>("EmployeeID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("EmployeeFacilityFacilityID")
+                        .HasColumnType("int");
+
                     b.Property<string>("EmployeeName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("EmployeeSalary")
                         .HasColumnType("float");
-
-                    b.Property<int?>("FacilityEmployeeFacilityID")
-                        .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
@@ -100,7 +100,7 @@ namespace MainProject.Migrations
 
                     b.HasKey("EmployeeID");
 
-                    b.HasIndex("FacilityEmployeeFacilityID");
+                    b.HasIndex("EmployeeFacilityFacilityID");
 
                     b.ToTable("Employees");
                 });
@@ -155,8 +155,8 @@ namespace MainProject.Migrations
                     b.Property<DateTime>("FacilityWorkStart")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("FacilityID");
 
@@ -260,12 +260,12 @@ namespace MainProject.Migrations
 
             modelBuilder.Entity("MainProject.Models.Employee", b =>
                 {
-                    b.HasOne("MainProject.Models.Facility", "FacilityEmployee")
+                    b.HasOne("MainProject.Models.Facility", "EmployeeFacility")
                         .WithMany("FacilityEmployee")
-                        .HasForeignKey("FacilityEmployeeFacilityID")
+                        .HasForeignKey("EmployeeFacilityFacilityID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("FacilityEmployee");
+                    b.Navigation("EmployeeFacility");
                 });
 
             modelBuilder.Entity("MainProject.Models.Event", b =>
