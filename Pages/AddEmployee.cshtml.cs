@@ -22,9 +22,10 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("UserId") is not null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                Response.Redirect("/Login", false, true);
+                return;
             }
             foreach (var category in db.Facilities)
             {

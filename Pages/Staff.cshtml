@@ -18,7 +18,7 @@
     <!-- Page Header End -->
 
 <div class="col-md-2" style="display:grid">
-   <a asp-page="AddEmployee">AddEmployee</a>
+   <a asp-area="" asp-page="/AddEmployee">AddEmployee</a>
 </div>
     <!-- Staff Start -->
     <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -85,7 +85,17 @@
             @foreach(var item in Model.Emps)
             {
                 <tr>
-                    <td><img src="@Model.Tags[item.EmployeeID]" width="149" height="149"/></td>
+                    <td>
+                        @if (Model.Tags[item.EmployeeID] is not null)
+                        {
+                            <img src="@Model.Tags[item.EmployeeID]" width="149" height="149" />
+                        }
+                        else
+                        {
+                            <p>N / A</p>
+                        }
+
+                    </td>
                     <td>@item.EmployeeID</td>
                     <td>@item.EmployeeName</td>
                     <td>@item.WorkingHours</td>

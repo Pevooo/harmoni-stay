@@ -20,9 +20,10 @@ namespace MainProject.Pages
         }
         public void OnGet(string id)
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                Response.Redirect("/Login", false, true);
+                return;
             }
             foreach (var item in db.Facilities)
             {

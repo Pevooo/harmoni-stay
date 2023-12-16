@@ -33,16 +33,22 @@ namespace MainProject.Pages
             }
 
         }
-        MemoryStream memoryStream = new MemoryStream();
         public void OnPost()
         {         
             category = Request.Form["Facility"];
             var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == category).Select(x=>x);
-            Emps=query.ToList();
+            Emps = query.ToList();
             foreach(var item in Emps)
             {
-                string ImageURL = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Image));
-                Tags.Add(item.EmployeeID, ImageURL);
+                try
+                {
+                    string ImageURL = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Image));
+                    Tags.Add(item.EmployeeID, ImageURL);
+                }
+                catch
+                {
+                    Tags.Add(item.EmployeeID, null);
+                }
             }
             foreach (var item in db.Facilities)
             {

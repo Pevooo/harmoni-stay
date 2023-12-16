@@ -32,6 +32,7 @@ namespace MainProject.Pages
 			if (HttpContext.Session.GetString("UserId") is not null)
 			{
 				Response.Redirect("/", false, true);
+				return;
 			}
 		}
 

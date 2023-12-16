@@ -1,7 +1,7 @@
 ﻿@page
 @model MainProject.Pages.FinanceModel
 @{
-	ViewData["Title"] = "Finance";
+    ViewData["Title"] = "Finance";
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
@@ -31,16 +31,16 @@
 </head>
 <body>
     <div class="container-scroller">
-     
+
         <!-- partial -->
-        <div class="container-fluid page-body-wrapper">                 
+        <div class="container-fluid page-body-wrapper">
             <!-- partial -->
-            <div class="main-panel">
+            <div class="main-panel col-xl">
                 <div class="content-wrapper">
                     <div class="row">
-                        <div class="col-md-6 grid-margin transparent container mt-4">
-                            <div class="row">
-                                <div class="col-md-4 mb-4 stretch-card transparent">
+                        <div class="col-xl grid-margin transparent container mt-4">
+                            <div class="row mb-2 col-xl">
+                                <div class="col-md-6 mb-2 stretch-card transparent">
                                     <div class="card card-tale">
                                         <div class="card-body">
                                             <p class="mb-4">Room Income This Month</p>
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-4 stretch-card transparent">
+                                <div class="col-md-6 mb-2 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Total Income</p>
@@ -58,8 +58,10 @@
                                         </div>
                                     </div>
                                 </div>
-				
-				<div class="col-md-4 mb-4 stretch-card transparent">
+                            </div>
+
+                            <div class="row mb-2 col-xl">
+                                <div class="col-md-6 mb-2 stretch-card transparent">
                                     <div class="card card-light-danger">
                                         <div class="card-body">
                                             <p class="mb-4">Number Of Rooms</p>
@@ -68,10 +70,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-			    
-                            <div class="row">
-                                <div class="col-md-4 mb-4  stretch-card transparent">
+                                <div class="col-md-6 mb-2  stretch-card transparent">
                                     <div class="card card-light-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Room Income This Year</p>
@@ -80,7 +79,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-4 stretch-card transparent">
+                            </div>
+
+                            <div class="row mb-2 col-xl">
+                                <div class="col-md-6 mb-2 stretch-card transparent">
                                     <div class="card card-light-danger">
                                         <div class="card-body">
                                             <p class="mb-4">Average Employee Salary</p>
@@ -89,7 +91,7 @@
                                         </div>
                                     </div>
                                 </div>
-				<div class="col-md-4 mb-4 stretch-card transparent">
+                                <div class="col-md-6 mb-2 stretch-card transparent">
                                     <div class="card card-light-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Number Of Employees</p>
@@ -99,12 +101,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-7 grid-margin stretch-card">
+                        <div class="col-md-13 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-title mb-0">Top Products</p>
@@ -167,7 +168,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
@@ -180,14 +181,14 @@
                                                 <table id="example" class="display expandable-table" style="width:100%; background: #d4af7a;">
                                                     <thead>
                                                         <tr>
-                                                            <th style ="background-color: #d4af7a;">Quote#</th>
-                                                            <th style ="background-color: #d4af7a;">Product</th>
-                                                            <th style ="background-color: #d4af7a;">Business type</th>
-                                                            <th style ="background-color: #d4af7a;">Policy holder</th>
-                                                            <th style ="background-color: #d4af7a;">Premium</th>
-                                                            <th style ="background-color: #d4af7a;">Status</th>
-                                                            <th style ="background-color: #d4af7a;">Updated at</th>
-                                                            <th style ="background-color: #d4af7a;"></th>
+                                                            <th style="background-color: #d4af7a;">Quote#</th>
+                                                            <th style="background-color: #d4af7a;">Product</th>
+                                                            <th style="background-color: #d4af7a;">Business type</th>
+                                                            <th style="background-color: #d4af7a;">Policy holder</th>
+                                                            <th style="background-color: #d4af7a;">Premium</th>
+                                                            <th style="background-color: #d4af7a;">Status</th>
+                                                            <th style="background-color: #d4af7a;">Updated at</th>
+                                                            <th style="background-color: #d4af7a;"></th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -203,7 +204,6 @@
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
-                
                 <!-- partial -->
             </div>
             <!-- main-panel ends -->
@@ -249,6 +249,6 @@
 		{
 			<p>@query.Key : @query.Value</p>
 		}
-		
+
 	}
 </div> *@

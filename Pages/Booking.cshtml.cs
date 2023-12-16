@@ -30,9 +30,10 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                Response.Redirect("/Login", false, true);
+                return;
             }
             Rooms = db.Rooms.ToList();
 

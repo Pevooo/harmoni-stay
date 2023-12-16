@@ -12,7 +12,7 @@ namespace MainProject.Pages
     public class LoginModel : PageModel
     {
 
-        private Context db;
+        private readonly Context db;
         public string UserId { get; set; }
         public string Password {  get; set; }
         public bool Error { get; set; }
@@ -25,7 +25,7 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("UserId") is not null)
+            if (HttpContext.Session.GetString("UserId") is not null)
             {
                 Response.Redirect("/", false, true);
             }
@@ -58,11 +58,7 @@ namespace MainProject.Pages
             {
                 // Saving User info in Session and Globals
                 HttpContext.Session.SetString("UserId", UserId);
-                var emp=db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
-                Globals.UserId = UserId;
-                Globals.UserName = emp.EmployeeName;
-               
-                
+                var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);                              
                 Response.Redirect("/", false, true);      
             }
 

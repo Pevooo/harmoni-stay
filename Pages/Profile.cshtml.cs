@@ -1,6 +1,7 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MainProject.Pages
 {
@@ -22,8 +23,13 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
-            Acc =db.Accounts.SingleOrDefault(x => x.AccountEmployee.EmployeeID == Globals.UserId);
-            Emp = db.Employees.SingleOrDefault(e => e.EmployeeID == Globals.UserId);
+            if (HttpContext.Session.GetString("UserId") is null)
+            {
+                Response.Redirect("/Login", false, true);
+                return;
+            }
+            Acc =db.Accounts.SingleOrDefault(x => x.AccountEmployee.EmployeeID == HttpContext.Session.GetString("UserId"));
+            Emp = db.Employees.SingleOrDefault(e => e.EmployeeID == HttpContext.Session.GetString("UserId"));
             Fac = db.Facilities.SingleOrDefault(item => item.FacilityEmployee.Contains(Emp));
         }
     }

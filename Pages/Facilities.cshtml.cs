@@ -2,7 +2,6 @@ using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
-using MainProject.Models;
 using System.Diagnostics;
 
 namespace MainProject.Pages
@@ -56,9 +55,10 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                Response.Redirect("/Login", false, true);
+                return;
             }
             foreach (var facility in db.Facilities)
             {

@@ -57,37 +57,39 @@
 
 @if (Model.Message is not null)
 {
-    <table class="table table-borderless">
-        <thead>
-            <tr>
-                <th>#</th>
-                @for (DateTime dt = Model.StartDate; dt <= Model.EndDate; dt = dt.AddDays(1))
-                {
-                    <th>@dt.ToString("dd/MM/yyyy")</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var room in Model.Days)
-            {
+    <div width="250" style="overflow-x: scroll;">
+        <table class="table table-borderless">
+            <thead>
                 <tr>
-                    <th>@room.Key</th>
-                    @foreach (bool occupied in room.Value)
+                    <th>#</th>
+                    @for (DateTime dt = Model.StartDate; dt <= Model.EndDate; dt = dt.AddDays(1))
                     {
-                        if (occupied)
-                        {
-                            <td style="background-color: orange"></td>
-                        }
-                        else
-                        {
-                            <td style="background-color: #30b8c7"></td>
-                        }
+                        <th>@dt.ToString("dd/MM/yyyy")</th>
                     }
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var room in Model.Days)
+                {
+                    <tr>
+                        <th>@room.Key</th>
+                        @foreach (bool occupied in room.Value)
+                        {
+                            if (occupied)
+                            {
+                                <td style="background-color: orange"></td>
+                            }
+                            else
+                            {
+                                <td style="background-color: #30b8c7"></td>
+                            }
+                        }
+                    </tr>
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 }
 <!-- Booking End -->
 

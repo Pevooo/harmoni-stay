@@ -7,28 +7,8 @@
     //Layout = null;
 
 }
-@{
-    if (Model.idEvent==1)
-    {
-      <h2>Conferences</h2>  
-      
-    }
-    else if (Model.idEvent==2)
-    {
-        <h2>Weddings</h2>
-    }
 
-    else if (Model.idEvent == 3)
-    {
-        <h2>Concerts</h2>
-    }
-    else
-    {
-        <h2>All Events</h2>
-    }
-}
-
-@*<h1>@Model.eventViewId</h1>*@
+<h2>@Model.EventType</h2>
 <table class="table table-striped table-dark">
     <thead>
 
