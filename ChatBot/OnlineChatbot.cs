@@ -6,7 +6,7 @@ public class OnlineChatbot
     public OpenAIClient Client { get; set; }
 
     private const int maxTokens = 40;
-    private Context db { get; set; }
+    private readonly Context db;
 
     public OnlineChatbot(string model, Context db)
     {
@@ -41,6 +41,9 @@ public class OnlineChatbot
         $"""
             Act like a chatbot in a hotel management system called HarmoniStay
             When asked for a page, provide the link only
+            Fit your response not more than {(int)Math.Floor(maxTokens * 0.75)} words
+
+            Context:
             Number of Rooms: {db.Rooms.Count()},
             Number of Employees: {db.Employees.Count()},
             Number of Events Held: {db.Events.Count()},
@@ -52,9 +55,10 @@ public class OnlineChatbot
             To logout click <a href="/Logout">here</a>
             To see financial details click <a href="/Finance">here</a>
             To see Facilities details click <a href="/Facilities">here</a>
-            To see Booking details click <a href="/Booking">here</a>
+            To see Booking and Guest details click <a href="/Booking">here</a>
             To see Event details click <a href="/Events">here</a>
             To see Staff details click <a href="/Staff">here</a>
+            To see your profile click <a href="/Profile">here</a>
 
             According to this context, respond to this message: {query}
             """;

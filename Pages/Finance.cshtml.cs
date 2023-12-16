@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MainProject.Models;
 using System.Data;
+using IronPdf;
 
 namespace MainProject.Pages
 {
@@ -17,6 +18,47 @@ namespace MainProject.Pages
 		public FinanceModel(Context db)
         {
             this.db = db;
+            try
+            {
+                // Financial Queries
+                Queries = new()
+                {
+                    { "Room Income This Year", (from transaction in db.Transactions where transaction.TransactionTime.Year == DateTime.Now.Year select transaction.TransactionFee).Sum() },
+                    { "Room Income Last Year", (from transaction in db.Transactions where transaction.TransactionTime.Year == DateTime.Now.Year - 1 select transaction.TransactionFee).Sum() },
+                    { "Room Income This Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year && transaction.TransactionTime.Month == DateTime.Now.Month) select transaction.TransactionFee).Sum() },
+                    { "Total Room Income", db.Transactions.Select(transaction => transaction.TransactionFee).Sum() },
+                    { "Event Income This Year", (from hotelEvent in db.Events where hotelEvent.EventStart.Year == DateTime.Now.Year select hotelEvent.EventFee).Sum() },
+                    { "Event Income Last Year", (from hotelEvent in db.Events where hotelEvent.EventStart.Year == DateTime.Now.Year - 1 select hotelEvent.EventFee).Sum() },
+                    { "Event Income This Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year && hotelEvent.EventStart.Month == DateTime.Now.Month) select hotelEvent.EventFee).Sum() },
+                    { "Total Event Income", db.Transactions.Select(hotelEvent => hotelEvent.TransactionFee).Sum() },
+                    { "Total Employee Salaries", db.Employees.Select(employee => employee.EmployeeSalary).Sum() },
+                    { "Average Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Average() },
+                    { "Minimum Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Min() },
+                    { "Number Of Employees", db.Employees.Count() },
+                    { "Number Of Rooms", db.Rooms.Count() },
+                    { "Number Of Occupied Rooms", (from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()}
+                };
+                if (DateTime.Now.Month == 1) // If it's January in Year (Y), so the last month will be December Year (Y - 1)
+                {
+                    Queries.Add("Room Income Last Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year - 1 && transaction.TransactionTime.Month == 12) select transaction.TransactionFee).Sum());
+                    Queries.Add("Event Income Last Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year - 1 && hotelEvent.EventStart.Month == 12) select hotelEvent.EventFee).Sum());
+                }
+
+                else
+                {
+                    Queries.Add("Event Income Last Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year && hotelEvent.EventStart.Month == DateTime.Now.Month - 1) select hotelEvent.EventFee).Sum());
+                    Queries.Add("Room Income Last Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year && transaction.TransactionTime.Month == DateTime.Now.Month - 1) select transaction.TransactionFee).Sum());
+                }
+
+                Queries.Add("Month Room Income Change", ((Queries["Room Income This Month"] - Queries["Room Income Last Month"]) / Queries["Room Income Last Month"]) * 100);
+                Queries.Add("Month Event Income Change", (Queries["Event Income This Month"] - Queries["Event Income Last Month"]) / Queries["Event Income Last Month"] * 100);
+                Queries.Add("Year Room Income Change", (Queries["Room Income This Year"] - Queries["Room Income Last Year"]) / Queries["Room Income Last Year"] * 100.0);
+                Queries.Add("Year Event Income Change", (Queries["Event Income This Year"] - Queries["Event Income Last Year"]) / Queries["Event Income Last Year"] * 100);
+            }
+            catch
+            {
+                Error = "Not enough data";
+            }
         }
         public void OnGet()
         {
@@ -25,49 +67,50 @@ namespace MainProject.Pages
                 Response.Redirect("/Login", false, true);
 				return;
             }
-            // Financial Queries
-            try
-			{
+            
 
-				Queries = new()
-				{
-					{ "Room Income This Year", (from transaction in db.Transactions where transaction.TransactionTime.Year == DateTime.Now.Year select transaction.TransactionFee).Sum() },
-					{ "Room Income Last Year", (from transaction in db.Transactions where transaction.TransactionTime.Year == DateTime.Now.Year - 1 select transaction.TransactionFee).Sum() },
-					{ "Room Income This Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year && transaction.TransactionTime.Month == DateTime.Now.Month) select transaction.TransactionFee).Sum() },
-					{ "Total Room Income", db.Transactions.Select(transaction => transaction.TransactionFee).Sum() },
-					{ "Event Income This Year", (from hotelEvent in db.Events where hotelEvent.EventStart.Year == DateTime.Now.Year select hotelEvent.EventFee).Sum() },
-					{ "Event Income Last Year", (from hotelEvent in db.Events where hotelEvent.EventStart.Year == DateTime.Now.Year - 1 select hotelEvent.EventFee).Sum() },
-					{ "Event Income This Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year && hotelEvent.EventStart.Month == DateTime.Now.Month) select hotelEvent.EventFee).Sum() },
-					{ "Total Event Income", db.Transactions.Select(hotelEvent => hotelEvent.TransactionFee).Sum() },
-					{ "Total Employee Salaries", db.Employees.Select(employee => employee.EmployeeSalary).Sum() },
-					{ "Average Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Average() },
-					{ "Minimum Employee Salary", db.Employees.Select(employee => employee.EmployeeSalary).Min() },
-					{ "Number Of Employees", db.Employees.Count() },
-					{ "Number Of Rooms", db.Rooms.Count() },
-					{ "Number Of Occupied Rooms", (from booking in db.Bookings where (booking.CheckIn >= DateTime.Now && booking.CheckOut < DateTime.Now) select booking).Count()}
-				};
-				if (DateTime.Now.Month == 1) // If it's January in Year (Y), so the last month will be December Year (Y - 1)
-				{
-					Queries.Add("Room Income Last Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year - 1 && transaction.TransactionTime.Month == 12) select transaction.TransactionFee).Sum());
-					Queries.Add("Event Income Last Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year - 1 && hotelEvent.EventStart.Month == 12) select hotelEvent.EventFee).Sum());
-				}
 
-				else
-				{
-					Queries.Add("Event Income Last Month", (from hotelEvent in db.Events where (hotelEvent.EventStart.Year == DateTime.Now.Year && hotelEvent.EventStart.Month == DateTime.Now.Month - 1) select hotelEvent.EventFee).Sum());
-					Queries.Add("Room Income Last Month", (from transaction in db.Transactions where (transaction.TransactionTime.Year == DateTime.Now.Year && transaction.TransactionTime.Month == DateTime.Now.Month - 1) select transaction.TransactionFee).Sum());
-				}
 
-				Queries.Add("Month Room Income Change", ((Queries["Room Income This Month"] - Queries["Room Income Last Month"]) / Queries["Room Income Last Month"]) * 100);
-				Queries.Add("Month Event Income Change", (Queries["Event Income This Month"] - Queries["Event Income Last Month"]) / Queries["Event Income Last Month"] * 100);
-				Queries.Add("Year Room Income Change", (Queries["Room Income This Year"] - Queries["Room Income Last Year"]) / Queries["Room Income Last Year"] * 100.0);
-				Queries.Add("Year Event Income Change", (Queries["Event Income This Year"] - Queries["Event Income Last Year"]) / Queries["Event Income Last Year"] * 100);
-			}
-			catch
-			{
-				Error = "Not enough data";
-			}
 
         }
+
+        public IActionResult OnPost()
+        {
+            ChromePdfRenderer renderer = new();
+            PdfDocument pdf = renderer.RenderHtmlAsPdf(GetHtml(Queries));
+
+
+            return File(pdf.BinaryData, "application/pdf", DateTime.Now.ToString() + ".pdf");
+        }
+
+
+        public string GetHtml(Dictionary<string, double> queries)
+        {
+            string html = $"""
+				<table>
+				<thead>
+				<th>Query</th><th>Value</th>
+				</thead>
+				""";
+
+
+            foreach (var query in queries)
+            {
+                html += $"""
+				<tr>
+				<td>{query.Key}</td><td>{query.Value}</td>
+				</tr>
+				""";
+            }
+
+
+            html += "</table>";
+
+
+            return html;
+        }
     }
+
+
+
 }
