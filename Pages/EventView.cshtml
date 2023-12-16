@@ -28,6 +28,18 @@
             <th scope="col">@x.EventEnd</th>
             </tr>
         }
+        @foreach (var x in Model.q)
+        {
+            <tr>
+                <th scope="col">@x.EventName </th>
+                <th scope="col">@x.EventStart</th>
+                <th scope="col">@x.EventEnd</th>
+                <div class="box">
+                    <a href="EventEdit/@x.EventID" class="btn " style="display:grid">Edit<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                    <a href="RemoveEvent/@x.EventID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                </div>
+            </tr>
+        }
        @*  @for (int i = 0; i < Model.eventList.Count(); i++)
         {
 

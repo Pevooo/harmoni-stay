@@ -28,13 +28,13 @@ Visual Programming and Software Engineering project
 
 ### **Step 9**: Events Management Feature: *Pending*
 
-### **Step 10**: Financial Analytics Feature: *Pending*
+### **Step 10**: Financial Analytics Feature: **Completed**
 
 ### **Step 11**: PDF Report Feature: TODO
 
 ## Testing:
 
-### **Step 12**: Random Testing
+### **Step 12**: Random Testing: *Pending*
 
 # Licenses
 https://themewagon.com/license/
