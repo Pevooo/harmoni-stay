@@ -58,6 +58,7 @@ public class OnlineChatbot
             To see Booking and Guest details click <a href="/Booking">here</a>
             To see Event details click <a href="/Events">here</a>
             To see Staff details click <a href="/Staff">here</a>
+            To see Room details click <a href="/Rooms">here</a>
             To see your profile click <a href="/Profile">here</a>
 
             According to this context, respond to this message: {query}
