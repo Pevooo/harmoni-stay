@@ -44,7 +44,53 @@
         </div>
 
         <!-- Offcanvas Menu Section Begin -->
-        <div class="offcanvas-menu-overlay"></div>
+        <div class="offcanvas-menu-overlay">
+		<ul>
+                                        <li><a href="/Index">Home</a></li>
+                                        @if (ViewBag.UserId is not null)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                                            </li>
+					    <li class="nav-item dropdown">
+          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+          					<ul class="dropdown-menu">
+            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
+							</li>
+            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
+					    		</li>
+          					</ul>
+        				     </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                <a asp-area="" asp-page="/Login">Login</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                                            </li>
+                                        }
+                                    </ul>
+	</div>
         <div class="canvas-open">
             <i class="icon_menu"></i>
         </div>
@@ -52,40 +98,52 @@
             <div class="canvas-close">
                 <i class="icon_close"></i>
             </div>
-            <div class="search-icon  search-switch">
-                <i class="icon_search"></i>
-            </div>
             <nav class="mainmenu mobile-menu">
                 <ul>
-                    <li class="active"><a class="nav-link" asp-area="" asp-page="/Index">Home</a></li>
-                    @if (ViewBag.UserId is not null)
-                    {
-                        <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
-                        <li><p>@ViewBag.UserId</p></li>
-
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a asp-area="" asp-page="/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
-                        </li>
-                    }
-                </ul>
+                                        <li><a href="/Index">Home</a></li>
+                                        @if (ViewBag.UserId is not null)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                                            </li>
+					    <li class="nav-item dropdown">
+          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+          					<ul class="dropdown-menu">
+            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
+							</li>
+            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
+					    		</li>
+          					</ul>
+        				     </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                <a asp-area="" asp-page="/Login">Login</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                                            </li>
+                                        }
+                                    </ul>
             </nav>
             <ul class="top-widget">
                 <li><i class="fa fa-phone"></i> (12) 345 67890</li>
@@ -124,8 +182,6 @@
                                         <li><a href="/Index">Home</a></li>
                                         @if (ViewBag.UserId is not null)
                                         {
-                                            <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
-                                            <li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a></li>
                                             <li class="nav-item">
                                                 <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
                                             </li>
@@ -147,6 +203,15 @@
                                             <li class="nav-item">
                                                 <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
                                             </li>
+					    <li class="nav-item dropdown">
+          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+          					<ul class="dropdown-menu">
+            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
+							</li>
+            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
+					    		</li>
+          					</ul>
+        				     </li>
                                         }
                                         else
                                         {
@@ -159,10 +224,6 @@
                                         }
                                     </ul>
                                 </nav>
-                                <div class="nav-right search-switch">
-                                    <i class="icon_search"></i>
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -189,7 +250,7 @@
                                        <h3 style="color:white;">HarmoniStay</h3>
                                     </a>
                                 </div>
-                                <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
+                                <p>Hotel Management<br /> We represent management for staff, event, facilities and room reservations.</p>
                                 <div class="fa-social">
                                     
                                 </div>
