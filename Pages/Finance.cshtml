@@ -132,24 +132,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-						    @{ int c =0;
+						                            @{ int c =0;
                                                         @foreach (var r in Model.TopRoomIncome)
                                                         {
-							    if(c%2==0){
+							                                if(c%2==0){
                                                             	<tr style="background-color: #9bacb3">
                                                                 	<td>@r.Key</td>
                                                                 	<td>@r.Value</td>
                                                             	</tr>
-							    }
-							    else{
-								<tr style="background-color: white">
+							                                }
+							                                else{
+								                                <tr style="background-color: white">
                                                                 	<td>@r.Key</td>
                                                                 	<td>@r.Value</td>
                                                             	</tr>
-							    }
-							    c++;
+							                                }
+							                                c++;
                                                         }
-						    }
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
@@ -172,22 +172,12 @@
                                                 <tbody>
                                                     @if (Model.TopEventIncome != null)
                                                     {
-							int c =0;
                                                         @foreach (var r in Model.TopEventIncome)
                                                         {
-							    if(c%2==0){
-                                                            	<tr style="background-color: #9bacb3">
-                                                                	<td>@r.Key</td>
-                                                                	<td>@r.Value</td>
-                                                            	</tr>
-							    }
-							    else{
-								<tr style="background-color: white">
-                                                                	<td>@r.Key</td>
-                                                                	<td>@r.Value</td>
-                                                            	</tr>
-							    }
-							    c++;
+                                                            <tr style="background-color: #9bacb3">
+                                                                <td>@r.Key</td>
+                                                                <td>@r.Value</td>
+                                                            </tr>
                                                         }
                                                     }
                                                 </tbody>
