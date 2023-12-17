@@ -37,206 +37,153 @@
     <link href="~/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
         <!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
-
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
         <!-- Offcanvas Menu Section Begin -->
-        <div class="offcanvas-menu-overlay">
-		<ul>
-                                        <li><a href="/Index">Home</a></li>
-                                        @if (ViewBag.UserId is not null)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
-                                            </li>
-					    <li class="nav-item dropdown">
-          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-          					<ul class="dropdown-menu">
-            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
-							</li>
-            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
-					    		</li>
-          					</ul>
-        				     </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="nav-item">
-                                                <a asp-area="" asp-page="/Login">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                                            </li>
-                                        }
-                                    </ul>
-	</div>
-        <div class="canvas-open">
-            <i class="icon_menu"></i>
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
         </div>
-        <div class="offcanvas-menu-wrapper">
-            <div class="canvas-close">
-                <i class="icon_close"></i>
-            </div>
-            <nav class="mainmenu mobile-menu">
-                <ul>
-                                        <li><a href="/Index">Home</a></li>
-                                        @if (ViewBag.UserId is not null)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
-                                            </li>
-					    <li class="nav-item dropdown">
-          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-          					<ul class="dropdown-menu">
-            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
-							</li>
-            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
-					    		</li>
-          					</ul>
-        				     </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="nav-item">
-                                                <a asp-area="" asp-page="/Login">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                                            </li>
-                                        }
-                                    </ul>
-            </nav>
-            <ul class="top-widget">
-                <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-                <li><i class="fa fa-envelope"></i> info.HarmoniStay@gmail.com</li>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li><a href="/Index">Home</a></li>
+                @if (ViewBag.UserId is not null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a></li>
+                            <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                    </li>
+                }
             </ul>
-        </div>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+            <li><i class="fa fa-envelope"></i> info.HarmoniStay@gmail.com</li>
+        </ul>
+    </div>
         <!-- Offcanvas Menu Section End -->
         <!-- Header Section Begin -->
-            <div class="top-nav">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="tn-left">
-                                <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-                                <li><i class="fa fa-envelope"></i> info.HarmoniStay@gmail.com</li>
-                            </ul>
+    <header class="header-section">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i> info.HarmoniStay@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a asp-page="/Index"><img src="~/img/ourLogo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="/Index">Home</a></li>
+                                    @if (ViewBag.UserId is not null)
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a></li>
+                                                <li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a asp-area="" asp-page="/Login">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="menu-item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <div class="logo">
-                                <a asp-page="/Index">
-
-                                <img src="~/img/ourLogo.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-10">
-                            <div class="nav-menu">
-                                <nav class="mainmenu">
-                                    <ul>
-                                        <li><a href="/Index">Home</a></li>
-                                        @if (ViewBag.UserId is not null)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
-                                            </li>
-					    <li class="nav-item dropdown">
-          					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-          					<ul class="dropdown-menu">
-            						<li><a class="nav-link" asp-area="" asp-page="/Profile">Welcome @ViewBag.UserName</a>
-							</li>
-            						<li><a class="nav-link" asp-area="" asp-page="/Logout">Logout</a>		    
-					    		</li>
-          					</ul>
-        				     </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="nav-item">
-                                                <a asp-area="" asp-page="/Login">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                                            </li>
-                                        }
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        </div>
+    </header>
         <!-- Header End -->
 
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
         <!-- Footer Section Begin -->
         <footer class="footer-section">
