@@ -6,7 +6,7 @@ namespace MainProject.Models
     {
 
         
-        public int EventID { get; set; }
+        public string EventID { get; set; }
         public string EventName { get; set; }
         public string EventType { get; set; }
         public double EventFee { get; set; }
