@@ -18,12 +18,12 @@ namespace MainProject.Pages
         public string EventName { get; set; }
 
         public string EventType { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime st { get; set; }
         public DateTime end { get; set; }
 
         public bool Error { get; set; }
-       public void OnGet(string id)
+       public void OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
@@ -38,7 +38,7 @@ namespace MainProject.Pages
             end = eventToEdit.EventEnd;
 
         }
-        public void OnPost(string id)
+        public void OnPost(int id)
         {
             try
             {

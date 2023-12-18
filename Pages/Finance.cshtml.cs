@@ -82,8 +82,8 @@ namespace MainProject.Pages
 					TopRoomIncome.TryAdd(room.Key, room.Sum(t => t.TransactionFee));
 				}
 				TopRoomIncome = TopRoomIncome.OrderByDescending(r => r.Value).Take(5).ToDictionary(r => r.Key, r => r.Value);
-				TopEventIncome = db.Events.Where(e => e.EventStart.Year == DateTime.Now.Year).OrderByDescending(e => e.EventFee).Take(5).ToDictionary(e => $"Event{e.EventID}-{e.EventName}", e => e.EventFee);
-				
+                //TopEventIncome = db.Events.Where(e => e.EventStart.Year == DateTime.Now.Year).OrderByDescending(e => e.EventFee).Take(5).ToDictionary(e => string.Format($"Event {e.EventID} - {e.EventName}"), e => e.EventFee);
+                TopEventIncome = db.Events.OrderByDescending(e => e.EventFee).Take(5).ToDictionary(e => e.EventID.ToString(), e => e.EventFee);
 
 			}
 			catch

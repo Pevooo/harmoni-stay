@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MainProject.Migrations
 {
     /// <inheritdoc />
-    public partial class john : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace MainProject.Migrations
                     FacilityName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FacilityWorkStart = table.Column<DateTime>(type: "datetime", nullable: false),
                     FacilityWorkEnd = table.Column<DateTime>(type: "datetime", nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -49,7 +49,6 @@ namespace MainProject.Pages
             catch
             {
                 Error = true;
-                return RedirectToAction("Index");
                 
             }
             return RedirectToAction("Index");
