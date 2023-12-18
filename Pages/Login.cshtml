@@ -5,14 +5,38 @@
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
     //Layout = null;
 }
-	@if (Model.Error)
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-right",
+        "progressBar": true,
+        "timeOut": "5000",
+        "extendedTimeOut": "2000"
+    }
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+@if (Model.Error == "true")
+{
+    <script type="text/javascript">
+        toastr.error("ooops, Check Your Inputs");
+    </script>
+}
+
+@if (TempData["Error"]!=null)
 	{
-		<div>
-			<p>
-				Please check your credentials.
-			</p>
-		</div>
-	}
+    <script type="text/javascript">
+        toastr.error(@TempData["Error"]);
+    </script>
+}
+@if (TempData["Success"] != null)
+{
+    <script type="text/javascript">
+        toastr.success(@TempData["Success"]);
+    </script>
+}
 <style>
     *,
     *:before,
@@ -322,6 +346,7 @@
  
     
 </style>
+
 <br>
 <br>
 <form method ="post" class="cont">

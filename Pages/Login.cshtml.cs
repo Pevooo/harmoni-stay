@@ -15,16 +15,18 @@ namespace MainProject.Pages
         private readonly Context db;
         public string UserId { get; set; }
         public string Password {  get; set; }
-        public bool Error { get; set; }
+        public string Error { get; set; }
 
         public LoginModel(Context db)
         {
             this.db = db;
+            Error = null;
         }
 
 
         public void OnGet()
         {
+            
             if (HttpContext.Session.GetString("UserId") is not null)
             {
                 Response.Redirect("/", false, true);
@@ -32,7 +34,7 @@ namespace MainProject.Pages
         }
 
 
-        public void OnPost()
+        public async Task<IActionResult> OnPost()
         {
 
             try
@@ -42,8 +44,9 @@ namespace MainProject.Pages
 			}
             catch
             {
-                Error = true;
-                return;
+                Error = "true";
+                TempData["Error"] = "Check Your Inputs ";
+                return Page();
             }
 
 
@@ -52,15 +55,20 @@ namespace MainProject.Pages
 
             if (query is null || !BCrypt.Net.BCrypt.Verify(Password, query.Password)) // If no account is found with the given credentials or password is wrong
             {
-                Error = true;
+                Error = "true";
+                TempData["Error"] = "Check Your Inputs ";
             }
             else
             {
                 // Saving User info in Session and Globals
                 HttpContext.Session.SetString("UserId", UserId);
-                var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);                              
-                Response.Redirect("/", false, true);      
+                
+                Error = "false";
+                var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
+                TempData["Success"] = "Login Successfully";
+                return RedirectToPage("Index");      
             }
+            return Page();
 
         }
     }

@@ -2,6 +2,7 @@ using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Runtime.Intrinsics.Arm;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MainProject.Pages
@@ -45,21 +46,18 @@ namespace MainProject.Pages
             try
             {
                 var fac1 = db.Facilities.FirstOrDefault(x => x.FacilityID == id);
-
+             
                 FacilityName = Request.Form["FacilityName"];
                 st = TimeSpan.Parse( Request.Form["startDate"]);
                 end = TimeSpan.Parse(Request.Form["endDate"]);
-                // URL = Request.Form["PictureURL"];
                 Request.Form.Files.First().CopyTo(memoryStream);
                 photo=memoryStream.ToArray();
-                Facility fac = new Facility();
                 fac1.FacilityName = FacilityName;
                 DateTime f1 = DateTime.Today.Add(st);
                 DateTime f2 = DateTime.Today.Add(end);
                 fac1.FacilityWorkStart = f1;
                 fac1.FacilityWorkEnd = f2;
                 fac1.Image = photo;
-             
                 db.SaveChanges();
                 Response.Redirect("/Facilities", false, true);
             }
