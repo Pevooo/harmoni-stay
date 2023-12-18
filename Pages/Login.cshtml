@@ -18,17 +18,12 @@
     }
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
-@if (Model.Error == "true")
-{
-    <script type="text/javascript">
-        toastr.error("ooops, Check Your Inputs");
-    </script>
-}
 
-@if (TempData["Error"]!=null)
+
+@if (Model.Error=="true")
 	{
     <script type="text/javascript">
-        toastr.error(@TempData["Error"]);
+        toastr.error("ooops...check your inputs");
     </script>
 }
 @if (TempData["Success"] != null)

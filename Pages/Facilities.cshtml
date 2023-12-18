@@ -5,6 +5,25 @@
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-right",
+        "progressBar": true,
+        "timeOut": "5000",
+        "extendedTimeOut": "2000"
+    }
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+@if (Model.Error == "true")
+{
+    <script type="text/javascript">
+        toastr.error("ooops...check your inputs");
+    </script>
+}
 
 
 <!-- Page Header Start -->
@@ -17,10 +36,6 @@
 </div>
 <!-- Page Header End -->
 <!-- Facilities Start -->
-@if (Model.Error)
-{
-    <p>Please check your input.</p>
-}
 
 <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s" enctype="multipart/form-data">
     <div class="container">

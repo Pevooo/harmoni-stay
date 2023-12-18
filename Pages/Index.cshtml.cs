@@ -23,6 +23,7 @@ namespace MainProject.Pages
 
         public void OnGet(string id)
         {
+            
             GuestId = id;
             var queryGuest = db.Guests.Where(x => x.GuestID == GuestId).Select(x=>new{ x.GuestName,x.GuestNationality,x.GuestPhoneNumber});
             if (queryGuest is not null)

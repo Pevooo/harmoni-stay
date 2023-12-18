@@ -8,9 +8,8 @@ namespace MainProject.Pages
 {
     public class FacilitiesModel : PageModel
     {
-        public bool Error = false;
-        string Name;
-        private string URL { get; set; }
+        public string Error { get; set; }
+        string Name { get; set; }
         private DateTime st { get; set; }
         private DateTime end { get; set; }
         private readonly Context db;
@@ -26,13 +25,15 @@ namespace MainProject.Pages
             timeoffacilities=new(); Facilitiesnames=new();
             Facilitiesphotos=new();
             IDSfacilities=new();
+         //   Error = null;
         }
-       
-        public IActionResult OnPost()
+
+        public async Task<IActionResult> OnPost()
         {
             try
             {
                 Name= Request.Form["FacilityName"];
+                
                 st = DateTime.Parse(Request.Form["startDate"]);
                 end = DateTime.Parse(Request.Form["endDate"]);
                 Request.Form.Files.First().CopyTo(memoryStream);
@@ -42,21 +43,33 @@ namespace MainProject.Pages
                 fac.FacilityWorkEnd = end;
                 photo = memoryStream.ToArray();
                 fac.Image = photo;
-                db.Facilities.Add(fac);
-                db.SaveChanges();
+                if (Name == "" || st == null || end == null || photo == null)
+                {
+                    TempData["Error"] = "oops,error";
+                    Error = "true";
+
+                }
+                else
+                {
+                    db.Facilities.Add(fac);
+                    db.SaveChanges();
+                }
+               
                
             }
             catch
             {
-                Error = true;
+                TempData["Error"] = "oops,error";
+                Error = "true";
                 
             }
-            return RedirectToAction("Index");
+            return RedirectToPage("Facilities");
         }
       
 
         public void OnGet()
         {
+          //  Error = null;
             if (HttpContext.Session.GetString("UserId") is null)
             {
                 Response.Redirect("/Login", false, true);

@@ -26,7 +26,7 @@ namespace MainProject.Pages
 
         public void OnGet()
         {
-            
+            Error = null;
             if (HttpContext.Session.GetString("UserId") is not null)
             {
                 Response.Redirect("/", false, true);
@@ -36,7 +36,7 @@ namespace MainProject.Pages
 
         public async Task<IActionResult> OnPost()
         {
-
+            Error = null;
             try
             {
 				UserId = Request.Form["userId"];
