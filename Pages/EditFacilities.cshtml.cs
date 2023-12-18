@@ -41,7 +41,7 @@ namespace MainProject.Pages
 
 
         }
-        public void OnPost(int id)
+        public IActionResult OnPost(int id)
         {
             try
             {
@@ -50,24 +50,24 @@ namespace MainProject.Pages
                 FacilityName = Request.Form["FacilityName"];
                 st = TimeSpan.Parse( Request.Form["startDate"]);
                 end = TimeSpan.Parse(Request.Form["endDate"]);
+
                 Request.Form.Files.First().CopyTo(memoryStream);
                 photo=memoryStream.ToArray();
+
+                Request.Form.Files[0].CopyTo(memoryStream);
+                photo = memoryStream.ToArray();
                 fac1.FacilityName = FacilityName;
-                DateTime f1 = DateTime.Today.Add(st);
-                DateTime f2 = DateTime.Today.Add(end);
-                fac1.FacilityWorkStart = f1;
-                fac1.FacilityWorkEnd = f2;
+                fac1.FacilityWorkStart = DateTime.Today.Add(st);
+                fac1.FacilityWorkEnd = DateTime.Today.Add(end);
                 fac1.Image = photo;
                 db.SaveChanges();
-                Response.Redirect("/Facilities", false, true);
+                return RedirectToPage("/Facilities");
             }
             catch
             {
                 Error = true;
-                return;
-
             }
-
+            return Page();
         }
 
     }

@@ -22,7 +22,7 @@
     <p>Please check your input.</p>
 }
 
-<form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+<form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s" enctype="multipart/form-data">
     <div class="container">
         <div class="bg-white shadow" style="padding: 35px;">
             <div class="row g-2">
@@ -65,7 +65,6 @@
 </form>
 
 <div class="article" id="Article">
-    <div class="maintitle">Article</div>
     <div class="container">
 
         @for(int i = 0; i < Model.Facilitiesnames.Count(); i++)

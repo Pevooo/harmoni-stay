@@ -48,7 +48,7 @@ namespace MainProject.Pages
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
-                Request.Form.Files.First().CopyTo(memoryStream);
+                Request.Form.Files[0].CopyTo(memoryStream);
                 FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                 Image = memoryStream.ToArray();

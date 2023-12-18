@@ -23,9 +23,9 @@ namespace MainProject.Pages
         public DateTime end { get; set; }
 
         public bool Error { get; set; }
-        public void OnGet(int id)
+       public void OnGet(int id)
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
                 Response.Redirect("/", false, true);
             }
@@ -37,8 +37,6 @@ namespace MainProject.Pages
             st = eventToEdit.EventStart;
             end = eventToEdit.EventEnd;
 
-
-
         }
         public void OnPost(int id)
         {
@@ -47,7 +45,7 @@ namespace MainProject.Pages
                 var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
 
                 EventName = Request.Form["EventName"];
-                st =DateTime.Parse(Request.Form["startDate"]);
+                st = DateTime.Parse(Request.Form["startDate"]);
                 end = DateTime.Parse(Request.Form["endDate"]);
 
                 eventToEdit.EventName = EventName;

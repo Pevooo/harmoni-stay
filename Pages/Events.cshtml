@@ -28,8 +28,9 @@
 <!-- Home Room Section Begin -->
 <section class="hp-room-section">
     <div class="container-fluid">
-        <a href="/EventView/4"  class="primary-btn" style="color:black">View All</a>
-        <br>  <br>
+        <a href="/EventView/All Events" class="primary-btn" style="color:black  ; font-size: 20px;"> View All Events </a>
+        <br>  <br> <br>
+        
         <div class="hp-room-items">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -79,7 +80,11 @@
                             <h3>Other</h3>
 
                             <a  href="#form" class="primary-btn">Add</a>
+
                             <br> <br>
+                            <form method="post" class="cont">
+                                <a id="2" class="primary-btn" href="/EventView/Other">View</a>
+                            </form>
                            @* <a  class="primary-btn" asp-page="/EventView">View</a>*@ 
                         </div>
                     </div>
@@ -95,38 +100,81 @@
         <div class="bg-white shadow" style="padding: 35px;">
             <div class="row g-2">
                 <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="primary-btn" style="color:black ">  Event Name:</label>
+                            </div>
+                        <div class="col-md-4">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="event Name"
+                                <input type="text" class="form-control datetimepicker-input" name="eventName"
                                        placeholder="Event Name" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <label for="Etype" class="primary-btn" style="color:black; margin-left:20px "> Event Type:</label>
+                            </div>
+                        <div class="col-md-4">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="event Type"
+                                <input type="text" class="form-control datetimepicker-input" name="eventType"
                                        placeholder="Event Type" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        </div>
+                        <br >
+                    <div class="row g-2">
+
+                        <div class="col-md-2">
+                            <label class="primary-btn" style="color:black "> Start Date :</label>
+                        </div>
+                        <div class="col-md-4">
+
                             <div class="date" id="date2" data-target-input="nearest">
                                 <input type="date" class="form-control datetimepicker-input" name="startDate"
                                        placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <label class="primary-btn" style="color:black ;margin-left:20px">  Start Time :</label>
+                        </div>
+                        <div class="col-md-4">
+                       
+                            <div class="date" id="date2" data-target-input="nearest">
+                                <input type="time" class="form-control datetimepicker-input" name="startDate"
+                                       placeholder="start Hour" data-target="#date2" data-toggle="datetimepicker" required />
+                            </div>
+                        </div>
+                        </div>
+                    <br>
+                    <div class="row g-2">
+                        <div class="col-md-2">
+                            <label class="primary-btn" style="color:black ">  End Date :</label>
+                        </div>
+                        <div class="col-md-4">
                             <div class="date" id="date2" data-target-input="nearest">
                                 <input type="date" class="form-control datetimepicker-input" name="endDate"
                                        placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <label class="primary-btn" style="color:black ; margin-left:20px "> End Time :</label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="date" id="date2" data-target-input="nearest">
+                                <input type="time" class="form-control datetimepicker-input" name="endDate"
+                                       placeholder="start Hour" data-target="#date2" data-toggle="datetimepicker" required />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <br ><br >
+                <div class="row g-2" >
+                    <div class="col-md-8">
+                        </div>
+                    <div class="col-md-2">
                     <div class="date" id="date1"  data-target-input="nearest">
                         
-                        @* <button type="submit" style="background-color:#d4af7a;">Add Event</button>*@
-                        <input type="submit" style="background-color:#d4af7a;" value="Add Event" class="btn btn-primary w-100" />
+                        <input type="submit" style="background-color:#d4af7a; " value="Add Event" class="btn btn-primary w-100"  />
+                    </div>
                     </div>
                 </div>
             </div>

@@ -132,12 +132,23 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (var r in Model.TopRoomIncome)
-                                                    {
-                                                        <tr>
-                                                            <td>@r.Key</td>
-                                                            <td>@r.Value</td>
-                                                        </tr>
+						                            @{ int c =0;
+                                                        @foreach (var r in Model.TopRoomIncome)
+                                                        {
+							                                if(c%2==0){
+                                                            	<tr style="background-color: #9bacb3">
+                                                                	<td>@r.Key</td>
+                                                                	<td>@r.Value</td>
+                                                            	</tr>
+							                                }
+							                                else{
+								                                <tr style="background-color: white">
+                                                                	<td>@r.Key</td>
+                                                                	<td>@r.Value</td>
+                                                            	</tr>
+							                                }
+							                                c++;
+                                                        }
                                                     }
                                                 </tbody>
                                             </table>
@@ -163,7 +174,7 @@
                                                     {
                                                         @foreach (var r in Model.TopEventIncome)
                                                         {
-                                                            <tr>
+                                                            <tr style="background-color: #9bacb3">
                                                                 <td>@r.Key</td>
                                                                 <td>@r.Value</td>
                                                             </tr>
@@ -178,7 +189,7 @@
                         </div>
                     </div>
                     <form method="post">
-                        <input class="btn btn-primary w-100" type="submit" value="Download Report" />
+                        <input class="btn btn-primary w-100" type="submit" value="Download Report" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" />
                     </form>
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->

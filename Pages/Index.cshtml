@@ -20,7 +20,7 @@
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
 
-@if (TempData["Error"] != null)
+@if (Model.GuestName == null)
 {
     <script type="text/javascript">
         toastr.error(@TempData["Error"]);
