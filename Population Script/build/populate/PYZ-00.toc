@@ -1,5 +1,4 @@
-('D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
- 'Script\\build\\populate\\PYZ-00.pyz',
+('D:\\HSLAST\\HarmoniStay\\Population Script\\build\\populate\\PYZ-00.pyz',
  [('_compat_pickle',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_compat_pickle.py',
    'PYMODULE'),

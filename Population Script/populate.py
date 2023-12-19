@@ -2,6 +2,7 @@ import pyodbc
 import random
 import datetime
 import bcrypt
+import time
 
 """
 CONSTANTS
@@ -16,20 +17,26 @@ GUEST_MAX_COUNT = 200
 
 
 def main():
-    connection = pyodbc.connect(r"DRIVER={ODBC Driver 17 for SQL Server};server=localhost;Database=Harmonistay;Trusted_Connection=yes;TrustServerCertificate=yes")
+
+
+    choice = input("1) Local Database\n2) Hosted Database\n")
+
+    connection = None
+    match choice:
+        case '1':
+            connection = pyodbc.connect(r"DRIVER={ODBC Driver 17 for SQL Server};server=localhost;Database=Harmonistay;Trusted_Connection=yes;TrustServerCertificate=yes")
+        case '2':
+            print("Please wait, this might take a while..")
+            connection = pyodbc.connect(r"DRIVER={ODBC Driver 17 for SQL Server};server=sql.bsite.net\MSSQL2016;Database=harmonistay_SampleDB;UID=harmonistay_SampleDB;PWD=harmonistay")
+            print("Connected\nFilling Data...")
 
     cursor = connection.cursor()
     
-    """
-    choice = input("Choose Mode:\n1) Automatic\n2) Custom")
-    if choice == '2':
-        BUILDING_NO = input("Number of Buildings: ")
-        FLOOR_NO = input("Number of Floors per Building: ")
-        ROOM_NO = input("Number of Rooms per Floor: ")
-        EMPLOYEE_NO = input("Number of Employees")
-    """
-
-    delete_all(cursor)
+    
+    try:
+        delete_all(cursor)
+    except:
+        pass
 
     male_names = ["Ahmed", "Mohamed", "Kareem", "Amr", "Omar", "Kamel", "Mostafa", "Ehab", "Seif", "Hassan", "Abdullah", "Ali", "Hatem", "Mohsen", "Yaseen", "Rami", "Youssef"]
     female_names = ["Fatma", "Aya", "Alaa", "Nesma", "Ghada", "Sara", "Salma", "Mariam", "Sama", "Samira", "Farah", "Fatma"]
@@ -163,9 +170,14 @@ def main():
 
                 c += 1
 
-    cursor.execute("SET IDENTITY_INSERT Bookings OFF")    
+    cursor.execute("SET IDENTITY_INSERT Bookings OFF")
+
+
+    print("Database Filled Successfully")
+    time.sleep(3)
     
 def get_random_number(n: int) -> int:
+
     num = ""
     for _ in range(n):
         num += str(random.randint(0, 9))

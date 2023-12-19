@@ -1,5 +1,4 @@
-('D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
- 'Script\\build\\populate\\populate.pkg',
+('D:\\HSLAST\\HarmoniStay\\Population Script\\build\\populate\\populate.pkg',
  {'BINARY': True,
   'DATA': True,
   'EXECUTABLE': True,
@@ -11,27 +10,26 @@
   'SYMLINK': False},
  [('pyi-contents-directory _internal', '', 'OPTION'),
   ('PYZ-00.pyz',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
-   'Script\\build\\populate\\PYZ-00.pyz',
+   'D:\\HSLAST\\HarmoniStay\\Population Script\\build\\populate\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\struct.pyc',
    'PYMODULE'),
   ('pyimod01_archive',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod01_archive.pyc',
    'PYMODULE'),
   ('pyimod02_importers',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod02_importers.pyc',
    'PYMODULE'),
   ('pyimod03_ctypes',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod03_ctypes.pyc',
    'PYMODULE'),
   ('pyimod04_pywin32',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\localpycs\\pyimod04_pywin32.pyc',
    'PYMODULE'),
   ('pyiboot01_bootstrap',
@@ -41,7 +39,7 @@
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('populate',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population Script\\populate.py',
+   'D:\\HSLAST\\HarmoniStay\\Population Script\\populate.py',
    'PYSOURCE'),
   ('python310.dll',
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\python310.dll',
@@ -83,7 +81,7 @@
    'C:\\Users\\pevod\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libcrypto-1_1.dll',
    'BINARY'),
   ('base_library.zip',
-   'D:\\HS\\HarmoniStay\\HarmoniStay\\Population '
+   'D:\\HSLAST\\HarmoniStay\\Population '
    'Script\\build\\populate\\base_library.zip',
    'DATA')],
  'python310.dll',
