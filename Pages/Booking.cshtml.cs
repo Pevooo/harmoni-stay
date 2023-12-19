@@ -20,6 +20,8 @@ namespace MainProject.Pages
         public int SelectedRoomId { get; set; }
         public List<Room> Rooms { get; set; }
         public Guest g1 { get; set; }
+	    public double TransactionFee{ get; set;}
+	    public string TransactionDescription{ get; set;}
         private readonly Context db;
 
         public BookingModel(Context db)
@@ -51,6 +53,8 @@ namespace MainProject.Pages
                 this.GuestNationality = Request.Form["guestNationality"];
                 this.GuestPhoneNumber = Request.Form["guestPhoneNumber"];
                 this.SelectedRoomId = int.Parse(Request.Form["SelectedRoomId"]);
+		        this.TransactionFee = double.Parse(Request.Form["transactionFee"]);
+		        this.TransactionDescription = Request.Form["trabsactionDescription"];
             } 
             catch 
             {
@@ -101,8 +105,8 @@ namespace MainProject.Pages
 
                     var newTransaction = new Transaction
                     {
-                        TransactionDescription = $"Room {SelectedRoomId} has Booked",
-                        TransactionFee = 10.0,
+                        TransactionDescription = $"Room {SelectedRoomId} has Booked, and {this.TransactionDescription}",
+                        TransactionFee = this.TransactionFee,
                         TransactionTime = DateTime.Now,
                         TransactionRoom = newBooking.BookingRoom
                     };

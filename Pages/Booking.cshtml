@@ -18,105 +18,107 @@
 }
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
-            <div class="container-fluid page-header-inner py-5">
-                <div class="container text-center pb-5">
-                <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">Booking</h1>
-                    
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center pb-5">
+            <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">Booking</h1>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Booking Start -->
+<div class="container-xxl py-5" >
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <img src="~/img/room/room-b3.jpg">
                 </div>
             </div>
-</div>
-        <!-- Page Header End -->
-   
-        <!-- Booking End -->
-  
-
-    <!-- Booking Start -->
-    <div class="container-xxl py-5" >
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <img src="~/img/room/room-b3.jpg">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                          <form method = "post">
-                            <div class="row g-3">
-                                
-
-                             <!--Guest Info-->
-                        <div class="col-md-6">
-				<div class="form-floating">
-                            <div class="date" id="date2" data-target-input="nearest">
-                               <input type="date" class="form-control datetimepicker-input" name="checkin"
-                                   placeholder="Check In" data-target="#date2" data-toggle="datetimepicker" required />
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form method = "post">
+                        <div class="row g-3">
+                            <!--Date Info-->
+                            <div class="col-md-6">
+                                <label for="name">Check In</label>
+				                <div class="form-floating">
+                                    <div class="date" id="date2" data-target-input="nearest">
+                                        <input type="date" class="form-control datetimepicker-input" name="checkin"
+                                        placeholder="Check In" data-target="#date2" data-toggle="datetimepicker" required />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-</div>
-                        <div class="col-md-6">
-<div class="form-floating">
-                           <div class="date" id="date2" data-target-input="nearest">
-                              <input type="date" class="form-control datetimepicker-input" name="checkout"
-                                    placeholder="Check Out" data-target="#date2" data-toggle="datetimepicker" required />
-                           </div>
-                        </div>
-</div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="guestID"
-                                               placeholder="Guest ID" required />
-                                        <label for="name">Guest ID</label>
-                                        
+                            <div class="col-md-6">
+                                <label for="name">Check Out</label>
+                                <div class="form-floating">
+                                    <div class="date" id="date2" data-target-input="nearest">
+                                        <input type="date" class="form-control datetimepicker-input" name="checkout"
+                                        placeholder="Check Out" data-target="#date2" data-toggle="datetimepicker" required />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="guestName" placeholder="Guest Name">
-                                                <label for="name">Guest Name</label>
-                                    </div>
+                            </div>
+                            <!--Guest Info-->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="guestId" placeholder="Guest ID" required />
+                                    <label for="name">Guest ID</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                    <input type="text" class="form-control" id="phoneNumber" name="guestPhoneNumber" placeholder="Guest PhoneNumber">
-                                                <label for= "phoneNumber" > Guest PhoneNumber </label>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="guestName" placeholder="Guest Name" required />
+                                    <label for="name">Guest Name</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" guestId name="guestNationality" placeholder="Guest Nationality">
-                                                <label for="name">Guest Nationality</label>
-                                     
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="phoneNumber" name="guestPhoneNumber" placeholder="Guest PhoneNumber" required />
+                                    <label for= "phoneNumber" > Guest PhoneNumber </label>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="guestNationality" placeholder="Guest Nationality" required />
+                                    <label for="name">Guest Nationality</label>
+                                </div>
+                            </div>
                                 <!--Room Info-->
-                                <div class="col-12">
-                                        <div class="form-floating" style="height: 200px; overflow-y: scroll;">
-                                            <select class="form-control" id="SelectedRoomId" name="SelectedRoomId" >
-                                                <option selected>Select A Room</option>
-                                                @foreach (var room in Model.Rooms)
-                                            {
-                                                <option value="@room.RoomID"> @room.RoomID - @room.RoomType - @room.RoomCategory </option>
-                                            }
-                                        </select>
-                                            <!--<label for="SelectedRoomId">Select A Room</label>-->
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Special Request</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    @*<input type="submit" style="background-color:#d4af7a; color= white;" value="Book New" class="btn btn-primary w-100" />*@
-                                    <input type="submit" style="background-color:#d4af7a; color:white" value="Book Now" class="btn btn-primary w-100" />
+                            <div class="col-12">
+                                <div class="form-floating" style="height: 200px; overflow-y: scroll;">
+                                    <select class="form-control" id="SelectedRoomId" name="SelectedRoomId">
+                                        <option selected>Select A Room</option>
+                                        @foreach (var room in Model.Rooms)
+                                        {
+                                            <option value="@room.RoomID"> @room.RoomID - @room.RoomType - @room.RoomCategory </option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
-                        </form>
-
+				                <!--Transaction Info-->
+			                <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="transactionFee"
+                                               placeholder="Transaction Fees" required />
+                                    <label for="name">Transaction Fees</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Transaction Description" id="message" name="transactionDescription" style="height: 100px"></textarea>
+                                    <label for="message">Transaction Description</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white" value="Book Now" class="btn btn-primary w-100" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-md-12">
+                        <a asp-area="" asp-page="/BookingHistory" style="color:#d4af7a">Booking History</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

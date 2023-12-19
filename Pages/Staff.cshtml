@@ -9,66 +9,64 @@
 
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
-        <div class="container-fluid page-header-inner py-5">
-            <div class="container text-center pb-5">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">Staff</h1>
-            </div>
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center pb-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Staff</h1>
         </div>
     </div>
-    <!-- Page Header End -->
-
-<div class="col-md-2" style="display:grid">
-   <a asp-area="" asp-page="/AddEmployee">AddEmployee</a>
 </div>
-    <!-- Staff Start -->
-    <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="bg-white shadow" style="padding: 35px;">
-                <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-3">
-                                <div class="date" id="date1" data-target-input="nearest">
+<!-- Page Header End -->
+<!-- Staff Start -->
+<form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="bg-white shadow" style="padding: 5px;">
+            <div class="row g-2">
+                <div class="col-md-8">
+                    <div class="row g-2">
+                        <div class="col-md-3">
+                            <div class="date" id="date1" data-target-input="nearest">
                                 <select id="Facility" name="Facility">
-                                    @foreach(var fac in Model.CategoryFacilities)
+                                    @foreach (var fac in Model.CategoryFacilities)
                                     {
                                         <option value="@fac">@fac</option>
                                     }
-                                   
-                                   
+
+
                                 </select>
-                                </div>
                             </div>
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="date" id="date1" data-target-input="nearest">
-                        <input type="submit" style="background-color:#d4af7a;" value="Submit" class="btn btn-primary w-100" />
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div class="date" id="date1" data-target-input="nearest">
+                        <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Show" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a asp-area="" asp-page="/AddEmployee" class="btn" style="background-color:#d4af7a; border-color:#d4af7a; color:white;">Add Employee</a>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 
 <div class="table-responsive">
     <table class="table align-middle">
         <thead>
         <th>
-               Photo
+            Photo
         </th>
         <th>
-                EmployeeID
-            </th>
+            EmployeeID
+        </th>
         <th>
-            EmployeeName 
-           </th>
+            EmployeeName
+        </th>
         <th>
-                WorkinHours
-            </th>
+            WorkinHours
+        </th>
         <th>
-                Salary
+            Salary
         </th>
         <th>
             Facility
@@ -81,8 +79,8 @@
         </th>
         </thead>
         <tbody>
-          
-            @foreach(var item in Model.Emps)
+
+            @foreach (var item in Model.Emps)
             {
                 <tr>
                     <td>
@@ -106,10 +104,10 @@
                             <a href="RemoveStaff/@item.EmployeeID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a>
                             <a href="EditStaff/@item.EmployeeID" class="btn " style="display:grid"> Edit<i class="bi  bg-black bi-x-circle-fill"></i></a>
                         </div>
-                        
-                        
+
+
                     </td>
-                    
+
                 </tr>
 
             }
@@ -118,6 +116,3 @@
 </div>
 
 <!-- Staff End -->
-
-
-

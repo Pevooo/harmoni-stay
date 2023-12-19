@@ -56,18 +56,18 @@
                                     <div class="col-md-6 mb-2 stretch-card transparent">
                                         <div class="card card-tale">
                                             <div class="card-body">
-                                                <p class="mb-4">Room Income This Month</p>
-                                                <p class="fs-30 mb-2">@Model.Queries["Room Income This Month"] EGP</p>
-                                                <p>@(String.Format("{0:N2}% to last month", Model.Queries["Month Room Income Change"]))</p>
+                                                <p class="mb-4" style="color: white">Room Income This Month</p>
+                                                <p class="fs-30 mb-2" style="color: white;">@Model.Queries["Room Income This Month"] EGP</p>
+                                                <p style="color: white;">@(String.Format("{0:N2}% to last month", Model.Queries["Month Room Income Change"]))</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2 stretch-card transparent">
                                         <div class="card card-dark-blue">
                                             <div class="card-body">
-                                                <p class="mb-4">Total Income</p>
-                                                <p class="fs-30 mb-2">@(Model.Queries["Total Room Income"] + Model.Queries["Total Event Income"]) EGP</p>
-                                                <p>So Far</p>
+                                                <p class="mb-4" style="color: white;">Total Income</p>
+                                                <p class="fs-30 mb-2" style="color: white;">@(Model.Queries["Total Room Income"] + Model.Queries["Total Event Income"]) EGP</p>
+                                                <p style ="color: white;">So Far</p>
                                             </div>
                                         </div>
                                     </div>
@@ -77,18 +77,18 @@
                                     <div class="col-md-6 mb-2 stretch-card transparent">
                                         <div class="card card-light-danger">
                                             <div class="card-body">
-                                                <p class="mb-4">Number Of Rooms</p>
-                                                <p class="fs-30 mb-2">@Model.Queries["Number Of Rooms"]</p>
-                                                <p>Rooms</p>
+                                                <p class="mb-4" style="color: white">Number Of Rooms</p>
+                                                <p class="fs-30 mb-2" style="color: white">@Model.Queries["Number Of Rooms"]</p>
+                                                <p style="color: white">Rooms</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2  stretch-card transparent">
                                         <div class="card card-light-blue">
                                             <div class="card-body">
-                                                <p class="mb-4">Room Income This Year</p>
-                                                <p class="fs-30 mb-2">@Model.Queries["Room Income This Year"] EGP</p>
-                                                <p>@(String.Format("{0:N2}% to last year", Model.Queries["Year Room Income Change"]))</p>
+                                                <p class="mb-4" style="color: white">Room Income This Year</p>
+                                                <p class="fs-30 mb-2" style="color: white">@Model.Queries["Room Income This Year"] EGP</p>
+                                                <p style="color: white">@(String.Format("{0:N2}% to last year", Model.Queries["Year Room Income Change"]))</p>
                                             </div>
                                         </div>
                                     </div>
@@ -98,18 +98,18 @@
                                     <div class="col-md-6 mb-2 stretch-card transparent">
                                         <div class="card card-light-danger">
                                             <div class="card-body">
-                                                <p class="mb-4">Average Employee Salary</p>
-                                                <p class="fs-30 mb-2">@(String.Format("{0:N0} EGP", Model.Queries["Average Employee Salary"]))</p>
-                                                <p>Per Month</p>
+                                                <p class="mb-4" style="color: white">Average Employee Salary</p>
+                                                <p class="fs-30 mb-2" style="color: white">@(String.Format("{0:N0} EGP", Model.Queries["Average Employee Salary"]))</p>
+                                                <p style="color: white">Per Month</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2 stretch-card transparent">
                                         <div class="card card-light-blue">
                                             <div class="card-body">
-                                                <p class="mb-4">Number Of Employees</p>
-                                                <p class="fs-30 mb-2">@Model.Queries["Number Of Employees"]</p>
-                                                <p>Employee</p>
+                                                <p class="mb-4" style="color: white">Number Of Employees</p>
+                                                <p class="fs-30 mb-2" style="color: white">@Model.Queries["Number Of Employees"]</p>
+                                                <p style="color: white">Employee</p>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                             <div class="col-md-13 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="card-title mb-0">Top Room Income</p>
+                                        <p class="card-title mb-0" style="color: #d4af7a">Top Room Income</p>
                                         <div class="table-responsive">
                                             <table class="table table-striped table-borderless">
                                                 <thead>
@@ -132,13 +132,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-						                            @{ int c =0;
+						                            @{ int counter =0;
                                                         @foreach (var r in Model.TopRoomIncome)
                                                         {
-							                                if(c%2==0){
-                                                            	<tr style="background-color: #9bacb3">
-                                                                	<td>@r.Key</td>
-                                                                	<td>@r.Value</td>
+							                                if(counter % 2 == 0){
+                                                            	<tr style="background-color: #9bacb3;">
+                                                                    <td style="color: white;">@r.Key</td>
+                                                                    <td style="color: white;">@r.Value</td>
                                                             	</tr>
 							                                }
 							                                else{
@@ -147,7 +147,7 @@
                                                                 	<td>@r.Value</td>
                                                             	</tr>
 							                                }
-							                                c++;
+							                                counter++;
                                                         }
                                                     }
                                                 </tbody>
@@ -160,7 +160,7 @@
                             <div class="col-md-13 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="card-title mb-0">Top Event Income</p>
+                                        <p class="card-title mb-0" style="color: #d4af7a">Top Event Income</p>
                                         <div class="table-responsive">
                                             <table class="table table-striped table-borderless">
                                                 <thead>
@@ -172,12 +172,22 @@
                                                 <tbody>
                                                     @if (Model.TopEventIncome != null)
                                                     {
+                                                        int counter2 = 0;
                                                         @foreach (var r in Model.TopEventIncome)
                                                         {
-                                                            <tr style="background-color: #9bacb3">
-                                                                <td>@r.Key</td>
-                                                                <td>@r.Value</td>
-                                                            </tr>
+                                                            if(counter2 % 2 == 0){
+                                                            	<tr style="background-color: #9bacb3">
+                                                                    <td style="color: white;">@r.Key</td>
+                                                                    <td style="color: white;">@r.Value</td>
+                                                            	</tr>
+							                                }
+							                                else{
+								                                <tr style="background-color: white">
+                                                                    <td>@r.Key</td>
+                                                                    <td>@r.Value</td>
+                                                            	</tr>
+							                                }
+							                                counter2++;
                                                         }
                                                     }
                                                 </tbody>
