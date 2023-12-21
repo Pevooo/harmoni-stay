@@ -7,8 +7,31 @@
     //Layout = null;
 
 }
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center pb-5">
+            <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">View Events</h1>
+
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+  
+
+    <h4>@Model.Message</h4>
+  <br><br>
+  
+}
+else
+{
+    
 
 <h2>@Model.EventType</h2>
+<br >
 <table class="table table-striped table-dark">
     <thead>
 
@@ -16,25 +39,38 @@
             <th scope="col">Event Name </th>
             <th scope="col">Event Start</th>
             <th scope="col">Event End</th>
+            @if (Model.EventType=="All Events"){
+
+            <th scope="col">Event Type</th>
+            }
+            
             <th scope="col">Delete </th>
             <th scope="col">Edit </th>
-            <th scope="col">ID </th>
+            
            
         </tr>
     </thead>
     <tbody>
 
        
-        @foreach (var x in Model.q)
+            @foreach (var x in Model.SlectedEventType)
         {
             <tr>
                 <th scope="col">@x.EventName </th>
                 <th scope="col">@x.EventStart</th>
                 <th scope="col">@x.EventEnd</th>
+               
+                    @if (Model.EventType=="All Events")
+                    {
+                        
+                
+                    <th scope="col">@x.EventType</th>
+          
+                    
+                    }
+                
                 <th scope="col">
 
-                    @* <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button> *@
-                   @*  <a href="RemoveStaff/@item.EmployeeID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a> *@
                     <a href="/RemoveEvent/@x.EventID"  onclick="return confirm('Are you sure you want to delete?')">
                     <button type="button" class="btn btn-outline-light">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
@@ -52,20 +88,10 @@
                         </svg>
                     </button></a>
                 </th>
-                <th scope="col">@x.EventID</th>
+                
             </tr>
         }
-       @*  @for (int i = 0; i < Model.eventList.Count(); i++)
-        {
-
-            <tr>
-                <th scope="row">@Model.eventList[i]</th>
-              @*  <td>  @Model.eventList[i+1]</td>
-            <td>@Model.eventList[i+2]</td>
-
-           
-
-            *@
 
     </tbody>
 </table>
+}

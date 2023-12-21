@@ -18,12 +18,13 @@ namespace MainProject.Pages
         public string EventName { get; set; }
 
         public string EventType { get; set; }
-        public int Id { get; set; }
-        public DateTime st { get; set; }
-        public DateTime end { get; set; }
+        public string EventId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
+        public string Message { get; set; }
         public bool Error { get; set; }
-       public void OnGet(int id)
+        public void OnGet(string id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
@@ -32,29 +33,41 @@ namespace MainProject.Pages
             var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
 
             EventName = eventToEdit.EventName;
-            Id = eventToEdit.EventID;
-
-            st = eventToEdit.EventStart;
-            end = eventToEdit.EventEnd;
+            EventId = eventToEdit.EventID;
+            EventType = eventToEdit.EventType;
+            StartDate = eventToEdit.EventStart;
+            EndDate = eventToEdit.EventEnd;
 
         }
-        public void OnPost(int id)
+        public void OnPost(string id)
         {
             try
             {
-                var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
+                
+                    var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
 
-                EventName = Request.Form["EventName"];
-                st = DateTime.Parse(Request.Form["startDate"]);
-                end = DateTime.Parse(Request.Form["endDate"]);
+                    EventName = Request.Form["EventName"];
+                    StartDate = DateTime.Parse(Request.Form["startDate"]);
+                    EndDate = DateTime.Parse(Request.Form["endDate"]);
+                    EventType = Request.Form["EventType"];
 
-                eventToEdit.EventName = EventName;
-                eventToEdit.EventStart = st;
-                eventToEdit.EventEnd = end;
+                if (EndDate < StartDate)
+                {
+                    Error = true;
+                    Message = "Invalid Dates";
 
+                }
+                else
+                {
 
-                db.SaveChanges();
-                Response.Redirect("/Events", false, true);
+                    eventToEdit.EventName = EventName;
+                    eventToEdit.EventStart = StartDate;
+                    eventToEdit.EventEnd = EndDate;
+                    eventToEdit.EventType = EventType;
+                    eventToEdit.EventID = id;
+                    db.SaveChanges();
+                    Response.Redirect("/EditEvent", false, true);
+                }
             }
             catch
             {

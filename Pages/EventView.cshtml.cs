@@ -9,18 +9,23 @@ namespace MainProject.Pages
 {
     public class EventViewModel : PageModel
     {
-        public List<Event> eventList { get; set; }
-        public int eventViewId{ get; set; }
-
+        public List<Event> EventList { get; set; }
+        public int EventViewId{ get; set; }
+        
         public string EventType { get; set; }
 
-       public  List<Event> q { get; set; }
+       public  List<Event> SlectedEventType  { get; set; }
 
         private readonly Context db;
+
+        public bool Error = false;
+        public string Message { get; set; }
+
+
         public EventViewModel(Context db)
         {
             this.db = db;
-            eventList = new();
+            EventList = new();
         }
 
         
@@ -30,20 +35,28 @@ namespace MainProject.Pages
             {
                 List<string> eventTypeNames = db.Events.Select(ev => ev.EventType).Distinct().ToList();
 
-                if (eventTypeNames.Contains(id))
+                if (eventTypeNames.Contains(id) )
                 {
-                    q = db.Events.Where(ev => ev.EventType == id).ToList();
+                    SlectedEventType = db.Events.Where(ev => ev.EventType == id).ToList();
                     EventType = id;
+                }
+                else if (id== "All Events")
+                {
+
+                    SlectedEventType = db.Events.ToList();
+                    EventType = "All Events";
                 }
                 else
                 {
-                    q = db.Events.ToList();
-                    EventType = "All Events";
+                    EventType = id;
+                    Error = true;
+                    Message = $"There is no event with type {EventType} added yet";
                 }
             }
             catch 
-            { 
-             
+            {
+                Error = true;
+                return;
             }
         }
     }

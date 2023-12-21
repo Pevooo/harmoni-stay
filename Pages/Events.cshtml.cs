@@ -9,23 +9,23 @@ namespace MainProject.Pages
     public class EventsModel : PageModel
     {
 
-       
+
 
 
         public bool Error = false;
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public string eventType { get; set; }
-        public string eventName { get; set; }
-        public string msg { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string EventType { get; set; }
+        public string EventName { get; set; }
+        public string Message { get; set; }
         public int SelectedEvnt { get; set; }
-        public List <Event> Events { get; set; }
-        public Event newEvent { get; set; }
+        public List<Event> Events { get; set; }
+        public Event NewEvent { get; set; }
         private readonly Context db;
 
 
 
-      
+
 
         public EventsModel(Context db)
         {
@@ -48,36 +48,42 @@ namespace MainProject.Pages
 
             try
             {
-                this.startDate = DateTime.Parse(Request.Form["startDate"].ToString());
-                this.endDate = DateTime.Parse(Request.Form["endDate"].ToString());
-                this.eventType = Request.Form["eventType"];
-                this.eventName = Request.Form["eventName"];
-                
+                this.StartDate = DateTime.Parse(Request.Form["startDate"].ToString());
+                this.EndDate = DateTime.Parse(Request.Form["endDate"].ToString());
+                this.EventType = Request.Form["eventType"];
+                this.EventName = Request.Form["eventName"];
+
             }
             catch
             {
                 Error = true;
                 return;
             }
-            var validEvent = db.Events.Any(x => (eventType == x.EventType &&( (startDate < x.EventStart && endDate < x.EventStart)|| (startDate > x.EventStart && endDate > x.EventStart))));
-            if (validEvent )
+            if (this.EndDate < this.StartDate)
             {
-                newEvent = new();
-                newEvent.EventName = this.eventName;
-                newEvent.EventEnd = this.startDate;
-                newEvent.EventType = this.eventType;
-                newEvent.EventStart = this.startDate;
-                db.Events.Add(newEvent);
+                Error = true;
+                Message = "Invalid Dates";
+                return;
+            }
+            var validEvent = db.Events.Any(x => (EventType == x.EventType && ((StartDate < x.EventStart && EndDate < x.EventStart) || (StartDate > x.EventStart && EndDate > x.EventStart))));
+            if (validEvent)
+            {
+                NewEvent = new();
+                NewEvent.EventName = this.EventName;
+                NewEvent.EventStart = this.StartDate;
+                NewEvent.EventType = this.EventType;
+                NewEvent.EventEnd = this.EndDate;
+                db.Events.Add(NewEvent);
                 db.SaveChanges();
-                msg = $"{eventName} added";
-               
+                Message = $"{NewEvent} added";
+
             }
             else
             {
                 Error = true;
-                msg = "your selected period is occupied for anther event";
+                Message = "your selected period is occupied for anther event";
             }
-           
+
         }
     }
 }

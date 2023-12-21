@@ -6,14 +6,7 @@
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
 
 }
-@if (Model.Error)
-{
-   
-        <p>
-            @Model.msg
-        </p>
-   
-}
+
 
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/hero/hero-1.jpg);">
@@ -28,7 +21,9 @@
 <!-- Home Room Section Begin -->
 <section class="hp-room-section">
     <div class="container-fluid">
+
         <a href="/EventView/All Events" class="primary-btn" style="color:black  ; font-size: 20px;"> View All Events </a>
+        
         <br>  <br> <br>
         
         <div class="hp-room-items">
@@ -95,6 +90,13 @@
 </section>
 <br>
 <br>
+@if (Model.Error)
+{
+    
+    <p style="font-family:verdana ;color:black; font-size:20px; margin-left:70px"> @Model.Message.</p>
+       
+   
+}
 <form id="form" method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="bg-white shadow" style="padding: 35px;">
