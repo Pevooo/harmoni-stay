@@ -13,7 +13,7 @@ namespace MainProject
             builder.Services.AddRazorPages();
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromDays(30));
-            builder.Services.AddDbContext<Models.Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Hosted Db")));
+            builder.Services.AddDbContext<Models.Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local Db")));
 
             var app = builder.Build();
 
