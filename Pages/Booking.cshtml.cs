@@ -9,17 +9,16 @@ namespace MainProject.Pages
 {
     public class BookingModel : PageModel
     {
-        public bool Error = false;
+        public string Error { get; set; }
         public DateTime CheckIn { get; set;}
         public DateTime CheckOut { get; set; }
         public string GuestId { get; set; }
         public string GuestName { get; set; }
         public string GuestNationality { get; set; }
         public string GuestPhoneNumber { get; set; }
-        public string Message { get; set; }
         public int SelectedRoomId { get; set; }
-        public List<Room> Rooms { get; set; }
-        public Guest g1 { get; set; }
+        public List<Room> HotelRooms { get; set; }
+        public Guest HotelGuest { get; set; }
 	    public double TransactionFee{ get; set;}
 	    public string TransactionDescription{ get; set;}
         private readonly Context db;
@@ -27,7 +26,7 @@ namespace MainProject.Pages
         public BookingModel(Context db)
         {
             this.db = db;
-            Rooms= new List<Room>();
+            HotelRooms= new List<Room>();
         }
 
         public void OnGet()
@@ -37,13 +36,13 @@ namespace MainProject.Pages
                 Response.Redirect("/Login", false, true);
                 return;
             }
-            Rooms = db.Rooms.ToList();
-
+            this.SelectedRoomId = 0;
+            HotelRooms = db.Rooms.ToList();
         }
         
         public void OnPost()
         {
-            Rooms = db.Rooms.ToList();
+            HotelRooms = db.Rooms.ToList();
             try 
             {
                 this.CheckIn = DateTime.Parse(Request.Form["checkin"].ToString());
@@ -54,86 +53,87 @@ namespace MainProject.Pages
                 this.GuestPhoneNumber = Request.Form["guestPhoneNumber"];
                 this.SelectedRoomId = int.Parse(Request.Form["SelectedRoomId"]);
 		        this.TransactionFee = double.Parse(Request.Form["transactionFee"]);
-		        this.TransactionDescription = Request.Form["trabsactionDescription"];
-            } 
-            catch 
-            {
-                Error = true;
-                return;
-            }
+		        this.TransactionDescription = Request.Form["transactionDescription"];
 
-            if (this.CheckOut <= this.CheckIn)
-            {
-                Error = true;
-                return;
-            }
-
-
-            // Get all rooms
-          
-
-
-            if (SelectedRoomId == null)
-            {
-                //Error = true;
-                Message = "Please select a room.";
-            }
-            else
-            {
-		        var AvailableRoom = ! db.Bookings.Any(x => (this.SelectedRoomId == x.BookingRoom.RoomID && this.CheckIn < x.CheckOut && this.CheckOut > x.CheckIn));
-                if (AvailableRoom)
+                if (this.CheckOut <= this.CheckIn)
                 {
-                    var existingGuest = db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
-                    //Guest? guests= db.Guests.SingleOrDefault(x => x.GuestID == this.GuestId);
+                    TempData["Error"] = "Check your check-in and Check-out dates.";
+                    Error = "true1";
+                    return;
 
-                    if (existingGuest is null)
-                    {
-                        g1= new Guest
-                        {
-                            GuestID = this.GuestId,
-                            GuestName = this.GuestName,
-                            GuestNationality = this.GuestNationality,
-                            GuestPhoneNumber = this.GuestPhoneNumber
-                        };
-                        db.Guests.Add(g1);
-                        db.SaveChanges();
-                    }
-
-                    var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = g1 };
-                    db.Bookings.Add(newBooking);
-                    db.SaveChanges();
-
-                    var newTransaction = new Transaction
-                    {
-                        TransactionDescription = $"Room {SelectedRoomId} has Booked, and {this.TransactionDescription}",
-                        TransactionFee = this.TransactionFee,
-                        TransactionTime = DateTime.Now,
-                        TransactionRoom = newBooking.BookingRoom
-                    };
-
-                    db.Transactions.Add(newTransaction);
-                    db.SaveChanges();
-
-                    Message = $"Booking successful for Room ID: {SelectedRoomId}";
+                }
+                if (this.GuestName == "" || this.GuestNationality == ""  || this.GuestPhoneNumber == "")
+                {
+                    TempData["Error"] = "Check Guest Data.";
+                    Error = "true2";
+                    return;
+                }
+                if (this.TransactionFee <= 0 || this.TransactionDescription == "")
+                {
+                    TempData["Error"] = "Check Transaction Data.";
+                    Error = "true3";
+                    return;
+                }
+                if (this.SelectedRoomId == 0)
+                {
+                    TempData["Error"] = "Please select a room.";
+                    Error = "true4";
+                    return;
                 }
                 else
                 {
-                    Error = true;
-                    Message = "The selected room is not available for the specified period.";
+                    //Checking room availability
+                    var AvailableRoom = !db.Bookings.Any(booked => (this.SelectedRoomId == booked.BookingRoom.RoomID && this.CheckIn < booked.CheckOut && this.CheckOut > booked.CheckIn));
+                    if (AvailableRoom)
+                    {
+                        //checking if the guest is new or not
+                        var existingGuest = db.Guests.SingleOrDefault(guest => guest.GuestID == this.GuestId);
+
+                        if (existingGuest is null)
+                        {
+                            this.HotelGuest = new Guest
+                            {
+                                GuestID = this.GuestId,
+                                GuestName = this.GuestName,
+                                GuestNationality = this.GuestNationality,
+                                GuestPhoneNumber = this.GuestPhoneNumber
+                            };
+                            db.Guests.Add(this.HotelGuest);
+                            db.SaveChanges();
+                        }
+
+                        var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = this.HotelGuest };
+                        db.Bookings.Add(newBooking);
+                        db.SaveChanges();
+
+                        var newTransaction = new Transaction
+                        {
+                            TransactionDescription = $"Room {SelectedRoomId} has Booked. {this.TransactionDescription}",
+                            TransactionFee = this.TransactionFee,
+                            TransactionTime = DateTime.Now,
+                            TransactionRoom = newBooking.BookingRoom
+                        };
+
+                        db.Transactions.Add(newTransaction);
+                        db.SaveChanges();
+
+                        TempData["Success"] = $"Booking successful for Room ID: {SelectedRoomId}";
+                    }
+                    else
+                    {
+                        TempData["Error"] = "The selected room is not available for the specified period.";
+                        Error = "true5";
+                        return;
+                    }
                 }
+            } 
+            catch 
+            {
+                TempData["Error"] = "oops,error";
+                Error = "true";
+                return;
             }
 
-
-            //var queryGuest = db.Guests.Where(x => x.GuestID == this.GuestId).Select(x => new { x.GuestName, x.GuestNationality, x.GuestPhoneNumber });
-            //if (queryGuest is not null)
-            //{
-            //    foreach (var x in queryGuest)
-            //    {
-            //        this.GuestName = x.GuestName;
-            //        this.GuestNationality = x.GuestNationality;
-            //        this.GuestPhoneNumber = x.GuestPhoneNumber;
-            //    }
-            //}
         }
     }
 }

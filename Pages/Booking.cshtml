@@ -3,19 +3,66 @@
 @{
     ViewData["Title"] = "Booking";
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
-    @if (Model.Error)
-    {
-        <div>
-            <p>
-                @Model.Message
-            </p>
-        </div>
-    }
-    @if (!string.IsNullOrEmpty(Model.Message))
-    {
-            <p>@Model.Message</p>
-    }
 }
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-right",
+        "progressBar": true,
+        "timeOut": "5000",
+        "extendedTimeOut": "2000"
+    }
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+
+
+@if (Model.Error == "true")
+{
+    <script type="text/javascript">
+        toastr.error("oops,error.");
+    </script>
+}
+@if (Model.Error == "true1")
+{
+    <script type="text/javascript">
+        toastr.error("Check your check-in and Check-out dates.");
+    </script>
+}
+@if (Model.Error == "true2")
+{
+    <script type="text/javascript">
+        toastr.error("Check Guest Data.");
+    </script>
+}
+@if (Model.Error == "true3")
+{
+    <script type="text/javascript">
+        toastr.error("Check Transaction Data.");
+    </script>
+}
+@if (Model.Error == "true4")
+{
+    <script type="text/javascript">
+        toastr.error("Please select a room.");
+    </script>
+}
+@if (Model.Error == "true5")
+{
+    <script type="text/javascript">
+        toastr.error("The selected room is not available for the specified period.");
+    </script>
+}
+@if (TempData["Success"] != null)
+{
+    <script type="text/javascript">
+        toastr.success(@TempData["Success"]);
+    </script>
+}
+
+
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
     <div class="container-fluid page-header-inner py-5">
@@ -88,7 +135,7 @@
                                 <div class="form-floating" style="height: 200px; overflow-y: scroll;">
                                     <select class="form-control" id="SelectedRoomId" name="SelectedRoomId">
                                         <option selected>Select A Room</option>
-                                        @foreach (var room in Model.Rooms)
+                                        @foreach (var room in Model.HotelRooms)
                                         {
                                             <option value="@room.RoomID"> @room.RoomID - @room.RoomType - @room.RoomCategory </option>
                                         }
@@ -112,11 +159,11 @@
                             <div class="col-12">
                                 <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white" value="Book Now" class="btn btn-primary w-100" />
                             </div>
+                            <div class="col-md-12">
+                                <a asp-area="" asp-page="/BookingHistory" style="color:#d4af7a">Booking History</a>
+                            </div>
                         </div>
                     </form>
-                    <div class="col-md-12">
-                        <a asp-area="" asp-page="/BookingHistory" style="color:#d4af7a">Booking History</a>
-                    </div>
                 </div>
             </div>
         </div>

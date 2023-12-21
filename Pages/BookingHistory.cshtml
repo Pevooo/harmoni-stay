@@ -4,6 +4,29 @@
     ViewData["Title"] = "Booking History";
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-right",
+        "progressBar": true,
+        "timeOut": "5000",
+        "extendedTimeOut": "2000"
+    }
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+
+@if (Model.Error == "true")
+{
+    <script type="text/javascript">
+        toastr.error("Not Found.");
+    </script>
+}
+
+
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
     <div class="container-fluid page-header-inner py-5">
@@ -38,3 +61,36 @@
         </div>
     </div>
 </form>
+
+<h2>Guest Information:</h2>
+<p><strong>Name:</strong> @Model.GuestName</p>
+<p><strong>Nationality:</strong> @Model.GuestNationality</p>
+<p><strong>Phone number:</strong> @Model.GuestPhoneNumber</p>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Room ID</th>
+                <th>Room Type</th>
+                <th>Room Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model.GuestHistory)
+            {
+                <tr>
+                    <td>@booking.BookingID</td>
+                    <td>@booking.CheckIn</td>
+                    <td>@booking.CheckOut</td>
+                    <td>@booking.BookingRoom.RoomID</td>
+                    <td>@booking.BookingRoom.RoomType</td>
+                    <td>@booking.BookingRoom.RoomCategory</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
