@@ -23,7 +23,7 @@ namespace MainProject.Pages
             Fac = new();
             Emp = new();
         }
-
+        // Retrieve Inforamtion about the User  
         public void OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)

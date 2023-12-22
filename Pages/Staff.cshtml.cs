@@ -8,12 +8,14 @@ namespace MainProject.Pages
 {
     public class StaffModel : PageModel
     {
+        // The Fields Which is Will be entered
         public readonly Context db;
         public string Category { get; set; }
         public List<string> URlPhotos { set; get; }
         public List<string> CategoryFacilities { set; get; }
         public List<Employee> Emps { set; get; }
         public Dictionary<string,string> Tags { set; get; }
+        // initialize some variables
         public StaffModel(Context db)
         {
             this.db = db;
@@ -33,6 +35,7 @@ namespace MainProject.Pages
             }
 
         }
+        // Add Employee Form 
         public void OnPost()
         {         
             Category = Request.Form["Facility"];

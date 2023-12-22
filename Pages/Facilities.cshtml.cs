@@ -8,6 +8,7 @@ namespace MainProject.Pages
 {
     public class FacilitiesModel : PageModel
     {
+        // The Fields Which is Will be entered
         public string Error { get; set; }
         string Name { get; set; }
         private DateTime Start { get; set; }
@@ -19,6 +20,7 @@ namespace MainProject.Pages
         public List<string>Facilitiesphotos { get; set; }
         MemoryStream memoryStream = new MemoryStream();
         public byte[] photo {  get; set; }
+        // initialize some variables
         public FacilitiesModel(Context db)
         {
             this.db = db;
@@ -27,7 +29,7 @@ namespace MainProject.Pages
             IDSfacilities=new();
          //   Error = null;
         }
-
+        // Add form 
         public async Task<IActionResult> OnPost()
         {
             try
