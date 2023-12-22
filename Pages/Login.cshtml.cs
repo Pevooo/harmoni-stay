@@ -15,7 +15,7 @@ namespace MainProject.Pages
         private readonly Context db;
         public string UserId { get; set; }
         public string Password {  get; set; }
-        public string Error { get; set; }
+        public string? Error { get; set; }
 
         public LoginModel(Context db)
         {
