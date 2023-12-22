@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="eventName"
+                                <input type="text" class="form-control datetimepicker-input" name="eventName" value="@Model.EventName"
                                        placeholder="Event Name" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -46,8 +46,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="date" id="date1" data-target-input="nearest">
-
-                                <input type="text" class="form-control datetimepicker-input" name="eventType"
+                                <input type="text" class="form-control datetimepicker-input" name="eventType" value="@Model.EventType"
                                        placeholder="Event Type" data-target="#date1" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -61,7 +60,7 @@
                         <div class="col-md-4">
 
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="date" class="form-control datetimepicker-input" name="startDate"
+                                <input type="date" class="form-control datetimepicker-input" name="startDate" value="@Model.StartDate"
                                        placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -71,7 +70,7 @@
                         <div class="col-md-4">
 
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="time" class="form-control datetimepicker-input" name="startDate"
+                                <input type="time" class="form-control datetimepicker-input" name="startDate" value="@Model.StartDate"
                                        placeholder="start Hour" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -83,7 +82,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="date" class="form-control datetimepicker-input" name="endDate"
+                                <input type="date" class="form-control datetimepicker-input" name="endDate" value="@Model.EndDate"
                                        placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -92,7 +91,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="date" id="date2" data-target-input="nearest">
-                                <input type="time" class="form-control datetimepicker-input" name="endDate"
+                                <input type="time" class="form-control datetimepicker-input" name="endDate" value="@Model.EndDate"
                                        placeholder="start Hour" data-target="#date2" data-toggle="datetimepicker" required />
                             </div>
                         </div>
@@ -101,11 +100,36 @@
                 <br><br>
                 <div class="row g-2">
                     <div class="col-md-8">
+                        <div class="col-md-4">
+                            <div class="date" id="date1" data-target-input="nearest">
+                                <select id="Facility" name="Facility">
+                                    @foreach (var fac in Model.Facilities)
+                                    {
+                                        @if (Model.curr.EventFacility == fac)
+                                        {
+                                            <option  selected value="@fac.FacilityName">@fac.FacilityName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@fac.FacilityName">@fac.FacilityName</option>
+                                        }
+                                    }
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="date" id="date1" data-target-input="nearest">
+                            <input type="number" class="form-control datetimepicker-input" name="EventFee"
+                                   placeholder="EventFee" required />
+                        </div>
                     </div>
                     <div class="col-md-2">
                         <div class="date" id="date1" data-target-input="nearest">
 
-                            <input type="submit" style="background-color:#d4af7a; " value="Edit Event" class="btn btn-primary w-100" />
+                            <input type="submit" style="background-color:#d4af7a; " value="Save" class="btn btn-primary w-100" />
                         </div>
                     </div>
                 </div>

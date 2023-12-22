@@ -10,7 +10,7 @@ namespace MainProject.Pages
     {
 
 
-
+        public List<Facility> Facilities { set; get; }
 
         public bool Error = false;
         public DateTime StartDate { get; set; }
@@ -19,18 +19,18 @@ namespace MainProject.Pages
         public string EventName { get; set; }
         public string Message { get; set; }
         public int SelectedEvnt { get; set; }
+        public double EventFee { get; set; }
         public List<Event> Events { get; set; }
         public Event NewEvent { get; set; }
         private readonly Context db;
-
-
-
-
+        public Facility fac {  get; set; }
+       public string FacilityName { get; set; }
 
         public EventsModel(Context db)
         {
             this.db = db;
             Events = new List<Event>();
+            Facilities = new();
         }
         public void OnGet()
         {
@@ -40,6 +40,7 @@ namespace MainProject.Pages
                 return;
             }
             Events = db.Events.ToList();
+           Facilities=db.Facilities.ToList();
 
         }
         public void OnPost()
@@ -52,6 +53,11 @@ namespace MainProject.Pages
                 this.EndDate = DateTime.Parse(Request.Form["endDate"].ToString());
                 this.EventType = Request.Form["eventType"];
                 this.EventName = Request.Form["eventName"];
+                this.EventFee = double.Parse(Request.Form["EventFee"]);
+                this.FacilityName = Request.Form["Facility"];
+                var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
+                    
+               fac=facilityId.FirstOrDefault();
 
             }
             catch
@@ -68,16 +74,17 @@ namespace MainProject.Pages
             var invalidEvent = db.Events.Any(ev => StartDate < ev.EventEnd && EndDate > ev.EventStart);
             if (!invalidEvent)
             {
-                NewEvent = new()
-                {
-                    EventName = this.EventName,
-                    EventStart = this.StartDate,
-                    EventType = this.EventType,
-                    EventEnd = this.EndDate
-                };
-                db.Events.Add(NewEvent);
+                Event ev=new Event();
+                ev.EventType
+                    = this.EventType;   
+                ev.EventName = this.EventName;
+                ev.EventStart = this.StartDate;
+                ev.EventEnd = this.EndDate;
+                ev.EventFacility = this.fac;
+                ev.EventFee = this.EventFee;
+                db.Events.Add(ev);
                 db.SaveChanges();
-                Message = $"{NewEvent} added";
+                Message = $"{EventName} added";
 
             }
             else
