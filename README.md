@@ -37,4 +37,5 @@ Visual Programming and Software Engineering project
 ### **Step 12**: Random Testing: *Pending*
 
 # Licenses
+https://mdbootstrap.com/general/license/#license-free
 https://themewagon.com/license/
