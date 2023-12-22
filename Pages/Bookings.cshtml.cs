@@ -1,25 +1,25 @@
+using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http;
-using MainProject.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MainProject.Pages
 {
-    public class BookingHistoryModel : PageModel
+    public class BookingsModel : PageModel
     {
         public string Error { get; set; }
         public string GuestId { get; set; }
         public string GuestName { get; set; }
         public string GuestNationality { get; set; }
         public string GuestPhoneNumber { get; set; }
-	    public IList<Booking> GuestHistory { get; set; }
+        public IList<Booking> GuestHistory { get; set; }
 
         private readonly Context db;
 
-        public BookingHistoryModel(Context db)
+        public BookingsModel(Context db)
         {
             this.db = db;
+            GuestHistory = new List<Booking>();
         }
         public void OnGet()
         {

@@ -29,6 +29,7 @@ namespace MainProject.Pages
             if (HttpContext.Session.GetString("UserId") is null)
             {
                 Response.Redirect("/", false, true);
+                return;
             }
             var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
 
@@ -39,17 +40,17 @@ namespace MainProject.Pages
             EndDate = eventToEdit.EventEnd;
 
         }
-        public void OnPost(int id)
+        public IActionResult OnPost(int id)
         {
             try
             {
                 
-                    var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
+                var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
 
-                    EventName = Request.Form["EventName"];
-                    StartDate = DateTime.Parse(Request.Form["startDate"]);
-                    EndDate = DateTime.Parse(Request.Form["endDate"]);
-                    EventType = Request.Form["EventType"];
+                EventName = Request.Form["EventName"];
+                StartDate = DateTime.Parse(Request.Form["startDate"]);
+                EndDate = DateTime.Parse(Request.Form["endDate"]);
+                EventType = Request.Form["EventType"];
 
                 if (EndDate < StartDate)
                 {
@@ -66,15 +67,14 @@ namespace MainProject.Pages
                     eventToEdit.EventType = EventType;
                     eventToEdit.EventID = id;
                     db.SaveChanges();
-                    Response.Redirect("/EditEvent", false, true);
                 }
             }
             catch
             {
                 Error = true;
-                return;
-
             }
+
+            return RedirectToPage("/Events");
 
         }
     }
