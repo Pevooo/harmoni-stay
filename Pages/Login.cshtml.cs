@@ -34,7 +34,7 @@ namespace MainProject.Pages
         }
 
 
-        public async Task<IActionResult> OnPost()
+        public IActionResult OnPost()
         {
             Error = null;
             try

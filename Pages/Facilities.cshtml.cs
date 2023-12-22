@@ -18,8 +18,8 @@ namespace MainProject.Pages
         public List<string> Timeoffacilities { get; set; }
         public List<string> Facilitiesnames { get; set; }
         public List<string>Facilitiesphotos { get; set; }
-        MemoryStream memoryStream = new MemoryStream();
-        public byte[] photo {  get; set; }
+        public MemoryStream MemoryStream { get; set; }
+        public byte[] Photo {  get; set; }
         // initialize some variables
         public FacilitiesModel(Context db)
         {
@@ -30,7 +30,7 @@ namespace MainProject.Pages
          //   Error = null;
         }
         // Add form 
-        public async Task<IActionResult> OnPost()
+        public IActionResult OnPost()
         {
             try
             {
@@ -38,14 +38,17 @@ namespace MainProject.Pages
                 
                 Start = DateTime.Parse(Request.Form["startDate"]);
                 End = DateTime.Parse(Request.Form["endDate"]);
-                Request.Form.Files.First().CopyTo(memoryStream);
-                Facility fac = new Facility();
-                fac.FacilityName = Name;
-                fac.FacilityWorkStart = Start;
-                fac.FacilityWorkEnd = End;
-                photo = memoryStream.ToArray();
-                fac.Image = photo;
-                if (Name == "" || Start == null || End == null || photo == null)
+                Request.Form.Files[0].CopyTo(MemoryStream);
+                Photo = MemoryStream.ToArray();
+                Facility fac = new()
+                {
+                    FacilityName = Name,
+                    FacilityWorkStart = Start,
+                    FacilityWorkEnd = End,
+                    Image = Photo
+                };
+               
+                if (Name == "" || Photo == null)
                 {
                     TempData["Error"] = "oops,error";
                     Error = "true";
