@@ -58,7 +58,7 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li><a href="/Index">Home</a></li>
+                <li><a asp-page="/Index">Home</a></li>
                 @if (ViewBag.UserId is not null)
                 {
                     <li><a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile @ViewBag.UserName</a></li>
@@ -129,7 +129,7 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li><a href="/Index">Home</a></li>
+                                    <li><a asp-page="/Index">Home</a></li>
                                     @if (ViewBag.UserId is not null)
                                     {
                                         <li class="nav-item">
