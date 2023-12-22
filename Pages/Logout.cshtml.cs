@@ -9,13 +9,13 @@ namespace MainProject.Pages
         public IActionResult OnGet()
         {
             HttpContext.Session.Clear();
-            return RedirectToPage("/");
+            return RedirectToPage("/Index");
         }
 
         public IActionResult OnPost()
         {
             HttpContext.Session.Clear();
-            return RedirectToPage("/");
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -66,7 +66,7 @@ namespace MainProject.Pages
                 Error = "false";
                 var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
                 TempData["Success"] = "Login Successfully";
-                return RedirectToPage("Index");      
+                return RedirectToPage("/Index");      
             }
             return Page();
 
