@@ -31,14 +31,37 @@
 </head>
 <body>
     <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
+    <!-- Page Header Start -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero-text">
+                        <h1>HarmoniStay For Hotel Management</h1>
+                        <p>
+                            Here is the best hotel management site, including management for staff, event, facilities and room reservations.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                </div>
+            </div>
+        </div>
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+        </div>
+    </section>
+
+    <div class="container-fluid page-header mb-5 p-0">
         <div class="container-fluid page-header-inner py-5">
             <div class="container text-center pb-5">
-                <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">Finance</h1>
-
+                <h1 class="display-3 mb-3 animated slideInDown" style="color:#d4af7a;">Finance</h1>
             </div>
         </div>
     </div>
+        <!-- Page Header End -->
     <div class="container-scroller">
         @if(Model.Error is not null)
         {

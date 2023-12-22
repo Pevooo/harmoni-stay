@@ -62,16 +62,37 @@
     </script>
 }
 
-
 <!-- Page Header Start -->
-<div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>HarmoniStay For Hotel Management</h1>
+                    <p>
+                        Here is the best hotel management site, including management for staff, event, facilities and room reservations.
+                    </p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+            </div>
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+    </div>
+</section>
+
+<div class="container-fluid page-header mb-5 p-0">
     <div class="container-fluid page-header-inner py-5">
         <div class="container text-center pb-5">
-            <h1 class="display-3 mb-3 animated slideInDown" style="color:white;">Booking</h1>
+            <h1 class="display-3 mb-3 animated slideInDown" style="color:#d4af7a;">Booking</h1>
         </div>
     </div>
 </div>
-<!-- Page Header End -->
+    <!-- Page Header End -->
 
 <!-- Booking Start -->
 <div class="container-xxl py-5" >
@@ -132,8 +153,8 @@
                             </div>
                                 <!--Room Info-->
                             <div class="col-12">
-                                <div class="form-floating" style="height: 200px; overflow-y: scroll;">
-                                    <select class="form-control" id="SelectedRoomId" name="SelectedRoomId">
+                                <div class="float-form">
+                                    <select class="form-control" id="SelectedRoomId" name="SelectedRoomId" style="height: auto;max-height: 200px; overflow-x: hidden; display:flex; background-color:white;">
                                         <option selected>Select A Room</option>
                                         @foreach (var room in Model.HotelRooms)
                                         {
@@ -156,9 +177,11 @@
                                     <label for="message">Transaction Description</label>
                                 </div>
                             </div>
+                                <!--Booking Button-->
                             <div class="col-12">
                                 <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white" value="Book Now" class="btn btn-primary w-100" />
                             </div>
+                                <!--Booking History-->
                             <div class="col-md-12">
                                 <a asp-area="" asp-page="/Bookings" style="color:#d4af7a">Booking History</a>
                             </div>

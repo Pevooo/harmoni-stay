@@ -7,55 +7,112 @@
     ViewBag.UserId = HttpContext.Session.GetString("UserId");
 }
 
-<div class="container-fluid page-header mb-5 p-0" style="background-image: url(@Url.Content("~/img/hero/hero-1.jpg"));">
-    <div class="container-fluid page-header-inner py-5">
-        <div class="container text-center pb-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">Staff</h1>
+<!-- Page Header Start -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>HarmoniStay For Hotel Management</h1>
+                    <p>
+                        Here is the best hotel management site, including management for staff, event, facilities and room reservations.
+                    </p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+            </div>
         </div>
     </div>
-</div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="url(@Url.Content("~/img/hero/hero-1.jpg"))"></div>
+        <div class="hs-item set-bg" data-setbg="~/img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="~/img/hero/hero-3.jpg"></div>
+    </div>
+</section>
+
+<div class="container-fluid page-header mb-5 p-0">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center pb-5">
+            <h1 class="display-3 mb-3 animated slideInDown" style="color:#d4af7a;">Edit Staff</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
 <form method="post" class="container-fluid booking pb-5 wow fadeIn cont" data-wow-delay="0.1s" enctype="multipart/form-data">
         <div class="container">
             <div class="bg-white shadow" style="padding: 35px;">
                 <div class="row g-2">
-                <div class="col-md-3">
-                    <div class="date" id="date2" data-target-input="nearest">
-                        <input type="text" name="EmployeeName" placeholder="EmployeeName" required value="@Model.Employee.EmployeeName" />
-                    </div>
-                    <div class="date" id="date2" data-target-input="nearest">
-                        <input type="number" name="WorkingHours" placeholder="WorkingHours" required value="@Model.Employee.WorkingHours" />
-                    </div>
-                    <div class="date" id="date2" data-target-input="nearest">
-                        <input type="number" name="EmployeeSalary" placeholder="EmployeeSalary" required value="@Model.Employee.EmployeeSalary" />
-                    </div>
-                    <div class="date" id="date2" data-target-input="nearest">
-                        <input type="file" id="file" name="image" placeholder="Employeeimage" required value="" />
-                    </div>
-                    <div class="date" id="date1" data-target-input="nearest">
-                        <select id="Facility" name="Facility" >
-                            @foreach (var fac in Model.Facilities)
-                            {
-                                @if (Model.Employee.EmployeeFacility == fac)
-                                {
-                                    <option selected value="@fac.FacilityName">@fac.FacilityName</option>
-                                }
-                                else
-                                {
-                                    <option value="@fac.FacilityName">@fac.FacilityName</option>
-                                }
-                               
-                            }
-
-
-                        </select>
-                    </div>
-                </div>
-                   <div class="col-md-2">
-                        <div class="date" id="date1" data-target-input="nearest">
-                        <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Save" class="btn btn-primary w-100" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Employee Name :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control" name="EmployeeName" placeholder="EmployeeName" required value="@Model.Employee.EmployeeName" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Working Hours :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="number" class="form-control" name="WorkingHours" placeholder="WorkingHours" required value="@Model.Employee.WorkingHours" />
+                                </div>
+                            </div>
                         </div>
-                  </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Employee Salary :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="number" class="form-control" name="EmployeeSalary" placeholder="EmployeeSalary" required value="@Model.Employee.EmployeeSalary" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Employee Image :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="file" class="form-control" id="file" name="image" placeholder="Employeeimage" required value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Facility Category: </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <select class="form-control" id="Facility" name="Facility" style="background-color:white;">
+                                        @foreach (var fac in Model.Facilities)
+                                        {
+                                            @if (Model.Employee.EmployeeFacility == fac)
+                                            {
+                                                <option selected value="@fac.FacilityName">@fac.FacilityName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@fac.FacilityName">@fac.FacilityName</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    <br>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="date" id="date1" data-target-input="nearest">
+                            <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Save" class="btn btn-primary w-100" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+</div>
