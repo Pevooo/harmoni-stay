@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using MainProject.Models;
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace MainProject.Pages
 {
@@ -50,6 +50,14 @@ namespace MainProject.Pages
 				Error = true;
 				return;
 			}
+
+			if (UserId.IsNullOrEmpty() || Password.IsNullOrEmpty() || Type.IsNullOrEmpty()) 
+			{
+				Error = true;
+				return;
+			}
+
+
 
             Account? query = db.Accounts.SingleOrDefault(account => account.AccountEmployee.EmployeeID == UserId);
 
