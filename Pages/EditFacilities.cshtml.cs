@@ -13,15 +13,14 @@ namespace MainProject.Pages
         public EditFacilitiesModel(Context db)
         {
             this.db = db;
-          
+            MemoryStream = new();
         }
         public string FacilityName { get; set; }
         public int Id { get; set; }
-        public TimeSpan st { get; set; }
-        public TimeSpan end { get; set; }
-
-        MemoryStream memoryStream = new MemoryStream();
-        public byte[] photo { get; set; }
+        public TimeSpan Start { get; set; }
+        public TimeSpan End { get; set; }
+        MemoryStream MemoryStream {  get; set; }
+        public byte[] Photo { get; set; }
         public bool Error {  get; set; }
         public void OnGet(int id)
         {
@@ -35,9 +34,9 @@ namespace MainProject.Pages
             FacilityName = fac1.FacilityName;
             Id = fac1.FacilityID;
 
-            st = fac1.FacilityWorkStart.TimeOfDay;
-            end = fac1.FacilityWorkEnd.TimeOfDay;
-            photo = fac1.Image;
+            Start = fac1.FacilityWorkStart.TimeOfDay;
+            End = fac1.FacilityWorkEnd.TimeOfDay;
+            Photo = fac1.Image;
 
 
         }
@@ -48,18 +47,18 @@ namespace MainProject.Pages
                 var fac1 = db.Facilities.FirstOrDefault(x => x.FacilityID == id);
              
                 FacilityName = Request.Form["FacilityName"];
-                st = TimeSpan.Parse( Request.Form["startDate"]);
-                end = TimeSpan.Parse(Request.Form["endDate"]);
+                Start = TimeSpan.Parse( Request.Form["startDate"]);
+                End = TimeSpan.Parse(Request.Form["endDate"]);
 
-                Request.Form.Files.First().CopyTo(memoryStream);
-                photo=memoryStream.ToArray();
+                Request.Form.Files.First().CopyTo(MemoryStream);
+                Photo = MemoryStream.ToArray();
 
-                Request.Form.Files[0].CopyTo(memoryStream);
-                photo = memoryStream.ToArray();
+                Request.Form.Files[0].CopyTo(MemoryStream);
+                Photo = MemoryStream.ToArray();
                 fac1.FacilityName = FacilityName;
-                fac1.FacilityWorkStart = DateTime.Today.Add(st);
-                fac1.FacilityWorkEnd = DateTime.Today.Add(end);
-                fac1.Image = photo;
+                fac1.FacilityWorkStart = DateTime.Today.Add(Start);
+                fac1.FacilityWorkEnd = DateTime.Today.Add(End);
+                fac1.Image = Photo;
                 db.SaveChanges();
                 return RedirectToPage("/Facilities");
             }

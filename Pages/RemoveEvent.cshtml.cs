@@ -19,7 +19,7 @@ namespace MainProject.Pages
 
         }
 
-        public void OnGet(string id)
+        public void OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {

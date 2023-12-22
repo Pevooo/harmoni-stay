@@ -10,11 +10,11 @@ namespace MainProject.Pages
     {
         public string Error { get; set; }
         string Name { get; set; }
-        private DateTime st { get; set; }
-        private DateTime end { get; set; }
+        private DateTime Start { get; set; }
+        private DateTime End { get; set; }
         private readonly Context db;
         public List<int> IDSfacilities { get; set; }
-        public List<string> timeoffacilities { get; set; }
+        public List<string> Timeoffacilities { get; set; }
         public List<string> Facilitiesnames { get; set; }
         public List<string>Facilitiesphotos { get; set; }
         MemoryStream memoryStream = new MemoryStream();
@@ -22,7 +22,7 @@ namespace MainProject.Pages
         public FacilitiesModel(Context db)
         {
             this.db = db;
-            timeoffacilities=new(); Facilitiesnames=new();
+            Timeoffacilities=new(); Facilitiesnames=new();
             Facilitiesphotos=new();
             IDSfacilities=new();
          //   Error = null;
@@ -34,16 +34,16 @@ namespace MainProject.Pages
             {
                 Name= Request.Form["FacilityName"];
                 
-                st = DateTime.Parse(Request.Form["startDate"]);
-                end = DateTime.Parse(Request.Form["endDate"]);
+                Start = DateTime.Parse(Request.Form["startDate"]);
+                End = DateTime.Parse(Request.Form["endDate"]);
                 Request.Form.Files.First().CopyTo(memoryStream);
                 Facility fac = new Facility();
                 fac.FacilityName = Name;
-                fac.FacilityWorkStart = st;
-                fac.FacilityWorkEnd = end;
+                fac.FacilityWorkStart = Start;
+                fac.FacilityWorkEnd = End;
                 photo = memoryStream.ToArray();
                 fac.Image = photo;
-                if (Name == "" || st == null || end == null || photo == null)
+                if (Name == "" || Start == null || End == null || photo == null)
                 {
                     TempData["Error"] = "oops,error";
                     Error = "true";
@@ -81,8 +81,8 @@ namespace MainProject.Pages
                 string ed = facility.FacilityWorkEnd.ToString("H:mm");
                 string name = facility.FacilityName;
                 IDSfacilities.Add(facility.FacilityID);
-                timeoffacilities.Add(st);
-                timeoffacilities.Add(ed);
+                Timeoffacilities.Add(st);
+                Timeoffacilities.Add(ed);
                 Facilitiesnames.Add(name);
                 string src="";
                 if(facility.Image != null)

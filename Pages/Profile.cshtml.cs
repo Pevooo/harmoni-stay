@@ -13,7 +13,8 @@ namespace MainProject.Pages
         public Account Acc { get; set; }
         public Employee Emp { get; set; }
         public Facility Fac { get; set; }
-       public TimeSpan st, end;
+        public TimeSpan Start {  get; set; }
+        public TimeSpan End {  get; set; }
         public string Photo {  get; set; }
         public ProfileModel(Context db)
         {
@@ -37,8 +38,8 @@ namespace MainProject.Pages
                 Photo = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Emp.Image));
             }
             Fac = db.Facilities.SingleOrDefault(item => item.FacilityEmployee.Contains(Emp));
-            st= Fac.FacilityWorkStart.TimeOfDay;
-            end = Fac.FacilityWorkEnd.TimeOfDay;
+            Start= Fac.FacilityWorkStart.TimeOfDay;
+            End = Fac.FacilityWorkEnd.TimeOfDay;
         }
     }
 }

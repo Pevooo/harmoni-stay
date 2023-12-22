@@ -18,7 +18,7 @@ namespace MainProject.Pages
 
         private readonly Context db;
 
-        public bool Error = false;
+        public bool Error { get; set; }
         public string Message { get; set; }
 
 

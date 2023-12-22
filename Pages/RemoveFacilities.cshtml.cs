@@ -19,7 +19,7 @@ namespace MainProject.Pages
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                return RedirectToPage("/Login");
             }
             // Implement code to delete the data with the specified ID
             // Example:

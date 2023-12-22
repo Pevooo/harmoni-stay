@@ -19,7 +19,7 @@ namespace MainProject.Pages
 
 		public byte[] Image { get; set; }
 
-		public string? ImageURL {  get; set; }
+		public string? ImageURL { get; set; }
 
 		private readonly Context db;
 

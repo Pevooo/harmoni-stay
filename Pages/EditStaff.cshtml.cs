@@ -8,15 +8,24 @@ namespace MainProject.Pages
     public class EditStaffModel : PageModel
     {
         public readonly Context db;
-        public string category;
-        public bool Error;
+        public bool Error { get; set; }
         public List<string> CategoryFacilities { set; get; }
-        public Employee employee;
+        public Employee Employee {  get; set; }
+
+        string EmployeeName {  get; set; }
+        double EmployeeSalary {  get; set; }
+        double WorkingHours {  get; set; }
+        byte[] Image {  get; set; }
+        string FacilityName { get; set; }
+
+        MemoryStream MemoryStream {  get; set; }
+
         public EditStaffModel(Context db)
         {
             this.db = db;
             CategoryFacilities = new();
-            employee = new Employee();
+            Employee = new();
+            MemoryStream = new();
         }
         public void OnGet(string id)
         {
@@ -29,17 +38,12 @@ namespace MainProject.Pages
             {
                 CategoryFacilities.Add(item.FacilityName);
             }
-            var query =db.Employees.Where(x=>x.EmployeeID == id).Select(x=>x);
-            employee=query.First();
+            var query = db.Employees.Where(x=>x.EmployeeID == id).Select(x=>x);
+            Employee = query.First();
             
         }
     
-        string EmployeeName;
-        double EmployeeSalary;
-        double WorkingHours;
-        byte[] Image;
-        string FacilityName; 
-        MemoryStream memoryStream = new MemoryStream();
+
         public IActionResult OnPost(string id)
         {
             try
@@ -48,10 +52,10 @@ namespace MainProject.Pages
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
-                Request.Form.Files[0].CopyTo(memoryStream);
+                Request.Form.Files[0].CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
-                Image = memoryStream.ToArray();
+                Image = MemoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;
                 emp.WorkingHours = WorkingHours;
                 emp.EmployeeName = EmployeeName;

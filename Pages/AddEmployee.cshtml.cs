@@ -6,17 +6,18 @@ namespace MainProject.Pages
 {
     public class AddEmployeeModel : PageModel
     {
-        public bool Error = false;
         public readonly Context db;
-        string EmployeeName;
-        double EmployeeSalary;
-        double WorkingHours;
-        byte[] Image;
-        string FacilityName;     
-        MemoryStream memoryStream = new MemoryStream();
+        public bool Error { get; set; }
+        string EmployeeName { get; set; }
+        double EmployeeSalary { get; set; }
+        double WorkingHours { get; set; }
+        byte[] Image { get; set; }
+        string FacilityName { get; set; }     
+        MemoryStream MemoryStream { get; set; }
         public List<string> CategoryFacilities { set; get; }
         public AddEmployeeModel(Context db)
         {
+            MemoryStream = new();
             this.db = db;
             CategoryFacilities = new();
         }
@@ -41,10 +42,10 @@ namespace MainProject.Pages
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
-                Request.Form.Files.First().CopyTo(memoryStream);
+                Request.Form.Files.First().CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
-                Image = memoryStream.ToArray();
+                Image = MemoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;
                 emp.WorkingHours = WorkingHours;
                 emp.EmployeeName = EmployeeName;

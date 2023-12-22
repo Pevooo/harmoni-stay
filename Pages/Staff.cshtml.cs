@@ -9,7 +9,7 @@ namespace MainProject.Pages
     public class StaffModel : PageModel
     {
         public readonly Context db;
-        public string category;
+        public string Category { get; set; }
         public List<string> URlPhotos { set; get; }
         public List<string> CategoryFacilities { set; get; }
         public List<Employee> Emps { set; get; }
@@ -23,7 +23,7 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
                 Response.Redirect("/", false, true);
             }
@@ -35,8 +35,8 @@ namespace MainProject.Pages
         }
         public void OnPost()
         {         
-            category = Request.Form["Facility"];
-            var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == category).Select(x=>x);
+            Category = Request.Form["Facility"];
+            var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == Category).Select(x=>x);
             Emps = query.ToList();
             foreach(var item in Emps)
             {

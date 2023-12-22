@@ -6,16 +6,16 @@ namespace MainProject.Pages
 {
     public class LogoutModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
             HttpContext.Session.Clear();
-            Response.Redirect("/", false, true);
+            return RedirectToPage("/");
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             HttpContext.Session.Clear();
-            Response.Redirect("/", false, true);
+            return RedirectToPage("/");
         }
     }
 }

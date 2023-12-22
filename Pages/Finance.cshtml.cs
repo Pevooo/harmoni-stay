@@ -108,31 +108,31 @@ namespace MainProject.Pages
 
 
             string html = $"""
-<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; align-items: center;">
-<p style="text-align: center; color: #d4af7a; font-size: 65px;">HarmoniStay</p>
-<h1 style="text-align: center"> Financial Report </h1>
-<h4 style="text-align: center"> {DateTime.Now} </h4>
-<table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 2px solid #d4af7a;">
-    <thead style="background-color: #d4af7a">
-        <tr style="border: 2px solid #d4af7a">
-            <th style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">Query</th> 
-            <th style="text-align: center; padding: 6px;">Value</th>
-        </tr>
-    </thead>
-""";
+            <body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; align-items: center;">
+            <p style="text-align: center; color: #d4af7a; font-size: 65px;">HarmoniStay</p>
+            <h1 style="text-align: center"> Financial Report </h1>
+            <h4 style="text-align: center"> {DateTime.Now} </h4>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 2px solid #d4af7a;">
+                <thead style="background-color: #d4af7a">
+                    <tr style="border: 2px solid #d4af7a">
+                        <th style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">Query</th> 
+                        <th style="text-align: center; padding: 6px;">Value</th>
+                    </tr>
+                </thead>
+            """;
             foreach (var query in queries)
             {
                 html += $"""
-<tbody>
-    <tr text-align: center; border: 2px solid #d4af7a>
-        <td style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">{query.Key}</td>
-        <td style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">{query.Value}</td>
-    </tr>
-""";
+                <tbody>
+                    <tr text-align: center; border: 2px solid #d4af7a>
+                        <td style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">{query.Key}</td>
+                        <td style="text-align: center; padding: 6px; border: 2px solid #d4af7a;">{query.Value}</td>
+                    </tr>
+                """;
             }
             html += $"""
-</tbody></table></body>
-""";
+            </tbody></table></body>
+            """;
 
 
             return html;

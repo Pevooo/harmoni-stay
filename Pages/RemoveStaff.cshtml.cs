@@ -13,11 +13,11 @@ namespace MainProject.Pages
         }
         public async Task<IActionResult> OnGet(string id)
         {
-            if (HttpContext.Session.GetInt32("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
+                return RedirectToPage("/Login");
             }
-            var emp = db.Employees.Where(item=>item.EmployeeID==id).Select(x=>x);
+            var emp = db.Employees.Where(item => item.EmployeeID == id).Select(x => x);
             if (emp != null)
             {
                 db.Employees.Remove(emp.First());
