@@ -5,7 +5,7 @@ public class OnlineChatbot
     public string Model { get; set; }
     public OpenAIClient Client { get; set; }
 
-    private const int maxTokens = 50;
+    private const int maxTokens = 80;
     private readonly Context db;
 
     public OnlineChatbot(string model, Context db)
@@ -41,7 +41,7 @@ public class OnlineChatbot
         $"""
             Act like a chatbot in a hotel management system called HarmoniStay
             When asked for a page, provide the link only
-            Fit your response not more than {(int)Math.Floor(maxTokens * 0.65)} words
+            Fit your response not more than {(int)Math.Floor(maxTokens * 0.5)} words
 
             Context:
             Number of Rooms: {db.Rooms.Count()},

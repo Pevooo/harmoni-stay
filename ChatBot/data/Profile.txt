@@ -1,1 +1,1 @@
-To access your Profile, visit <a href="/Profile">here</a>. 
+To access your Profile, visit <a href="/Profile">Profile</a>. 
