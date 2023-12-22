@@ -32,10 +32,18 @@
                         <input type="file" id="file" name="image" placeholder="Employeeimage" required value="" />
                     </div>
                     <div class="date" id="date1" data-target-input="nearest">
-                        <select id="Facility" name="Facility">
-                            @foreach (var fac in Model.CategoryFacilities)
+                        <select id="Facility" name="Facility" >
+                            @foreach (var fac in Model.Facilities)
                             {
-                                <option value="@fac">@fac</option>
+                                @if (Model.Employee.EmployeeFacility == fac)
+                                {
+                                    <option selected value="@fac.FacilityName">@fac.FacilityName</option>
+                                }
+                                else
+                                {
+                                    <option value="@fac.FacilityName">@fac.FacilityName</option>
+                                }
+                               
                             }
 
 

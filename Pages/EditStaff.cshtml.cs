@@ -10,6 +10,7 @@ namespace MainProject.Pages
         public readonly Context db;
         public bool Error { get; set; }
         public List<string> CategoryFacilities { set; get; }
+        public List<Facility> Facilities { set; get; }
         public Employee Employee {  get; set; }
 
         string EmployeeName {  get; set; }
@@ -26,6 +27,7 @@ namespace MainProject.Pages
             CategoryFacilities = new();
             Employee = new();
             MemoryStream = new();
+            Facilities = new();
         }
         public void OnGet(string id)
         {
@@ -37,6 +39,7 @@ namespace MainProject.Pages
             foreach (var item in db.Facilities)
             {
                 CategoryFacilities.Add(item.FacilityName);
+                Facilities.Add(item);
             }
             var query = db.Employees.Where(x=>x.EmployeeID == id).Select(x=>x);
             Employee = query.First();
