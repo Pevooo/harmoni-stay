@@ -50,69 +50,73 @@
     </div>
 </form>
 
-<div class="table-responsive">
-    <table class="table align-middle">
-        <thead>
-        <th>
-            Photo
-        </th>
-        <th>
-            EmployeeID
-        </th>
-        <th>
-            EmployeeName
-        </th>
-        <th>
-            WorkinHours
-        </th>
-        <th>
-            Salary
-        </th>
-        <th>
-            Facility
-        </th>
-        <th>
-            <span style="width :20px"></span>
-            <span></span>
-            <span></span>
-            more
-        </th>
-        </thead>
-        <tbody>
+@if (Model.Category is not null)
+{
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+            <th>
+                Photo
+            </th>
+            <th>
+                EmployeeID
+            </th>
+            <th>
+                EmployeeName
+            </th>
+            <th>
+                WorkinHours
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Facility
+            </th>
+            <th>
+                <span style="width :20px"></span>
+                <span></span>
+                <span></span>
+                more
+            </th>
+            </thead>
+            <tbody>
 
-            @foreach (var item in Model.Emps)
-            {
-                <tr>
-                    <td>
-                        @if (Model.Tags[item.EmployeeID] is not null)
-                        {
-                            <img src="@Model.Tags[item.EmployeeID]" width="130" height="130" />
-                        }
-                        else
-                        {
-                            <p>N / A</p>
-                        }
+                @foreach (var item in Model.Emps)
+                {
+                    <tr>
+                        <td>
+                            @if (Model.Tags[item.EmployeeID] is not null)
+                            {
+                                <img src="@Model.Tags[item.EmployeeID]" width="130" height="130" />
+                            }
+                            else
+                            {
+                                <p>N / A</p>
+                            }
 
-                    </td>
-                    <td>@item.EmployeeID</td>
-                    <td>@item.EmployeeName</td>
-                    <td>@item.WorkingHours</td>
-                    <td>@item.EmployeeSalary</td>
-                    <td>@Model.Category</td>
-                    <td>
-                        <div>
-                            <a href="RemoveStaff/@item.EmployeeID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a>
-                            <a href="EditStaff/@item.EmployeeID" class="btn " style="display:grid"> Edit<i class="bi  bg-black bi-x-circle-fill"></i></a>
-                        </div>
+                        </td>
+                        <td>@item.EmployeeID</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.WorkingHours</td>
+                        <td>@item.EmployeeSalary</td>
+                        <td>@Model.Category</td>
+                        <td>
+                            <div>
+                                <a href="RemoveStaff/@item.EmployeeID" class="btn " style="display:grid"> Remove<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                                <a href="EditStaff/@item.EmployeeID" class="btn " style="display:grid"> Edit<i class="bi  bg-black bi-x-circle-fill"></i></a>
+                            </div>
 
 
-                    </td>
+                        </td>
 
-                </tr>
+                    </tr>
 
-            }
-        </tbody>
-    </table>
-</div>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
 
 <!-- Staff End -->

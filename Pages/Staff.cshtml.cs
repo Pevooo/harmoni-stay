@@ -10,8 +10,7 @@ namespace MainProject.Pages
     {
         // The Fields Which is Will be entered
         public readonly Context db;
-        public string Category { get; set; }
-        public List<string> URlPhotos { set; get; }
+        public string? Category { get; set; }
         public List<string> CategoryFacilities { set; get; }
         public List<Employee> Emps { set; get; }
         public Dictionary<string,string> Tags { set; get; }
@@ -40,7 +39,7 @@ namespace MainProject.Pages
         public void OnPost()
         {         
             Category = Request.Form["Facility"];
-            var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == Category).Select(x=>x);
+            var query = db.Employees.Where(item => item.EmployeeFacility.FacilityName == Category).Select(x => x);
             Emps = query.ToList();
             foreach(var item in Emps)
             {
