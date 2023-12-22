@@ -60,13 +60,22 @@ namespace MainProject.Pages
                 }
                 else
                 {
+                    var invalidEvent = db.Events.Any(ev => StartDate < ev.EventEnd && EndDate > ev.EventStart);
+                    if (!invalidEvent)
+                    {
+                        eventToEdit.EventName = EventName;
+                        eventToEdit.EventStart = StartDate;
+                        eventToEdit.EventEnd = EndDate;
+                        eventToEdit.EventType = EventType;
+                        eventToEdit.EventID = id;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Error = true;
+                        Message = $"Event edited";
+                    }
 
-                    eventToEdit.EventName = EventName;
-                    eventToEdit.EventStart = StartDate;
-                    eventToEdit.EventEnd = EndDate;
-                    eventToEdit.EventType = EventType;
-                    eventToEdit.EventID = id;
-                    db.SaveChanges();
                 }
             }
             catch

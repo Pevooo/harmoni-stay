@@ -65,14 +65,16 @@ namespace MainProject.Pages
                 Message = "Invalid Dates";
                 return;
             }
-            var validEvent = db.Events.Any(x => (EventType == x.EventType && ((StartDate < x.EventStart && EndDate < x.EventStart) || (StartDate > x.EventStart && EndDate > x.EventStart))));
-            if (validEvent)
+            var invalidEvent = db.Events.Any(ev => StartDate < ev.EventEnd && EndDate > ev.EventStart);
+            if (!invalidEvent)
             {
-                NewEvent = new();
-                NewEvent.EventName = this.EventName;
-                NewEvent.EventStart = this.StartDate;
-                NewEvent.EventType = this.EventType;
-                NewEvent.EventEnd = this.EndDate;
+                NewEvent = new()
+                {
+                    EventName = this.EventName,
+                    EventStart = this.StartDate,
+                    EventType = this.EventType,
+                    EventEnd = this.EndDate
+                };
                 db.Events.Add(NewEvent);
                 db.SaveChanges();
                 Message = $"{NewEvent} added";
@@ -81,7 +83,7 @@ namespace MainProject.Pages
             else
             {
                 Error = true;
-                Message = "your selected period is occupied for anther event";
+                Message = "Your selected period is occupied for anther event";
             }
 
         }
