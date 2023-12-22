@@ -26,11 +26,11 @@ Visual Programming and Software Engineering project
 
 ### **Step 8**: Facility Management Feature: **Completed**
 
-### **Step 9**: Events Management Feature: *Pending*
+### **Step 9**: Events Management Feature: **Completed**
 
 ### **Step 10**: Financial Analytics Feature: **Completed**
 
-### **Step 11**: PDF Report Feature: TODO
+### **Step 11**: PDF Report Feature: **Completed**
 
 ## Testing:
 
