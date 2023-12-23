@@ -24,13 +24,20 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="~/img/hero/hero-1.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="~/img/hero/hero-2.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="~/img/hero/hero-3.jpg"></div>
+        <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-1.jpg")></div>
+        <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-2.jpg")></div>
+        <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-3.jpg")></div>
     </div>
 </section>
-<!-- Page Header End -->
 
+<div class="container-fluid page-header mb-5 p-0">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center pb-5">
+            <h1 class="display-3 mb-3 animated slideInDown" style="color:#d4af7a;">Edit Event</h1>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
 @if (Model.Error)
 {
     <p style="font-family:verdana ;color:black; font-size:20px; margin-left:70px"> @Model.Message.</p>
@@ -131,8 +138,6 @@
                                             <option value="@fac.FacilityName">@fac.FacilityName</option>
                                         }
                                     }
-
-
                                 </select>
                             </div>
                         </div>
@@ -146,7 +151,7 @@
                     <div class="col-md-2">
                         <div class="date" id="date1" data-target-input="nearest">
 
-                            <input type="submit" style="background-color:#d4af7a; " value="Save" class="btn btn-primary w-100" />
+                                <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Save" class="btn btn-primary w-100" />
                         </div>
                     </div>
                 </div>
