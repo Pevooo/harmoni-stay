@@ -29,15 +29,16 @@ namespace MainProject.Pages
             HotelRooms= new List<Room>();
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+             return RedirectToPage("/Login");
+                
             }
             this.SelectedRoomId = 0;
             HotelRooms = db.Rooms.ToList();
+            return Page();
         }
         
         public void OnPost()

@@ -32,16 +32,16 @@ namespace MainProject.Pages
             Events = new List<Event>();
             Facilities = new();
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             Events = db.Events.ToList();
            Facilities=db.Facilities.ToList();
-
+            return Page();
         }
         public void OnPost()
         {

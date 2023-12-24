@@ -22,13 +22,13 @@ namespace MainProject.Pages
         MemoryStream MemoryStream {  get; set; }
         public byte[] Photo { get; set; }
         public bool Error {  get; set; }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             var fac1=db.Facilities.FirstOrDefault(x=>x.FacilityID==id);
 
             FacilityName = fac1.FacilityName;
@@ -37,7 +37,7 @@ namespace MainProject.Pages
             Start = fac1.FacilityWorkStart.TimeOfDay;
             End = fac1.FacilityWorkEnd.TimeOfDay;
             Photo = fac1.Image;
-
+            return Page();
 
         }
         public IActionResult OnPost(int id)

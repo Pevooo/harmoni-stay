@@ -27,14 +27,14 @@ namespace MainProject.Pages
         {
 			this.db = db;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-			if (HttpContext.Session.GetString("UserId") is not null)
-			{
-				Response.Redirect("/", false, true);
-				return;
-			}
-		}
+            if (HttpContext.Session.GetString("UserId") is null)
+            {
+                return RedirectToPage("/Login");
+            }
+            return Page();
+        }
 
         public void OnPost()
         {

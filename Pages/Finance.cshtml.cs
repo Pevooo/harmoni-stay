@@ -57,18 +57,18 @@ namespace MainProject.Pages
             Queries.Add("Year Room Income Change", (Queries["Room Income This Year"] - Queries["Room Income Last Year"]) / Queries["Room Income Last Year"] * 100.0);
             Queries.Add("Year Event Income Change", (Queries["Event Income This Year"] - Queries["Event Income Last Year"]) / Queries["Event Income Last Year"] * 100);
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-			if (HttpContext.Session.GetString("UserId") is null)
-			{
-				Response.Redirect("/Login", false, true);
-				return;
-			}
+            if (HttpContext.Session.GetString("UserId") is null)
+            {
+                return RedirectToPage("/Login");
+            }
+         
 
             if (Queries is null)
             {
                 Error = "Not Enough Data";
-                return;
+                return Page();
             }
 
 			try
@@ -90,7 +90,7 @@ namespace MainProject.Pages
 			{
 				Error = "Not enough data";
 			}
-
+            return Page();
         }
 
         public IActionResult OnPost()

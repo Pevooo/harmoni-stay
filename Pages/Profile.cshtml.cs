@@ -24,13 +24,13 @@ namespace MainProject.Pages
             Emp = new();
         }
         // Retrieve Inforamtion about the User  
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             Acc =db.Accounts.SingleOrDefault(x => x.AccountEmployee.EmployeeID == HttpContext.Session.GetString("UserId"));
             Emp = db.Employees.SingleOrDefault(e => e.EmployeeID == HttpContext.Session.GetString("UserId"));
             if (Emp.Image != null)
@@ -40,6 +40,7 @@ namespace MainProject.Pages
             Fac = db.Facilities.SingleOrDefault(item => item.FacilityEmployee.Contains(Emp));
             Start= Fac.FacilityWorkStart.TimeOfDay;
             End = Fac.FacilityWorkEnd.TimeOfDay;
+            return Page();
         }
     }
 }

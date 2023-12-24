@@ -72,14 +72,14 @@ namespace MainProject.Pages
         }
       
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-          //  Error = null;
+            //  Error = null;
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             foreach (var facility in db.Facilities)
             {
                 string st = facility.FacilityWorkStart.ToString("H:mm");
@@ -98,6 +98,7 @@ namespace MainProject.Pages
 
 
             }
+            return Page();
         }
   
         

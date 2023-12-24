@@ -19,12 +19,13 @@ namespace MainProject.Pages
 
         }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
+                return RedirectToPage("/Login");
             }
+           
             var eventToDlete = db.Events.Where(item => item.EventID == id).Select(x => x);
             if (eventToDlete != null)
             {
@@ -32,7 +33,7 @@ namespace MainProject.Pages
                 db.SaveChanges();
             }
 
-            Response.Redirect("/Events", false, true);
+            return RedirectToPage("/Events");
 
         }
 

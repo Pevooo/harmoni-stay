@@ -21,13 +21,13 @@ namespace MainProject.Pages
             this.db = db;
             GuestHistory = new List<Booking>();
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+            return Page();
         }
         public void OnPost()
         {

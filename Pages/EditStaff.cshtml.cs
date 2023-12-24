@@ -29,13 +29,13 @@ namespace MainProject.Pages
             MemoryStream = new();
             Facilities = new();
         }
-        public void OnGet(string id)
+        public IActionResult OnGet(string id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             foreach (var item in db.Facilities)
             {
                 CategoryFacilities.Add(item.FacilityName);
@@ -43,7 +43,7 @@ namespace MainProject.Pages
             }
             var query = db.Employees.Where(x=>x.EmployeeID == id).Select(x=>x);
             Employee = query.First();
-            
+            return Page();
         }
     
 

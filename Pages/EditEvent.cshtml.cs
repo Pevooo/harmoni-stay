@@ -28,13 +28,13 @@ namespace MainProject.Pages
         public string Message { get; set; }
         public bool Error { get; set; }
         public Event curr {  get; set; }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
             curr = eventToEdit;
             Facilities=db.Facilities.ToList();
@@ -45,7 +45,7 @@ namespace MainProject.Pages
             EndDate = eventToEdit.EventEnd;
             fee = eventToEdit.EventFee;
             fac = eventToEdit.EventFacility;
-
+            return Page();
         }
         public IActionResult OnPost(int id)
         {

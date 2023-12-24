@@ -20,12 +20,13 @@ namespace MainProject.Pages
         public bool Error { get; set; }
         public string? Message { get; set; }
         public Dictionary<int, List<bool>> Days { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
+                return RedirectToPage("/Login");
             }
+            return Page();
         }
 
         public void OnPost()

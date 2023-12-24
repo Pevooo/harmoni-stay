@@ -22,18 +22,18 @@ namespace MainProject.Pages
             Emps = new();
             Tags = new();
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("UserId") is null)
             {
-                Response.Redirect("/Login", false, true);
-                return;
+                return RedirectToPage("/Login");
             }
+           
             foreach (var item in db.Facilities)
             {
                 CategoryFacilities.Add(item.FacilityName);
             }
-
+            return Page();
         }
         // Add Employee Form 
         public void OnPost()
