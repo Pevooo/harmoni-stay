@@ -24,7 +24,7 @@ namespace MainProject.Pages
         public Event NewEvent { get; set; }
         private readonly Context db;
         public Facility Fac { get; set; }
-       public string FacilityName { get; set; }
+        public string FacilityName { get; set; }
 
         public EventsModel(Context db)
         {
@@ -40,7 +40,7 @@ namespace MainProject.Pages
             }
            
             Events = db.Events.ToList();
-           Facilities=db.Facilities.ToList();
+            Facilities = db.Facilities.ToList();
             return Page();
         }
         public void OnPost()
@@ -57,7 +57,7 @@ namespace MainProject.Pages
                 this.FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                     
-               Fac = facilityId.FirstOrDefault();
+                Fac = facilityId.FirstOrDefault();
 
             }
             catch
