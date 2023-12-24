@@ -50,7 +50,7 @@ namespace MainProject.Pages
                 Start = TimeSpan.Parse( Request.Form["startDate"]);
                 End = TimeSpan.Parse(Request.Form["endDate"]);
 
-                Request.Form.Files.First().CopyTo(MemoryStream);
+                Request.Form.Files[0].CopyTo(MemoryStream);
                 Photo = MemoryStream.ToArray();
 
                 Request.Form.Files[0].CopyTo(MemoryStream);

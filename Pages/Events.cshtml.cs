@@ -23,7 +23,7 @@ namespace MainProject.Pages
         public List<Event> Events { get; set; }
         public Event NewEvent { get; set; }
         private readonly Context db;
-        public Facility fac {  get; set; }
+        public Facility Fac { get; set; }
        public string FacilityName { get; set; }
 
         public EventsModel(Context db)
@@ -57,7 +57,7 @@ namespace MainProject.Pages
                 this.FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                     
-               fac=facilityId.FirstOrDefault();
+               Fac = facilityId.FirstOrDefault();
 
             }
             catch
@@ -74,14 +74,15 @@ namespace MainProject.Pages
             var invalidEvent = db.Events.Any(ev => StartDate < ev.EventEnd && EndDate > ev.EventStart);
             if (!invalidEvent)
             {
-                Event ev=new Event();
-                ev.EventType
-                    = this.EventType;   
-                ev.EventName = this.EventName;
-                ev.EventStart = this.StartDate;
-                ev.EventEnd = this.EndDate;
-                ev.EventFacility = this.fac;
-                ev.EventFee = this.EventFee;
+                Event ev = new()
+                {
+                    EventType = this.EventType,
+                    EventName = this.EventName,
+                    EventStart = this.StartDate,
+                    EventEnd = this.EndDate,
+                    EventFacility = this.Fac,
+                    EventFee = this.EventFee
+                };
                 db.Events.Add(ev);
                 db.SaveChanges();
                 Message = $"{EventName} added";
