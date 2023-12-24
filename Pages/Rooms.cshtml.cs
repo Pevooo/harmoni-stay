@@ -11,13 +11,14 @@ namespace MainProject.Pages
         public RoomsModel(Context db)
         {
             this.db = db;
+            Error = 0;
         }
 
         private readonly Context db;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int RoomId { get; set; }
-        public bool Error { get; set; }
+        public int Error { get; set; }
         public string? Message { get; set; }
         public Dictionary<int, List<bool>> Days { get; set; }
         public IActionResult OnGet()
@@ -39,19 +40,19 @@ namespace MainProject.Pages
             }
             catch
             {
-                Error = true;
+                Error = 1;
                 return;
             }
 
             bool roomExists = db.Rooms.SingleOrDefault(room => room.RoomID == RoomId) is not null;
             if (!roomExists)
             {
-                Error = true;
+                Error = 1;
                 return;
             }
             if(EndDate<=StartDate)
             {
-                Error=true;
+                Error=1;
                 return;
             }
 
@@ -74,6 +75,8 @@ namespace MainProject.Pages
                     Days[roomId].Add(occupied);
                 }
             }
+            Error = 2;
+            return;
 
 
         }

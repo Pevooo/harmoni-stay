@@ -9,7 +9,7 @@ namespace MainProject.Pages
     public class FacilitiesModel : PageModel
     {
         // The Fields Which is Will be entered
-        public bool Error { get; set; }
+        public int Error { get; set; }
         string Name { get; set; }
         private DateTime Start { get; set; }
         private DateTime End { get; set; }
@@ -27,6 +27,8 @@ namespace MainProject.Pages
             Timeoffacilities=new(); Facilitiesnames=new();
             Facilitiesphotos=new();
             IDSfacilities=new();
+            MemoryStream=new MemoryStream();
+            Error=0;
          
         }
         // Add form 
@@ -51,11 +53,13 @@ namespace MainProject.Pages
                 if (Name == "" || Photo == null)
                 {
                     TempData["Error"] = "oops,error";
-                    Error = true;
+                    Error = 1;
 
                 }
                 else
                 {
+                    Error = 2;
+                    TempData["Success"] = "Added Successfully";
                     db.Facilities.Add(fac);
                     db.SaveChanges();
                 }
@@ -65,7 +69,7 @@ namespace MainProject.Pages
             catch
             {
                 TempData["Error"] = "oops,error";
-                Error = true;
+                Error = 1;
 
 
             }

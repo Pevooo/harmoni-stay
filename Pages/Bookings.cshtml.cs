@@ -7,7 +7,7 @@ namespace MainProject.Pages
 {
     public class BookingsModel : PageModel
     {
-        public string Error { get; set; }
+        public int Error { get; set; }
         public string GuestId { get; set; }
         public string GuestName { get; set; }
         public string GuestNationality { get; set; }
@@ -20,6 +20,7 @@ namespace MainProject.Pages
         {
             this.db = db;
             GuestHistory = new List<Booking>();
+            Error = 0;
         }
         public IActionResult OnGet()
         {
@@ -37,7 +38,7 @@ namespace MainProject.Pages
                 if (this.GuestId == "")
                 {
                     TempData["Error"] = "Not Found";
-                    Error = "true";
+                    Error = 1;
                 }
                 //guest data
                 var guest = db.Guests.SingleOrDefault(guest => guest.GuestID == this.GuestId);
@@ -49,11 +50,12 @@ namespace MainProject.Pages
                 }
                 //history // Include related room information
                 this.GuestHistory = db.Bookings.Include(room => room.BookingRoom).Where(booking => booking.BookingGuest.GuestID == this.GuestId).ToList();
+                Error = 2;
             }
             catch
             {
                 TempData["Error"] = "Not Found";
-                Error = "true";
+                Error = 1;
             }
         }
     }

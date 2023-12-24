@@ -18,12 +18,18 @@
     }
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
-
-@if (Model.Error == "true")
+@if (Model.Error == 1)
 {
     <script type="text/javascript">
-        toastr.error("Not Found.");
+        toastr.error("Guest NotFound");
     </script>
+}
+else if (Model.Error == 2)
+{
+    <script type="text/javascript">
+        toastr.success("Guest found");
+    </script>
+
 }
 
 <!-- Page Header Start -->

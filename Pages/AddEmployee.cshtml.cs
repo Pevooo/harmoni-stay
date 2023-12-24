@@ -8,7 +8,7 @@ namespace MainProject.Pages
     public class AddEmployeeModel : PageModel
     {
         public readonly Context db;
-        public bool Error { get; set; }
+        public int Error { get; set; }
         string EmployeeName { get; set; }
         double EmployeeSalary { get; set; }
         double WorkingHours { get; set; }
@@ -21,6 +21,7 @@ namespace MainProject.Pages
             MemoryStream = new();
             this.db = db;
             CategoryFacilities = new();
+            Error = 0;
         }
         public void OnGet()
         {
@@ -45,12 +46,18 @@ namespace MainProject.Pages
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
                 Request.Form.Files[0].CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
+                var check =db.Employees.Any(x=>x.EmployeeID==emp.EmployeeID);
+                if (check)
+                {
+                    Error = 1;
+                    return Page();
+                }
 
                 foreach (var item in Request.Form)
                 {
                     if (Request.Form[item.Key].IsNullOrEmpty())
                     {
-                        Error = true;
+                        Error = 1;
                         return Page();
                     }
                 }
@@ -64,12 +71,13 @@ namespace MainProject.Pages
                 emp.EmployeeFacility = facilityId.First();
                 db.Add(emp);
                 db.SaveChanges();
-                return RedirectToPage("/Staff");
+                Error = 2;
+               // return RedirectToPage("/Staff");
 
             }
             catch
             {
-                Error = true;
+                Error = 1;
 
             }
             return Page();
