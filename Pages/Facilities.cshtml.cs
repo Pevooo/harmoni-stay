@@ -9,7 +9,7 @@ namespace MainProject.Pages
     public class FacilitiesModel : PageModel
     {
         // The Fields Which is Will be entered
-        public string Error { get; set; }
+        public bool Error { get; set; }
         string Name { get; set; }
         private DateTime Start { get; set; }
         private DateTime End { get; set; }
@@ -27,7 +27,7 @@ namespace MainProject.Pages
             Timeoffacilities=new(); Facilitiesnames=new();
             Facilitiesphotos=new();
             IDSfacilities=new();
-         //   Error = null;
+         
         }
         // Add form 
         public IActionResult OnPost()
@@ -51,7 +51,7 @@ namespace MainProject.Pages
                 if (Name == "" || Photo == null)
                 {
                     TempData["Error"] = "oops,error";
-                    Error = "true";
+                    Error = true;
 
                 }
                 else
@@ -65,10 +65,29 @@ namespace MainProject.Pages
             catch
             {
                 TempData["Error"] = "oops,error";
-                Error = "true";
-                
+                Error = true;
+
+
             }
-            return RedirectToPage("Facilities");
+            foreach (var facility in db.Facilities)
+            {
+                string st = facility.FacilityWorkStart.ToString("H:mm");
+                string ed = facility.FacilityWorkEnd.ToString("H:mm");
+                string name = facility.FacilityName;
+                IDSfacilities.Add(facility.FacilityID);
+                Timeoffacilities.Add(st);
+                Timeoffacilities.Add(ed);
+                Facilitiesnames.Add(name);
+                string src = "";
+                if (facility.Image != null)
+                    src = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(facility.Image));
+
+                Facilitiesphotos.Add(src);
+
+
+
+            }
+            return Page();
         }
       
 

@@ -18,7 +18,7 @@
     }
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
-@if (Model.Error == "true")
+@if (Model.Error)
 {
     <script type="text/javascript">
         toastr.error("ooops...check your inputs");
@@ -57,47 +57,64 @@
     <!-- Page Header End -->
 <!-- Facilities Start -->
 
-<form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s" enctype="multipart/form-data">
-    <div class="container">
-        <div class="bg-white shadow" style="padding: 35px;">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-3">
-                            <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="FacilityName"
-                                       placeholder="Facility Name" data-target="#date1" data-toggle="datetimepicker" required />
+ <form method="post" class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s" enctype="multipart/form-data">
+      <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black "> Facility Name :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" name="FacilityName"
+                                           placeholder="Facility Name" data-target="#date1" data-toggle="datetimepicker" required />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black "> Facility Photo :</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="file" class="form-control datetimepicker-input" name="Photo"
+                                           placeholder="Choose a Photo" data-target="#date1" data-toggle="datetimepicker" style="background-color:white" required />
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <input type="time" class="form-control datetimepicker-input" name="startDate"
-                                       placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
+                        <br />
+                        <div class="row g-2">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black "> Start Time :</label>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <input type="time" class="form-control datetimepicker-input" name="endDate"
-                                       placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
+                            <div class="col-md-4">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="time" class="form-control datetimepicker-input" name="startDate"
+                                           placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="date" id="date1" data-target-input="nearest">
-                                <input type="file" class="form-control datetimepicker-input" name="Photo"
-                                       placeholder="Choose a Photo" data-target="#date1" data-toggle="datetimepicker" required />
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black "> End Time :</label>
                             </div>
+                            <div class="col-md-4">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="time" class="form-control datetimepicker-input" name="endDate"
+                                           placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="date" id="date1" data-target-input="nearest">
-                        <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Add Facility" class="btn btn-primary w-100" />
+                    <div class="col-md-2">
+                        <div class="date" id="date1" data-target-input="nearest">
+                            <br /><br /><br /><br />
+                            <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color:white;" value="Add Facility" class="btn btn-primary w-100" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 <div class="article" id="Article">
     <div class="container">
