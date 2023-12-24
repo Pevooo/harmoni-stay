@@ -1,6 +1,7 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MainProject.Pages
 {
@@ -37,13 +38,23 @@ namespace MainProject.Pages
         {
             try
             {
-                Employee emp = new Employee();
+                Employee emp = new();
                 emp.EmployeeID = Request.Form["EmployeeID"];
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
-                Request.Form.Files.First().CopyTo(MemoryStream);
+                Request.Form.Files[0].CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
+
+                foreach (var item in Request.Form)
+                {
+                    if (Request.Form[item.Key].IsNullOrEmpty())
+                    {
+                        Error = true;
+                        return Page();
+                    }
+                }
+
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                 Image = MemoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;

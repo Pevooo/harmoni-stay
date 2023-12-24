@@ -1,6 +1,7 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Security.Policy;
 
@@ -22,12 +23,12 @@ namespace MainProject.Pages
         public int EventId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        Facility fac { get; set; }
+        Facility Fac { get; set; }
         string FacilityName { get; set; }
-        public double fee { get; set; }
+        public double Fee { get; set; }
         public string Message { get; set; }
         public bool Error { get; set; }
-        public Event curr {  get; set; }
+        public Event Curr {  get; set; }
         public IActionResult OnGet(int id)
         {
             if (HttpContext.Session.GetString("UserId") is null)
@@ -36,15 +37,15 @@ namespace MainProject.Pages
             }
            
             var eventToEdit = db.Events.FirstOrDefault(x => x.EventID == id);
-            curr = eventToEdit;
+            Curr = eventToEdit;
             Facilities=db.Facilities.ToList();
             EventName = eventToEdit.EventName;
             EventId = eventToEdit.EventID;
             EventType = eventToEdit.EventType;
             StartDate = eventToEdit.EventStart;
             EndDate = eventToEdit.EventEnd;
-            fee = eventToEdit.EventFee;
-            fac = eventToEdit.EventFacility;
+            Fee = eventToEdit.EventFee;
+            Fac = eventToEdit.EventFacility;
             return Page();
         }
         public IActionResult OnPost(int id)
@@ -58,10 +59,19 @@ namespace MainProject.Pages
                 StartDate = DateTime.Parse(Request.Form["startDate"]);
                 EndDate = DateTime.Parse(Request.Form["endDate"]);
                 EventType = Request.Form["EventType"];
-                fee = double.Parse(Request.Form["EventFee"]);
+                Fee = double.Parse(Request.Form["EventFee"]);
                 FacilityName = Request.Form["Facility"];
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
-                fac = facilityId.FirstOrDefault();
+                Fac = facilityId.FirstOrDefault();
+
+                foreach (var item in Request.Form)
+                {
+                    if (Request.Form[item.Key].IsNullOrEmpty())
+                    {
+                        Error = true;
+                        return Page();
+                    }
+                }
 
                 if (EndDate < StartDate)
                 {
@@ -79,8 +89,8 @@ namespace MainProject.Pages
                         eventToEdit.EventEnd = EndDate;
                         eventToEdit.EventType = EventType;
                         eventToEdit.EventID = id;
-                        eventToEdit.EventFee = fee;
-                        eventToEdit.EventFacility = fac;
+                        eventToEdit.EventFee = Fee;
+                        eventToEdit.EventFacility = Fac;
                         db.SaveChanges();
                     }
                     else

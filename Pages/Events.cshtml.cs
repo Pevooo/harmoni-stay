@@ -2,6 +2,7 @@ using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Policy;
 
 namespace MainProject.Pages
@@ -43,12 +44,20 @@ namespace MainProject.Pages
             Facilities = db.Facilities.ToList();
             return Page();
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
             Events = db.Events.ToList();
 
             try
             {
+                foreach (var item in Request.Form)
+                {
+                    if (Request.Form[item.Key].IsNullOrEmpty())
+                    {
+                        Error = true;
+                        return Page();
+                    }
+                }
                 this.StartDate = DateTime.Parse(Request.Form["startDate"].ToString());
                 this.EndDate = DateTime.Parse(Request.Form["endDate"].ToString());
                 this.EventType = Request.Form["eventType"];
@@ -63,13 +72,13 @@ namespace MainProject.Pages
             catch
             {
                 Error = true;
-                return;
+                return Page();
             }
             if (this.EndDate < this.StartDate)
             {
                 Error = true;
                 Message = "Invalid Dates";
-                return;
+                return Page();
             }
             var invalidEvent = db.Events.Any(ev => StartDate < ev.EventEnd && EndDate > ev.EventStart);
             if (!invalidEvent)
@@ -86,12 +95,13 @@ namespace MainProject.Pages
                 db.Events.Add(ev);
                 db.SaveChanges();
                 Message = $"{EventName} added";
-
+                return Page();
             }
             else
             {
                 Error = true;
                 Message = "Your selected period is occupied for anther event";
+                return Page();
             }
 
         }

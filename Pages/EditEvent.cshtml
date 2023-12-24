@@ -129,7 +129,7 @@
                                 <select id="Facility" name="Facility">
                                     @foreach (var fac in Model.Facilities)
                                     {
-                                        @if (Model.curr.EventFacility == fac)
+                                        @if (Model.Curr.EventFacility == fac)
                                         {
                                             <option  selected value="@fac.FacilityName">@fac.FacilityName</option>
                                         }

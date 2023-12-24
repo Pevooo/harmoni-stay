@@ -1,6 +1,7 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MainProject.Pages
@@ -51,6 +52,14 @@ namespace MainProject.Pages
         {
             try
             {
+                foreach (var item in Request.Form)
+                {
+                    if (Request.Form[item.Key].IsNullOrEmpty())
+                    {
+                        Error = true;
+                        return Page();
+                    }
+                }
                 var emp = db.Employees.FirstOrDefault(x => x.EmployeeID == id);
                 EmployeeName = Request.Form["EmployeeName"];
                 WorkingHours = double.Parse(Request.Form["WorkingHours"]);

@@ -1,6 +1,7 @@
 using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -50,8 +51,14 @@ namespace MainProject.Pages
                 Start = TimeSpan.Parse( Request.Form["startDate"]);
                 End = TimeSpan.Parse(Request.Form["endDate"]);
 
-                Request.Form.Files[0].CopyTo(MemoryStream);
-                Photo = MemoryStream.ToArray();
+                foreach (var item in Request.Form)
+                {
+                    if (Request.Form[item.Key].IsNullOrEmpty())
+                    {
+                        Error = true;
+                        return Page();
+                    }
+                }
 
                 Request.Form.Files[0].CopyTo(MemoryStream);
                 Photo = MemoryStream.ToArray();
