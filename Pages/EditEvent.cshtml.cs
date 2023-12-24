@@ -91,12 +91,13 @@ namespace MainProject.Pages
                         eventToEdit.EventID = id;
                         eventToEdit.EventFee = Fee;
                         eventToEdit.EventFacility = Fac;
-                        db.SaveChanges();
+                        db.SaveChanges(); 
+                        Message = $"Event edited";
                     }
                     else
                     {
                         Error = true;
-                        Message = $"Event edited";
+                        Message = "Your selected period is occupied for anther event";
                     }
 
                 }
