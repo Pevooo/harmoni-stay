@@ -39,8 +39,6 @@ Visual Programming and Software Engineering project
 # Licenses
 ###### https://mdbootstrap.com/general/license/#license-free
 ###### https://themewagon.com/license/
-######
-https://themewagon.com/blog/loginsign-up-form-to-compliment-your-website/
+###### https://themewagon.com/blog/loginsign-up-form-to-compliment-your-website/
+###### https://codepen.io/technext/pen/KKWYPGM
 
-https://codepen.io/technext/pen/KKWYPGM
-######
