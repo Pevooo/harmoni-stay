@@ -26,9 +26,9 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+       <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-1.jpg")></div>
+       <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-2.jpg")></div>
+       <div class="hs-item set-bg" data-setbg=@Url.Content("~/img/hero/hero-3.jpg")></div>
     </div>
 </section>
 
@@ -45,12 +45,21 @@
             <div class="bg-white shadow" style="padding: 35px;">
                 <div class="row g-2">
                     <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Room ID:</label>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="date" id="date1" data-target-input="nearest">
                                     <input type="text" class="form-control datetimepicker-input" name="roomId"
                                            placeholder="Room Number" data-target="#date1" data-toggle="datetimepicker" required />
                                 </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  Start Date:</label>
                             </div>
                             <div class="col-md-3">
                                 <div class="date" id="date2" data-target-input="nearest">
@@ -58,17 +67,21 @@
                                            placeholder="Start Date" data-target="#date2" data-toggle="datetimepicker" required />
                                 </div>
                             </div>
-                        <div class="col-md-3">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <input type="date" class="form-control datetimepicker-input" name="endDate"
-                                       placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
+                            <div class="col-md-2">
+                                <label class="primary-btn" style="color:black ">  End Date:</label>
                             </div>
-                        </div>
+                            <div class="col-md-3">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="date" class="form-control datetimepicker-input" name="endDate"
+                                       placeholder="End Date" data-target="#date2" data-toggle="datetimepicker" required />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="date" id="date1" data-target-input="nearest">
-                        <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color: white;" value="Submit" class="btn btn-primary w-100" />
+                            <br /><br />
+                            <input type="submit" style="background-color:#d4af7a; border-color:#d4af7a; color: white;" value="Submit" class="btn btn-primary w-100" />
                         </div>
                     </div>
                 </div>
