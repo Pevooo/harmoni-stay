@@ -1,6 +1,8 @@
 ﻿@using MainProject
 @using Microsoft.AspNetCore.Http;
-
+@{
+    var currentPage = Context.Request.Path.Value;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,29 +60,29 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li><a asp-page="/Index">Home</a></li>
+                <li class="@(currentPage == "/" ? "active" : "")"><a asp-page="/Index">Home</a></li>
                 @if (ViewBag.UserId is not null)
                 {
-                    <li><a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile @ViewBag.UserName</a></li>
-                    <li class="nav-item">
+                    <li class="@(currentPage == "/" ? "active" : "")"><a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile @ViewBag.UserName</a></li>
+                    <li class="nav-item @(currentPage == "/Booking" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Rooms" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Facilities" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Finance" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Staff" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Events" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @(currentPage == "/Chatbot" ? "active" : "")">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
                     </li>
                     <li><a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a></li>
@@ -129,28 +131,28 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li><a asp-page="/Index">Home</a></li>
+                                    <li class="@(currentPage == "/" ? "active" : "")"><a asp-page="/Index">Home</a></li>
                                     @if (ViewBag.UserId is not null)
                                     {
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Booking" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Rooms" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Facilities" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Facilities">Facilities</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Finance" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Finance">Finance</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Staff" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Staff">Staff</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Events" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Chatbot" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
                                         </li>
                                         <li class="nav-item dropdown">
@@ -163,10 +165,10 @@
                                     }
                                     else
                                     {
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Login" ? "active" : "")">
                                             <a asp-area="" asp-page="/Login">Login</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item @(currentPage == "/Register" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
                                         </li>
                                     }
@@ -239,6 +241,8 @@
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                     Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                                 </p>
                             </div>
                         </div>
@@ -247,18 +251,6 @@
             </div>
         </footer>
         <!-- Footer Section End -->
-        <!-- Search model Begin -->
-        <div class="search-model">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch"><i class="icon_close"></i></div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
-            </div>
-        </div>
-        <!-- Search model end -->
-       
-
 
         @await RenderSectionAsync("Scripts", required: false)
 
