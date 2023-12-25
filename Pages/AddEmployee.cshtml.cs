@@ -25,7 +25,7 @@ namespace MainProject.Pages
         }
         public void OnGet()
         {
-            if (HttpContext.Session.GetString("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null || (HttpContext.Session.GetString("UserType") != "manager"))
             {
                 Response.Redirect("/Login", false, true);
                 return;

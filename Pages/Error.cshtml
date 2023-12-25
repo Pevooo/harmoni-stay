@@ -2,7 +2,7 @@
 @model ErrorModel
 @{
     ViewData["Title"] = "Error";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
 }
 
 <p style="font-size: 50px" class="text-danger">Error.</p>

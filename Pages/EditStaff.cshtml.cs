@@ -32,7 +32,7 @@ namespace MainProject.Pages
         }
         public IActionResult OnGet(string id)
         {
-            if (HttpContext.Session.GetString("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null || (HttpContext.Session.GetString("UserType") != "manager"))
             {
                 return RedirectToPage("/Login");
             }

@@ -29,8 +29,12 @@ namespace MainProject.Pages
         }
 
         
-        public void OnGet(string id)
+        public IActionResult OnGet(string id)
         {
+            if (HttpContext.Session.GetString("UserId") is null || (HttpContext.Session.GetString("UserType") != "manager"))
+            {
+                return RedirectToPage("/Login");
+            }
             try
             {
                 List<string> eventTypeNames = db.Events.Select(ev => ev.EventType).Distinct().ToList();
@@ -56,8 +60,9 @@ namespace MainProject.Pages
             catch 
             {
                 Error = true;
-                return;
             }
+
+            return Page();
         }
     }
     

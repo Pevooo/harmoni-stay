@@ -2,7 +2,7 @@
 @model MainProject.Pages.ChatbotModel
 @{
     ViewData["Title"] = "Chatbot";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
 }
 
 @if (Model.Error is not null)

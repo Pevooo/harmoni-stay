@@ -25,7 +25,7 @@ namespace MainProject.Pages
         public bool Error {  get; set; }
         public IActionResult OnGet(int id)
         {
-            if (HttpContext.Session.GetString("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is null || (HttpContext.Session.GetString("UserType") != "manager"))
             {
                 return RedirectToPage("/Login");
             }

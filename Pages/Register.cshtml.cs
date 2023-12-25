@@ -29,7 +29,7 @@ namespace MainProject.Pages
         }
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("UserId") is null)
+            if (HttpContext.Session.GetString("UserId") is not null)
             {
                 return RedirectToPage("/Login");
             }
@@ -44,6 +44,11 @@ namespace MainProject.Pages
 				UserId = Request.Form["userId"];
 				Password = Request.Form["password"];
 				Type = Request.Form["type"];
+				if (Type.ToLower() != "manager" && Type.ToLower() != "receptionist")
+				{
+					Error = true;
+					return;
+				}
             }
 			catch
 			{
@@ -81,7 +86,8 @@ namespace MainProject.Pages
 
 				// Saving User info in Session and Globals
 				HttpContext.Session.SetString("UserId", UserId);
-				Response.Redirect("/Login", false, true);
+                HttpContext.Session.SetString("UserType", Type.ToLower());
+                Response.Redirect("/Login", false, true);
 			}
 		}    
     }

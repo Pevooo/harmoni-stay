@@ -2,7 +2,7 @@
 @model MainProject.Pages.BookingsModel
 @{
     ViewData["Title"] = "Booking History";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
 }
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

@@ -2,7 +2,7 @@
 @model PrivacyModel
 @{
     ViewData["Title"] = "Privacy Policy";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
 }
 <h1>@ViewData["Title"]</h1>
 <br />

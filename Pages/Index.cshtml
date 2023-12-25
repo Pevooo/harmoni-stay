@@ -3,7 +3,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
     //Layout = null;
 }
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

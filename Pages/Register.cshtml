@@ -2,7 +2,7 @@
 @model MainProject.Pages.RegisterModel
 @{
     ViewData["Title"] = "Register";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
     //Layout = null;
 
 }
@@ -335,7 +335,10 @@
             <input type="text"  id="userId" name="userId" required />
             <label>
                 <span>Type</span>
-                <input type="text" id="type" name="type" required />
+                <select class="form-control" id="SelectedRoomId" name="type" style="height: auto;max-height: 200px; overflow-x: hidden; display:flex; background-color:white;">
+                    <option selected>Manager</option>
+                    <option>Receptionist</option>
+                </select>
             </label>
         </label>
         <label>

@@ -62,7 +62,8 @@ namespace MainProject.Pages
             {
                 // Saving User info in Session and Globals
                 HttpContext.Session.SetString("UserId", UserId);
-                
+                HttpContext.Session.SetString("UserType", query.Type.ToLower());
+
                 Error = "false";
                 var emp = db.Employees.SingleOrDefault(e => e.EmployeeID == UserId);
                 TempData["Success"] = "Login Successfully";

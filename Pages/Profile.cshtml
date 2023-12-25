@@ -2,7 +2,7 @@
 @model MainProject.Pages.ProfileModel
 @{
     ViewData["Title"] = "Profile";
-    ViewBag.UserId = HttpContext.Session.GetString("UserId");
+    ViewBag.UserType = HttpContext.Session.GetString("UserType");
 }
 <style>
     body {

@@ -132,7 +132,7 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="@(currentPage == "/" ? "active" : "")"><a asp-page="/Index">Home</a></li>
-                                    @if (ViewBag.UserId is not null)
+                                    @if (ViewBag.UserType == "manager")
                                     {
                                         <li class="nav-item @(currentPage == "/Booking" ? "active" : "")">
                                             <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
@@ -161,6 +161,24 @@
                                                 <li><a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile @ViewBag.UserName</a></li>
                                                 <li><a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a></li>
                                             </ul>
+                                        </li>
+                                    }
+                                    else if (ViewBag.UserType is not null)
+                                    {
+                                        <li class="nav-item @(currentPage == "/Booking" ? "active" : "")">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                                        </li>
+                                        <li class="nav-item @(currentPage == "/Rooms" ? "active" : "")">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Rooms">Rooms</a>
+                                        </li>
+                                        <li class="nav-item @(currentPage == "/Chatbot" ? "active" : "")">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Chatbot">Chatbot</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile @ViewBag.UserName</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
                                         </li>
                                     }
                                     else
