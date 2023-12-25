@@ -35,7 +35,16 @@ namespace MainProject.Pages
             }
             return Page();
         }
+		private bool check_Password (string pass)
+		{
+			int Capital = 0;
+			for(int i=0;i<pass.Count();i++)
+			{
+				if (pass[i] >= 65 && pass[i] <= 91) Capital++;
 
+            }
+			return Capital > 3&&pass.Count()>=8;
+		}
         public void OnPost()
         {
 
@@ -69,6 +78,8 @@ namespace MainProject.Pages
 			if (query is not null)
 			{
 				Error = true;
+			}else if (!check_Password(Password)) { 
+			Error = true;
 			}
 			else
 			{
@@ -80,6 +91,7 @@ namespace MainProject.Pages
 					Error = true;
 					return;
 				}
+
 				
 				db.Accounts.Add(new Account() {  AccountEmployee = employee, Password = BCrypt.Net.BCrypt.HashPassword(Password), Type = this.Type});
 				db.SaveChanges();

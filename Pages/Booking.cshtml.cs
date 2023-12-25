@@ -63,19 +63,19 @@ namespace MainProject.Pages
                     return;
 
                 }
-                if (this.GuestName == "" || this.GuestNationality == ""  || this.GuestPhoneNumber == "")
+               else if (this.GuestName == "" || this.GuestNationality == ""  || this.GuestPhoneNumber == "")
                 {
                     TempData["Error"] = "Check Guest Data.";
                     Error = "true2";
                     return;
                 }
-                if (this.TransactionFee <= 0 || this.TransactionDescription == "")
+               else  if (this.TransactionFee <= 0 || this.TransactionDescription == "")
                 {
                     TempData["Error"] = "Check Transaction Data.";
                     Error = "true3";
                     return;
                 }
-                if (this.SelectedRoomId == 0)
+                else if (this.SelectedRoomId == 0)
                 {
                     TempData["Error"] = "Please select a room.";
                     Error = "true4";
@@ -89,7 +89,7 @@ namespace MainProject.Pages
                     {
                         //checking if the guest is new or not
                         var existingGuest = db.Guests.SingleOrDefault(guest => guest.GuestID == this.GuestId);
-
+                        var currentGuest=new Guest { GuestID = this.GuestId,GuestName=this.GuestName,GuestNationality=this.GuestNationality,GuestPhoneNumber=this.GuestPhoneNumber};
                         if (existingGuest is null)
                         {
                             this.HotelGuest = new Guest
@@ -101,6 +101,17 @@ namespace MainProject.Pages
                             };
                             db.Guests.Add(this.HotelGuest);
                             db.SaveChanges();
+                        }
+                       else if (existingGuest.GuestName==this.GuestName&&existingGuest.GuestID==this.GuestId&&existingGuest.GuestNationality==this.GuestNationality
+                            &&existingGuest.GuestPhoneNumber==this.GuestPhoneNumber) {
+                            this.HotelGuest = existingGuest;
+                        }
+                        else
+                        {
+                            TempData["Error"] = "The Guest Existing with diffrent Information";
+                            Error = "true";
+                            return;
+
                         }
 
                         var newBooking = new Booking() { CheckIn = this.CheckIn, CheckOut = this.CheckOut, BookingRoom = db.Rooms.Find(SelectedRoomId), BookingGuest = this.HotelGuest };
