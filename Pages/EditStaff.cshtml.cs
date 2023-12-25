@@ -2,7 +2,7 @@ using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net.Mail;
 
 namespace MainProject.Pages
 {
@@ -19,7 +19,7 @@ namespace MainProject.Pages
         double WorkingHours {  get; set; }
         byte[] Image {  get; set; }
         string FacilityName { get; set; }
-
+        string Email { get; set; }
         MemoryStream MemoryStream {  get; set; }
 
         public EditStaffModel(Context db)
@@ -66,6 +66,8 @@ namespace MainProject.Pages
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
                 Request.Form.Files[0].CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
+                Email = Request.Form["Email"];
+                var emailObject = new MailAddress(Email); // Will throw an exception if not valid, which will be cuaght
                 var facilityId = db.Facilities.Where(x => x.FacilityName == FacilityName);
                 Image = MemoryStream.ToArray();
                 emp.EmployeeSalary = EmployeeSalary;
@@ -73,6 +75,7 @@ namespace MainProject.Pages
                 emp.EmployeeName = EmployeeName;
                 emp.Image = Image;
                 emp.EmployeeFacility = facilityId.First();
+                emp.EmplooyeeEmail = Email;
                 db.SaveChanges();
                 return RedirectToPage("/Staff");
             }

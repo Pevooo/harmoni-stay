@@ -2,6 +2,7 @@ using MainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
+using System.Net.Mail;
 
 namespace MainProject.Pages
 {
@@ -14,6 +15,7 @@ namespace MainProject.Pages
         double WorkingHours { get; set; }
         byte[] Image { get; set; }
         string FacilityName { get; set; }     
+        string Email { get; set; }
         MemoryStream MemoryStream { get; set; }
         public List<string> CategoryFacilities { set; get; }
         public AddEmployeeModel(Context db)
@@ -46,7 +48,9 @@ namespace MainProject.Pages
                 EmployeeSalary = double.Parse(Request.Form["EmployeeSalary"]);
                 Request.Form.Files[0].CopyTo(MemoryStream);
                 FacilityName = Request.Form["Facility"];
-                var check =db.Employees.Any(x=>x.EmployeeID==emp.EmployeeID);
+                Email = Request.Form["Email"];
+                var emailObject = new MailAddress(Email); // Will throw an exception if not valid, which will be cuaght
+                var check = db.Employees.Any(x => x.EmployeeID == emp.EmployeeID);
                 if (check)
                 {
                     Error = 1;
@@ -69,6 +73,7 @@ namespace MainProject.Pages
                 emp.EmployeeName = EmployeeName;
                 emp.Image = Image;
                 emp.EmployeeFacility = facilityId.First();
+                emp.EmplooyeeEmail = Email;
                 db.Add(emp);
                 db.SaveChanges();
                 Error = 2;

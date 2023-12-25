@@ -7,6 +7,7 @@
         public double EmployeeSalary { get; set; }
         public byte[] Image { get; set; }
         public double WorkingHours { get; set; }
+        public string EmplooyeeEmail { get; set; }
         public virtual Facility EmployeeFacility { get; set; }
     }
 }
