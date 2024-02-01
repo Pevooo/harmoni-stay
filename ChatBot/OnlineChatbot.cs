@@ -10,7 +10,7 @@ public class OnlineChatbot
 
     public OnlineChatbot(string model, Context db)
     {
-        Client = new("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");
+        Client = new(Environment.GetEnvironmentVariable("OPENAI-API-KEY"));
         Model = model;
         this.db = db;
 
