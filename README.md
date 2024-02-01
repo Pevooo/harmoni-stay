@@ -15,5 +15,5 @@ This is an all-in-one hotel management system that offers various features:
 ###### https://themewagon.com/blog/loginsign-up-form-to-compliment-your-website/
 ###### https://codepen.io/technext/pen/KKWYPGM
 
-###### More licenses in Licenses folder
+### More licenses in Licenses folder
 
